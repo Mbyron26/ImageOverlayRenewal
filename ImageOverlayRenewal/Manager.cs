@@ -127,17 +127,8 @@ namespace ImageOverlayRenewal {
         }
 
         public static byte GetOpacity() => (byte)Mathf.Clamp((int)Math.Ceiling(Config.Instance.Opacity / 100m * 255), 0, 255);
-        public static string[] GetAllPNGPath() {
-            PNGBuffer.Clear();
-            var PNGs = Directory.GetFiles(PNGDirectory, PNGFormat);
 
-            if (PNGs.Length > 0) {
-                for (int i = 0; i < PNGs.Length; i++) {
-                    PNGBuffer.Add(PNGs[i]);
-                }
-            }
-            return PNGs;
-        }
+        [Obsolete]
         public static string[] GetAllPNGsPath(bool isok) {
             DirectoryInfo directoryInfo = new(PNGDirectory);
             FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
@@ -149,22 +140,6 @@ namespace ImageOverlayRenewal {
                 return buffer;
             } else {
                 return null;
-            }
-        }
-        public static void Test() {
-            DirectoryInfo directoryInfo = new(PNGDirectory);
-            FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
-            for (int i = 0; i < files.Length; i++) {
-                ModLogger.ModLog($"{files[i].Name}, {files[i].DirectoryName},{files[i].FullName},{Path.GetFileNameWithoutExtension(files[i].FullName)}");
-                ////  未标题-1.png, D:\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Files,D:\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Files\未标题-1.png,未标题-1
-            }
-            ModLogger.ModLog($"-----------------------------");
-            var PNGs = Directory.GetFiles(PNGDirectory, PNGFormat);
-            if (PNGs.Length > 0) {
-                for (int i = 0; i < PNGs.Length; i++) {
-                    ModLogger.ModLog($"{PNGs[i]}");
-                    ///  Files/未标题-1.png
-                }
             }
         }
 
@@ -202,9 +177,7 @@ namespace ImageOverlayRenewal {
 
     }
 
-
     public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISimulationManager, IRenderableManager {
-
         public static void OnLevelLoaded() {
             SimulationManager.RegisterManager(instance);
         }
