@@ -1,0 +1,10 @@
+﻿
+V1.8.0
+[ADD]Add control panel instead of shortcut key.
+[ADD]Add overlay image parameter settings.
+[ADD]Added display reload texture results.
+[UPT]Update whole mod framework to improve expansibility.
+[UPT]Update show image logic.
+[OPT]Optimized loading texture logic to improve performance.
+[FIX]Fixed an issue where occasional settings were reseted.
+[ADJ]Because of mod was completely rewritten so settings will be reset.

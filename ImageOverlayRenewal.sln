@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageOverlayRenewal", "ImageOverlayRenewal\ImageOverlayRenewal.csproj", "{664FF6F6-8D36-4FFB-A9B7-ACFB119605E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MbyronModsCommonShared", "MbyronModsCommonShared", "{09B66150-DA64-468B-B2C8-911CB10D315C}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "KeyBindingShared", "MbyronModsCommonShared\KeyBindingShared\KeyBindingShared.shproj", "{8BCA411E-2D43-4E9B-8A2A-64FD06DEBCE9}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MessageBoxShared", "MbyronModsCommonShared\MessageBoxShared\MessageBoxShared.shproj", "{DE5BDBEC-9A06-400C-B1B0-1FB97D16C060}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ModBaseShared", "MbyronModsCommonShared\ModBaseShared\ModBaseShared.shproj", "{9D33E154-918C-4D4C-936E-36FDA3D28D28}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ModUtilsShared", "MbyronModsCommonShared\ModUtilsShared\ModUtilsShared.shproj", "{9070DBF9-5E82-43F8-8C32-99FB000F5608}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OptionPanelShared", "MbyronModsCommonShared\OptionPanelShared\OptionPanelShared.shproj", "{3D4677BF-9BA5-471A-A08E-EF3C666DB60E}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "UIShared", "MbyronModsCommonShared\UIShared\UIShared.shproj", "{3EB3690C-1FA5-4960-BA1F-9C4B93B8C8C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LocalizationShared", "LocalizationShared", "{7E46603E-223D-456E-981A-43AAE709D4E6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonLocaleShared", "MbyronModsCommonShared\LocalizationShared\CommonLocaleShared\CommonLocaleShared.shproj", "{0F944367-8CA7-4A25-B294-7C02D3057436}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonLocaleShared.en", "MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.en\CommonLocaleShared.en.shproj", "{1DA7015F-A7C4-427D-AF0E-A44F6AC5CFDE}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CommonLocaleShared.zh-CN", "MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.zh-CN\CommonLocaleShared.zh-CN.shproj", "{45FBFBF3-F423-4F3F-BA0A-424904D05BB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{664FF6F6-8D36-4FFB-A9B7-ACFB119605E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664FF6F6-8D36-4FFB-A9B7-ACFB119605E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664FF6F6-8D36-4FFB-A9B7-ACFB119605E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664FF6F6-8D36-4FFB-A9B7-ACFB119605E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8BCA411E-2D43-4E9B-8A2A-64FD06DEBCE9} = {09B66150-DA64-468B-B2C8-911CB10D315C}
+		{DE5BDBEC-9A06-400C-B1B0-1FB97D16C060} = {09B66150-DA64-468B-B2C8-911CB10D315C}
+		{9D33E154-918C-4D4C-936E-36FDA3D28D28} = {09B66150-DA64-468B-B2C8-911CB10D315C}
+		{9070DBF9-5E82-43F8-8C32-99FB000F5608} = {09B66150-DA64-468B-B2C8-911CB10D315C}
+		{3D4677BF-9BA5-471A-A08E-EF3C666DB60E} = {09B66150-DA64-468B-B2C8-911CB10D315C}
+		{3EB3690C-1FA5-4960-BA1F-9C4B93B8C8C8} = {09B66150-DA64-468B-B2C8-911CB10D315C}
+		{7E46603E-223D-456E-981A-43AAE709D4E6} = {09B66150-DA64-468B-B2C8-911CB10D315C}
+		{0F944367-8CA7-4A25-B294-7C02D3057436} = {7E46603E-223D-456E-981A-43AAE709D4E6}
+		{1DA7015F-A7C4-427D-AF0E-A44F6AC5CFDE} = {7E46603E-223D-456E-981A-43AAE709D4E6}
+		{45FBFBF3-F423-4F3F-BA0A-424904D05BB1} = {7E46603E-223D-456E-981A-43AAE709D4E6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A55389A-AF81-47B2-BB0D-AEBAE481E400}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MbyronModsCommonShared\LocalizationShared\CommonLocaleShared\CommonLocaleShared.projitems*{0f944367-8ca7-4a25-b294-7c02d3057436}*SharedItemsImports = 13
+		MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.en\CommonLocaleShared.en.projitems*{1da7015f-a7c4-427d-af0e-a44f6ac5cfde}*SharedItemsImports = 13
+		MbyronModsCommonShared\OptionPanelShared\OptionPanelShared.projitems*{3d4677bf-9ba5-471a-a08e-ef3c666db60e}*SharedItemsImports = 13
+		MbyronModsCommonShared\UIShared\UIShared.projitems*{3eb3690c-1fa5-4960-ba1f-9c4b93b8c8c8}*SharedItemsImports = 13
+		MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.zh-CN\CommonLocaleShared.zh-CN.projitems*{45fbfbf3-f423-4f3f-ba0a-424904d05bb1}*SharedItemsImports = 13
+		MbyronModsCommonShared\KeyBindingShared\KeyBindingShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.en\CommonLocaleShared.en.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.zh-CN\CommonLocaleShared.zh-CN.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\LocalizationShared\CommonLocaleShared\CommonLocaleShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\MessageBoxShared\MessageBoxShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\ModBaseShared\ModBaseShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\ModUtilsShared\ModUtilsShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\OptionPanelShared\OptionPanelShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\UIShared\UIShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommonShared\KeyBindingShared\KeyBindingShared.projitems*{8bca411e-2d43-4e9b-8a2a-64fd06debce9}*SharedItemsImports = 13
+		MbyronModsCommonShared\ModUtilsShared\ModUtilsShared.projitems*{9070dbf9-5e82-43f8-8c32-99fb000f5608}*SharedItemsImports = 13
+		MbyronModsCommonShared\ModBaseShared\ModBaseShared.projitems*{9d33e154-918c-4d4c-936e-36fda3d28d28}*SharedItemsImports = 13
+		MbyronModsCommonShared\MessageBoxShared\MessageBoxShared.projitems*{de5bdbec-9a06-400c-b1b0-1fb97d16c060}*SharedItemsImports = 13
+	EndGlobalSection
+EndGlobal
