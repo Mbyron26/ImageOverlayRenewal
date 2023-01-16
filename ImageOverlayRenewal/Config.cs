@@ -10,7 +10,7 @@ namespace ImageOverlayRenewal {
         public float PositionX { get; set; } = 0f;
         public float PositionY { get; set; } = 0f;
         public float Rotation { get; set; } = 0f;
-        public byte Opacity { get; set; } = 100;
+        public byte Opacity { get; set; } = 30;
 
         public bool ShowReloadResults { get; set; } = true;
         [XmlElement]
