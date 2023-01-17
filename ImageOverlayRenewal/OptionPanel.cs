@@ -16,8 +16,8 @@ namespace ImageOverlayRenewal {
     public class OptionPanel_Hotkey {
         public OptionPanel_Hotkey(UIComponent component) {
             var hotkey = OptionPanelCard.AddCard(component, TypeWidth.NormalWidth, CommonLocale.OptionPanel_Hotkeys, out _);
-            CustomKeymapping.AddKeymapping(hotkey, Localize.OptionPanel_ShowControlPanel, Config.Instance.ShowControlPanel, null);
-
+            CustomKeymapping.AddKeymapping(hotkey, Localize.OptionPanel_ShowControlPanel, Config.Instance.ShowControlPanelHotkey, null);
+            CustomKeymapping.AddKeymapping(hotkey, Localize.ControlPanel_ShowImage, Config.Instance.ShowImageHotkey, null);
         }
     }
 

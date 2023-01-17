@@ -57,9 +57,38 @@ namespace MbyronModsCommon {
             return textField;
         }
 
+        public static CustomFloatField AddFloatField(UIPanel panel, float width, float height, float defaultValue, float wheelStep, float minLimit, float maxLimit) {
+            CustomFloatField textField = panel.AddUIComponent<CustomFloatField>();
+            textField.width = width;
+            textField.height = height;
+            textField.atlas = CustomAtlas.CommonAtlas;
+            textField.selectionSprite = CustomAtlas.EmptySprite;
+            textField.normalBgSprite = CustomAtlas.FieldNormal;
+            textField.disabledBgSprite = CustomAtlas.FieldDisabled;
+            textField.focusedBgSprite = CustomAtlas.FieldNormal;
+            textField.hoveredBgSprite = CustomAtlas.FieldHovered;
+            textField.numericalOnly = true;
+            textField.allowFloats = true;
+            textField.enabled = true;
+            textField.builtinKeyNavigation = true;
+            textField.isInteractive = true;
+            textField.readOnly = false;
+            textField.cursorWidth = 1;
+            textField.cursorBlinkTime = 0.45f;
+            textField.textScale = 0.7f;
+            textField.selectOnFocus = true;
+            textField.verticalAlignment = UIVerticalAlignment.Middle;
+            textField.padding = new RectOffset(0, 0, 5, 0);
+            textField.Value = defaultValue;
+            textField.WheelAvailable = textField.MinLimit = textField.MaxLimit = true;
+            textField.WheelStep = wheelStep;
+            textField.MinValue = minLimit;
+            textField.MaxValue = maxLimit;
+            return textField;
+        }
 
-        public static TypeField AddIntTypeField<TypeField>(UIPanel panel, float width, float height, int defaultValue, int wheelStep, int minLimit, int maxLimit) where TypeField : CustomTextFieldBase<int> {
-            TypeField textField = panel.AddUIComponent<TypeField>();
+        public static CustomIntTextField AddIntTypeField(UIPanel panel, float width, float height, int defaultValue, int wheelStep, int minLimit, int maxLimit) {
+            CustomIntTextField textField = panel.AddUIComponent<CustomIntTextField>();
             textField.width = width;
             textField.height = height;
             textField.atlas = CustomAtlas.CommonAtlas;
@@ -89,6 +118,24 @@ namespace MbyronModsCommon {
         }
     }
 
+    public class CustomFloatField : CustomTextFieldBase<float> {
+        protected override float ValueDecrease(SteppingRate steppingRate) {
+            var rate = GetStep(steppingRate);
+            return (float)Math.Round(Value - rate, 1);
+        }
+        protected override float ValueIncrease(SteppingRate steppingRate) {
+            var rate = GetStep(steppingRate);
+            return (float)Math.Round(Value + rate, 1);
+        }
+
+        public override float GetStep(SteppingRate steppingRate) => steppingRate switch {
+            SteppingRate.Fast => WheelStep * 10,
+            SteppingRate.Slow => WheelStep / 10,
+            _ => WheelStep,
+        };
+
+    }
+
     public class CustomIntTextField : CustomTextFieldBase<int> {
         protected override int ValueDecrease(SteppingRate steppingRate) {
             var rate = GetStep(steppingRate);
@@ -99,7 +146,7 @@ namespace MbyronModsCommon {
             return Value + rate;
         }
 
-        public int GetStep(SteppingRate steppingRate) => steppingRate switch {
+        public override int GetStep(SteppingRate steppingRate) => steppingRate switch {
             SteppingRate.Fast => WheelStep * 10,
             SteppingRate.Slow => WheelStep / 10,
             _ => WheelStep,
@@ -141,7 +188,7 @@ namespace MbyronModsCommon {
             else if (KeyHelper.IsControlDown()) return SteppingRate.Slow;
             else return SteppingRate.Normal;
         }
-
+        public abstract TypeValue GetStep(SteppingRate steppingRate);
         protected override void OnSubmit() {
             var force = hasFocus;
             base.OnSubmit();

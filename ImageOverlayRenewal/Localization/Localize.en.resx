@@ -216,4 +216,13 @@
   <data name="UpdateLog_V1_8_0UPT2" xml:space="preserve">
     <value>[UPT]Update show image logic.</value>
   </data>
+  <data name="UpdateLog_V1_8_1ADD" xml:space="preserve">
+    <value>[ADD]Added display image hotkey toggle.</value>
+  </data>
+  <data name="UpdateLog_V1_8_1FIX" xml:space="preserve">
+    <value>[FIX]Fixed an issue that the control panel language was incorrect after game language was switched.</value>
+  </data>
+  <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
+    <value>[UPT]Updated rotation angle step.</value>
+  </data>
 </root>

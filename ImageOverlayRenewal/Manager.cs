@@ -71,6 +71,14 @@ namespace ImageOverlayRenewal {
             }
         }
 
+        public static void ShowImageByHotkey() {
+            Config.Instance.ShowImage = !Config.Instance.ShowImage;
+            SingletonMod<Mod>.Instance.SaveConfig();
+            if (ControlPanelManager.IsVisible) {
+                ControlPanelManager.OnLocaleChanged();
+            }
+        }
+
         public static int GetOverlayTileSize(OverlayTileSize size) => size switch {
             OverlayTileSize.Custom => 0,
             OverlayTileSize.Small => 1,

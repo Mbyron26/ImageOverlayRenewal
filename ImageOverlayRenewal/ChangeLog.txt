@@ -1,4 +1,9 @@
 ﻿
+V1.8.1
+[ADD]Added display image hotkey toggle.
+[FIX]Fixed an issue that the control panel language was incorrect after game language was switched.
+[UPT]Updated rotation angle step.
+
 V1.8.0
 [ADD]Add control panel instead of shortcut key.
 [ADD]Add overlay image parameter settings.

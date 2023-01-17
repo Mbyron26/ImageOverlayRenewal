@@ -20,13 +20,14 @@ namespace ImageOverlayRenewal {
         private PropertyCardPanel ShowImageCard { get; set; }
         private PropertyCardPanel MainParameterCard { get; set; }
         private PropertyCardPanel CapacityCard { get; set; }
+        private PairButton ShowImageButton { get; set; }
         private UIDropDown ImageSize { get; set; }
         private CustomIntTextField SideLength { get; set; }
         private UIButton ResetButton { get; set; }
         private UIButton RefreshButton { get; set; }
         private CustomIntTextField PositionXField { get; set; }
         private CustomIntTextField PositionYField { get; set; }
-        private CustomIntTextField RotationField { get; set; }
+        private CustomFloatField RotationField { get; set; }
 
 
         public ControlPanel() {
@@ -260,7 +261,7 @@ namespace ImageOverlayRenewal {
             #region Rotation
             var rotationPanel = MainParameterCard.AddChildPanel();
             MainParameterCard.AddTextLabel(rotationPanel, Localization.Localize.ControlPanel_Rotation);
-            RotationField = MainParameterCard.AddTextField<CustomIntTextField>(rotationPanel, 80f, 20f, (int)Config.Instance.Rotation, 10, 0, 360);
+            RotationField = MainParameterCard.AddFloatField(rotationPanel, 80f, 20f, Config.Instance.Rotation, 1, 0, 360);
             RotationField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
             RotationField.OnValueChanged += (v) => Config.Instance.Rotation = v;
             RotationField.relativePosition = new Vector2(rotationPanel.width - 80 - 6, (rotationPanel.height - 20) / 2);
@@ -285,8 +286,8 @@ namespace ImageOverlayRenewal {
             ShowImageCard.width = CardWidth;
             var showImagePanel = ShowImageCard.AddChildPanel();
             ShowImageCard.AddTextLabel(showImagePanel, Localization.Localize.ControlPanel_ShowImage);
-            var button = CustomMultiStateButton.AddPairButton(showImagePanel, Localization.Localize.ControlPanel_Yes, Localization.Localize.ControlPanel_No, Config.Instance.ShowImage, 140, 20, (v) => Config.Instance.ShowImage = v == 0);
-            button.relativePosition = new Vector2(showImagePanel.width - 6 - button.width, 6);
+            ShowImageButton = CustomMultiStateButton.AddPairButton(showImagePanel, Localization.Localize.ControlPanel_Yes, Localization.Localize.ControlPanel_No, Config.Instance.ShowImage, 140, 20, (v) => Config.Instance.ShowImage = v == 0);
+            ShowImageButton.relativePosition = new Vector2(showImagePanel.width - 6 - ShowImageButton.width, 6);
         }
 
         private void AddCaption() {

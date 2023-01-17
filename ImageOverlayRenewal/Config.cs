@@ -13,7 +13,8 @@ namespace ImageOverlayRenewal {
         public byte Opacity { get; set; } = 30;
 
         public bool ShowReloadResults { get; set; } = true;
-        [XmlElement]
-        public KeyBinding ShowControlPanel { get; set; } = new KeyBinding(KeyCode.I, true, false, false);
+        //[XmlElement]
+        public KeyBinding ShowControlPanelHotkey { get; set; } = new KeyBinding(KeyCode.I, true, false, false);
+        public KeyBinding ShowImageHotkey { get; set; } = new KeyBinding(KeyCode.Return, false, true, false);
     }
 }

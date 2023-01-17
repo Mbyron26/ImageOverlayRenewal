@@ -356,5 +356,32 @@ namespace ImageOverlayRenewal.Localization {
                 return ResourceManager.GetString("UpdateLog_V1_8_0UPT2", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 [ADD]Added display image hotkey toggle. 的本地化字符串。
+        /// </summary>
+        internal static string UpdateLog_V1_8_1ADD {
+            get {
+                return ResourceManager.GetString("UpdateLog_V1_8_1ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 [FIX]Fixed an issue that the control panel language was incorrect after game language was switched. 的本地化字符串。
+        /// </summary>
+        internal static string UpdateLog_V1_8_1FIX {
+            get {
+                return ResourceManager.GetString("UpdateLog_V1_8_1FIX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 [UPT]Updated rotation angle step. 的本地化字符串。
+        /// </summary>
+        internal static string UpdateLog_V1_8_1UPT {
+            get {
+                return ResourceManager.GetString("UpdateLog_V1_8_1UPT", resourceCulture);
+            }
+        }
     }
 }

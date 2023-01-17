@@ -47,10 +47,10 @@ namespace ImageOverlayRenewal {
             return dropDown;
         }
 
-        public CustomIntTextField AddTextField<TypeField>(UIPanel parent, float width, float height, int defaultValue, int wheelStep, int minLimit, int maxLimit) where TypeField : CustomIntTextField {
-            var textField = CustomField.AddIntTypeField<TypeField>(parent, width, height, defaultValue, wheelStep, minLimit, maxLimit);
-            return textField;
-        }
+        public CustomIntTextField AddTextField<TypeField>(UIPanel parent, float width, float height, int defaultValue, int wheelStep, int minLimit, int maxLimit) where TypeField : CustomIntTextField => CustomField.AddIntTypeField(parent, width, height, defaultValue, wheelStep, minLimit, maxLimit);
+
+        public CustomFloatField AddFloatField(UIPanel parent, float width, float height, float defaultValue, float wheelStep, float minLimit, float maxLimit) => CustomField.AddFloatField(parent, width, height, defaultValue, wheelStep, minLimit, maxLimit);
+
 
         public UILabel AddTextLabel(UIPanel parent, string text) {
             var label = parent.AddUIComponent<UILabel>();

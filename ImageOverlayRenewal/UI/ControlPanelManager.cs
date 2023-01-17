@@ -1,10 +1,5 @@
 ﻿using ColossalFramework.UI;
-using ColossalFramework;
 using MbyronModsCommon;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace ImageOverlayRenewal {
@@ -17,6 +12,13 @@ namespace ImageOverlayRenewal {
             if (IsVisible) {
                 Close();
             } else {
+                Create();
+            }
+        }
+
+        public static void OnLocaleChanged() {
+            if(IsVisible) {
+                Close();
                 Create();
             }
         }
