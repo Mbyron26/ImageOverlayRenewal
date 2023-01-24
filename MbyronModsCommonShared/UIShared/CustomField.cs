@@ -2,133 +2,105 @@
 using System.ComponentModel;
 using System;
 using UnityEngine;
+using ColossalFramework;
 
 namespace MbyronModsCommon {
-    public delegate void OnTextSubmitted(UIComponent component, string text);
-    public class CustomTextField {
-        public static UIPanel AddLongTypeField(UIPanel panel, long defaultValue, float? width, OnTextSubmitted eventSubmittedCallback, string labelText, Color32 labelTextColor, float labelTextScale) {
-            UIPanel m_panel = panel.AttachUIComponent(UITemplateManager.GetAsGameObject("OptionsTextfieldTemplate")) as UIPanel;
-            m_panel.autoFitChildrenVertically = true;
-            UILabel label = m_panel.Find<UILabel>("Label");
-            if (labelText is null) label.Hide();
-            else {
-                label.autoSize = false;
-                label.width = panel.width - panel.autoLayoutPadding.horizontal;
-                label.autoHeight = true;
-                label.wordWrap = true;
-                label.text = labelText;
-                label.textColor = labelTextColor;
-                label.textScale = labelTextScale;
-            }
-            var longTypeTextField = m_panel.Find<UITextField>("Text Field");
-            if (width != null) longTypeTextField.width = width.Value;
-            longTypeTextField.atlas = CustomAtlas.CommonAtlas;
-            longTypeTextField.normalBgSprite = CustomAtlas.TabButtonNormal;
-            longTypeTextField.hoveredBgSprite = CustomAtlas.TabButtonNormal;
-            longTypeTextField.selectionSprite = CustomAtlas.EmptySprite;
-            longTypeTextField.padding = new RectOffset(6, 6, 6, 6);
-            longTypeTextField.textScale = 1.0f;
-            longTypeTextField.text = defaultValue.ToString();
-            longTypeTextField.eventTextSubmitted += (c, e) => eventSubmittedCallback(c, e);
-            return m_panel;
-        }
-    }
-
     public class CustomField {
-        public static UITextField AddPathTextField(UIPanel parent, string textLabel, string content, out UIPanel panel, out UILabel label) {
-            panel = parent.AttachUIComponent(UITemplateManager.GetAsGameObject("OptionsTextfieldTemplate")) as UIPanel;
+
+        public static UIPanel AddOptionPanelLongField(UIComponent parent, string textLabel, long defaultValue, long minLimit, long maxLimit, out UILabel uiLabel, out CustomLongValueField valueField, float fieldWidth = 704, float fieldHeight = 32) {
+            var panel = parent.AddUIComponent<UIPanel>();
+            panel.autoLayout = true;
+            panel.autoLayoutDirection = LayoutDirection.Vertical;
+            panel.autoFitChildrenHorizontally = true;
             panel.autoFitChildrenVertically = true;
-            label = panel.Find<UILabel>("Label");
-            label.autoSize = false;
-            label.autoHeight = true;
-            label.wordWrap = true;
-            label.textScale = 1f;
-            label.text = textLabel;
-            UITextField textField = panel.Find<UITextField>("Text Field");
-            textField.width = 704;
-            textField.height = 32;
-            textField.text = content;
-            textField.atlas = CustomAtlas.CommonAtlas;
-            textField.normalBgSprite = CustomAtlas.TabButtonNormal;
-            textField.hoveredBgSprite = CustomAtlas.TabButtonNormal;
-            textField.selectionSprite = CustomAtlas.EmptySprite;
-            textField.padding = new RectOffset(8, 6, 8, 6);
-            textField.textScale = 1.0f;
-            return textField;
+            uiLabel = panel.AddUIComponent<UILabel>();
+            if (textLabel.IsNullOrWhiteSpace()) {
+                uiLabel.Hide();
+            } else {
+                uiLabel.autoSize = false;
+                uiLabel.autoHeight = true;
+                uiLabel.wordWrap = true;
+                uiLabel.textScale = 1f;
+                uiLabel.text = textLabel;
+            }
+            valueField = panel.AddUIComponent<CustomLongValueField>();
+            valueField.horizontalAlignment = UIHorizontalAlignment.Left;
+            valueField.UseWheel = false;
+            valueField.width = fieldWidth;
+            valueField.height = fieldHeight;
+            valueField.atlas = CustomAtlas.CommonAtlas;
+            valueField.normalBgSprite = CustomAtlas.TabButtonNormal;
+            valueField.hoveredBgSprite = CustomAtlas.TabButtonNormal;
+            valueField.selectionSprite = CustomAtlas.EmptySprite;
+            valueField.padding = new RectOffset(8, 6, 8, 6);
+            valueField.textScale = 1f;
+            valueField.MinValue = minLimit;
+            valueField.MaxValue = maxLimit;
+            valueField.Value = defaultValue;
+            return panel;
         }
 
-        public static CustomFloatField AddFloatField(UIPanel panel, float width, float height, float defaultValue, float wheelStep, float minLimit, float maxLimit) {
-            CustomFloatField textField = panel.AddUIComponent<CustomFloatField>();
-            textField.width = width;
-            textField.height = height;
-            textField.atlas = CustomAtlas.CommonAtlas;
-            textField.selectionSprite = CustomAtlas.EmptySprite;
-            textField.normalBgSprite = CustomAtlas.FieldNormal;
-            textField.disabledBgSprite = CustomAtlas.FieldDisabled;
-            textField.focusedBgSprite = CustomAtlas.FieldNormal;
-            textField.hoveredBgSprite = CustomAtlas.FieldHovered;
-            textField.numericalOnly = true;
-            textField.allowFloats = true;
-            textField.enabled = true;
-            textField.builtinKeyNavigation = true;
-            textField.isInteractive = true;
-            textField.readOnly = false;
-            textField.cursorWidth = 1;
-            textField.cursorBlinkTime = 0.45f;
-            textField.textScale = 0.7f;
-            textField.selectOnFocus = true;
-            textField.verticalAlignment = UIVerticalAlignment.Middle;
-            textField.padding = new RectOffset(0, 0, 5, 0);
-            textField.Value = defaultValue;
-            textField.WheelAvailable = textField.MinLimit = textField.MaxLimit = true;
-            textField.WheelStep = wheelStep;
-            textField.MinValue = minLimit;
-            textField.MaxValue = maxLimit;
-            return textField;
+        public static UIPanel AddOptionPanelStringField(UIComponent parent, string textLabel, string text, out UILabel uiLabel, out UITextField uiTextField, float fieldWidth = 704, float fieldHeight = 32) {
+            var panel = parent.AttachUIComponent(UITemplateManager.GetAsGameObject("OptionsTextfieldTemplate")) as UIPanel;
+            panel.autoFitChildrenVertically = true;
+            uiLabel = panel.Find<UILabel>("Label");
+            if (textLabel.IsNullOrWhiteSpace()) {
+                uiLabel.Hide();
+            } else {
+                uiLabel.autoSize = false;
+                uiLabel.autoHeight = true;
+                uiLabel.wordWrap = true;
+                uiLabel.textScale = 1f;
+                uiLabel.text = textLabel;
+            }
+            uiTextField = panel.Find<UITextField>("Text Field");
+            uiTextField.width = fieldWidth;
+            uiTextField.height = fieldHeight;
+            uiTextField.atlas = CustomAtlas.CommonAtlas;
+            uiTextField.normalBgSprite = CustomAtlas.TabButtonNormal;
+            uiTextField.hoveredBgSprite = CustomAtlas.TabButtonNormal;
+            uiTextField.selectionSprite = CustomAtlas.EmptySprite;
+            uiTextField.padding = new RectOffset(8, 6, 8, 6);
+            uiTextField.textScale = 1f;
+            uiTextField.text = text;
+            return panel;
         }
 
-        public static CustomIntTextField AddIntTypeField(UIPanel panel, float width, float height, int defaultValue, int wheelStep, int minLimit, int maxLimit) {
-            CustomIntTextField textField = panel.AddUIComponent<CustomIntTextField>();
-            textField.width = width;
-            textField.height = height;
-            textField.atlas = CustomAtlas.CommonAtlas;
-            textField.selectionSprite = CustomAtlas.EmptySprite;
-            textField.normalBgSprite = CustomAtlas.FieldNormal;
-            textField.disabledBgSprite = CustomAtlas.FieldDisabled;
-            textField.focusedBgSprite = CustomAtlas.FieldNormal;
-            textField.hoveredBgSprite = CustomAtlas.FieldHovered;
-            textField.numericalOnly = true;
-            textField.allowFloats = true;
-            textField.enabled = true;
-            textField.builtinKeyNavigation = true;
-            textField.isInteractive = true;
-            textField.readOnly = false;
-            textField.cursorWidth = 1;
-            textField.cursorBlinkTime = 0.45f;
-            textField.textScale = 0.7f;
-            textField.selectOnFocus = true;
-            textField.verticalAlignment = UIVerticalAlignment.Middle;
-            textField.padding = new RectOffset(0, 0, 5, 0);
-            textField.Value = defaultValue;
-            textField.WheelAvailable = textField.MinLimit = textField.MaxLimit = true;
-            textField.WheelStep = wheelStep;
-            textField.MinValue = minLimit;
-            textField.MaxValue = maxLimit;
-            return textField;
+        public static CustomLongValueField AddLongValueField(UIComponent parent, float width, float height, long defaultValue, long wheelStep, long minLimit, long maxLimit, int round = 1, bool useWheel = true) => AddField<CustomLongValueField, long>(parent, width, height, defaultValue, wheelStep, minLimit, maxLimit, useWheel);
+
+        public static CustomFloatValueField AddFloatValueField(UIComponent parent, float width, float height, float defaultValue, int wheelStep, int minLimit, int maxLimit, int round = 1, bool useWheel = true) {
+            var floatValueField = AddField<CustomFloatValueField, float>(parent, width, height, defaultValue, wheelStep, minLimit, maxLimit, useWheel);
+            floatValueField.Round = round;
+            return floatValueField;
+        }
+
+        public static CustomIntValueField AddIntValueField(UIComponent parent, float width, float height, int defaultValue, int wheelStep, int minLimit, int maxLimit, bool useWheel = true) => AddField<CustomIntValueField, int>(parent, width, height, defaultValue, wheelStep, minLimit, maxLimit, useWheel);
+
+        public static TypeValueField AddField<TypeValueField, TypeValue>(UIComponent parent, float width, float height, TypeValue defaultValue, TypeValue wheelStep, TypeValue minLimit, TypeValue maxLimit, bool useWheel) where TypeValueField : CustomValueFieldBase<TypeValue> where TypeValue : IComparable {
+            TypeValueField valueField = parent.AddUIComponent<TypeValueField>();
+            valueField.width = width;
+            valueField.height = height;
+            valueField.SetStyle();
+            valueField.MinValue = minLimit;
+            valueField.MaxValue = maxLimit;
+            valueField.Value = defaultValue;
+            valueField.UseWheel = useWheel;
+            valueField.WheelStep = wheelStep;
+            return valueField;
         }
     }
 
-    public class CustomFloatField : CustomTextFieldBase<float> {
+    public class CustomFloatValueField : CustomValueFieldBase<float> {
         protected override float ValueDecrease(SteppingRate steppingRate) {
             var rate = GetStep(steppingRate);
-            return (float)Math.Round(Value - rate, 1);
+            return (float)Math.Round(Value - rate, round);
         }
         protected override float ValueIncrease(SteppingRate steppingRate) {
             var rate = GetStep(steppingRate);
-            return (float)Math.Round(Value + rate, 1);
+            return (float)Math.Round(Value + rate, round);
         }
 
-        public override float GetStep(SteppingRate steppingRate) => steppingRate switch {
+        protected override float GetStep(SteppingRate steppingRate) => steppingRate switch {
             SteppingRate.Fast => WheelStep * 10,
             SteppingRate.Slow => WheelStep / 10,
             _ => WheelStep,
@@ -136,7 +108,24 @@ namespace MbyronModsCommon {
 
     }
 
-    public class CustomIntTextField : CustomTextFieldBase<int> {
+    public class CustomLongValueField : CustomValueFieldBase<long> {
+        protected override long GetStep(SteppingRate steppingRate) => steppingRate switch {
+            SteppingRate.Fast => WheelStep * 10,
+            SteppingRate.Slow => WheelStep / 10,
+            _ => WheelStep,
+        };
+
+        protected override long ValueDecrease(SteppingRate steppingRate) {
+            var rate = GetStep(steppingRate);
+            return Value - rate;
+        }
+        protected override long ValueIncrease(SteppingRate steppingRate) {
+            var rate = GetStep(steppingRate);
+            return Value + rate;
+        }
+    }
+
+    public class CustomIntValueField : CustomValueFieldBase<int> {
         protected override int ValueDecrease(SteppingRate steppingRate) {
             var rate = GetStep(steppingRate);
             return Value - rate;
@@ -146,7 +135,7 @@ namespace MbyronModsCommon {
             return Value + rate;
         }
 
-        public override int GetStep(SteppingRate steppingRate) => steppingRate switch {
+        protected override int GetStep(SteppingRate steppingRate) => steppingRate switch {
             SteppingRate.Fast => WheelStep * 10,
             SteppingRate.Slow => WheelStep / 10,
             _ => WheelStep,
@@ -154,47 +143,79 @@ namespace MbyronModsCommon {
 
     }
 
-    public abstract class CustomTextFieldBase<TypeValue> : UITextField where TypeValue : IComparable {
+    public abstract class CustomValueFieldBase<TypeValue> : UITextField where TypeValue : IComparable {
         private TypeValue value;
+        private string format = "{0}";
+        protected int round = 1;
+        protected bool useWheel = true;
         public TypeValue Value {
             get => value;
             set => ValueChanged(value);
         }
-        public virtual bool MinLimit { get; set; }
-        public virtual bool MaxLimit { get; set; }
+        public string Format {
+            get => format;
+            set {
+                format = value;
+                RefreshText();
+            }
+        }
+        public int Round {
+            get => round;
+            set => round = value;
+        }
+        public bool UseWheel {
+            get => useWheel;
+            set {
+                if (value != useWheel) {
+                    useWheel = value;
+                }
+            }
+        }
         public virtual TypeValue MinValue { get; set; }
         public virtual TypeValue MaxValue { get; set; }
-        public bool WheelAvailable { get; set; }
+        protected bool WheelAvailable { get; set; }
         public TypeValue WheelStep { get; set; }
 
         public event Action<TypeValue> OnValueChanged;
         public virtual void ValueChanged(TypeValue _value) {
-            if (MinLimit && _value.CompareTo(MinValue) < 0) {
+            if (_value.CompareTo(MinValue) < 0) {
                 value = MinValue;
-            } else if (MaxLimit && _value.CompareTo(MaxValue) > 0) {
+            } else if (_value.CompareTo(MaxValue) > 0) {
                 value = MaxValue;
             } else {
                 value = _value;
             }
             OnValueChanged?.Invoke(value);
-            SetText();
+            RefreshText();
         }
-        protected virtual void SetText() => text = value?.ToString() ?? string.Empty/*Convert.ToString(Value) ?? string.Empty*/;
 
+        protected virtual void RefreshText() {
+            if (hasFocus) {
+                if (value != null) {
+                    text = string.Format(format, value.ToString());
+                } else {
+                    text = string.Empty;
+                }
+            } else {
+                text = string.Format(format, value?.ToString() ?? string.Empty);
+            }
+        }
         protected abstract TypeValue ValueDecrease(SteppingRate steppingRate);
         protected abstract TypeValue ValueIncrease(SteppingRate steppingRate);
+        protected abstract TypeValue GetStep(SteppingRate steppingRate);
+
         private SteppingRate GetSteppingRate() {
             if (KeyHelper.IsShiftDown()) return SteppingRate.Fast;
             else if (KeyHelper.IsControlDown()) return SteppingRate.Slow;
             else return SteppingRate.Normal;
         }
-        public abstract TypeValue GetStep(SteppingRate steppingRate);
+
         protected override void OnSubmit() {
             var force = hasFocus;
             base.OnSubmit();
 
             if (!force && text == (Convert.ToString(Value) ?? string.Empty)) {
-                SetText();
+                RefreshText();
                 return;
             }
 
@@ -212,7 +233,7 @@ namespace MbyronModsCommon {
         protected override void OnMouseWheel(UIMouseEventParameter p) {
             base.OnMouseWheel(p);
             tooltipBox.Hide();
-            if (WheelAvailable) {
+            if (UseWheel) {
                 var typeRate = GetSteppingRate();
                 if (p.wheelDelta < 0) {
                     ValueChanged(ValueDecrease(typeRate));
@@ -228,6 +249,28 @@ namespace MbyronModsCommon {
         protected override void OnMouseMove(UIMouseEventParameter p) {
             base.OnMouseMove(p);
             WheelAvailable = true;
+        }
+
+        public void SetStyle() {
+            atlas = CustomAtlas.CommonAtlas;
+            selectionSprite = CustomAtlas.EmptySprite;
+            normalBgSprite = CustomAtlas.FieldNormal;
+            disabledBgSprite = CustomAtlas.FieldDisabled;
+            focusedBgSprite = CustomAtlas.FieldNormal;
+            hoveredBgSprite = CustomAtlas.FieldHovered;
+
+            numericalOnly = true;
+            allowFloats = true;
+            enabled = true;
+            builtinKeyNavigation = true;
+            isInteractive = true;
+            readOnly = false;
+            cursorWidth = 1;
+            cursorBlinkTime = 0.45f;
+            textScale = 0.7f;
+            selectOnFocus = true;
+            verticalAlignment = UIVerticalAlignment.Middle;
+            padding = new RectOffset(0, 0, 5, 0);
         }
 
     }

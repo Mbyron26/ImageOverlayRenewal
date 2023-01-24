@@ -383,5 +383,23 @@ namespace ImageOverlayRenewal.Localization {
                 return ResourceManager.GetString("UpdateLog_V1_8_1UPT", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   查找类似 [ADD]Add Japanese and French localization. 的本地化字符串。
+        /// </summary>
+        internal static string UpdateLog_V1_8_2ADD {
+            get {
+                return ResourceManager.GetString("UpdateLog_V1_8_2ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 [UPT]Increase the maximum adjustable side length. 的本地化字符串。
+        /// </summary>
+        internal static string UpdateLog_V1_8_2UPT {
+            get {
+                return ResourceManager.GetString("UpdateLog_V1_8_2UPT", resourceCulture);
+            }
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace ImageOverlayRenewal {
             CustomCheckBox.AddCheckBox(loadSettings, Localize.OptionPanel_ShowReloadResults, Config.Instance.ShowReloadResults, 680f, (_) => Config.Instance.ShowReloadResults = _);
 
             var PNGSettings = OptionPanelCard.AddCard(parent, typeWidth, Localize.OptionPanel_PNGOptions, out _);
-            CustomField.AddPathTextField(PNGSettings, Localize.OptionPanel_PNGFilePath + ":", path, out _, out _);
+            var pathField = CustomField.AddOptionPanelStringField(PNGSettings, Localize.OptionPanel_PNGFilePath + ":", path, out _, out _, 704, 32);
             CustomButton.AddButton(PNGSettings, 1f, Localize.OptionPanel_OpenPNGDirectory, null, null, () => System.Diagnostics.Process.Start(path));
         }
     }

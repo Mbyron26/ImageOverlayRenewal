@@ -11,8 +11,9 @@ namespace ImageOverlayRenewal {
         private const float PanelHeight = 300;
         private const float CaptionHeight = 40;
         private const string Name = nameof(ImageOverlayRenewal) + nameof(ControlPanel);
-
+        
         public static Vector2 ButtonSize => new(28, 28);
+        private static int MaxSideLength => 8640 * 3;
         public static Vector2 PanelPosition { get; set; }
         private UIDragHandle DragBar { get; set; }
         private UILabel Title { get; set; }
@@ -22,12 +23,12 @@ namespace ImageOverlayRenewal {
         private PropertyCardPanel CapacityCard { get; set; }
         private PairButton ShowImageButton { get; set; }
         private UIDropDown ImageSize { get; set; }
-        private CustomIntTextField SideLength { get; set; }
+        private CustomIntValueField SideLength { get; set; }
         private UIButton ResetButton { get; set; }
         private UIButton RefreshButton { get; set; }
-        private CustomIntTextField PositionXField { get; set; }
-        private CustomIntTextField PositionYField { get; set; }
-        private CustomFloatField RotationField { get; set; }
+        private CustomIntValueField PositionXField { get; set; }
+        private CustomIntValueField PositionYField { get; set; }
+        private CustomFloatValueField RotationField { get; set; }
 
 
         public ControlPanel() {
@@ -54,8 +55,6 @@ namespace ImageOverlayRenewal {
             if (PanelPosition == Vector2.zero) {
                 Vector2 vector = GetUIView().GetScreenResolution();
                 var x = vector.x - PanelWidth - 80;
-                //float x = (vector.x - size.x) * 0.5f;
-                //float y = (vector.y - size.y) * 0.5f;
                 PanelPosition = relativePosition = new Vector3(x, 80);
             } else {
                 relativePosition = PanelPosition;
@@ -103,7 +102,7 @@ namespace ImageOverlayRenewal {
             var capacityChildPanel = CapacityCard.AddChildPanel();
             CapacityCard.AddTextLabel(capacityChildPanel, Localization.Localize.ControlPanel_Capacity);
 
-            var capacityField = CapacityCard.AddTextField<CustomIntTextField>(capacityChildPanel, 80f, 20f, Config.Instance.Opacity, 10, 1, 100);
+            var capacityField = CustomField.AddIntValueField(capacityChildPanel, 80f, 20f, Config.Instance.Opacity, 10, 1, 100);
             capacityField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
             capacityField.OnValueChanged += (value) => Config.Instance.Opacity = (byte)value;
             capacityField.relativePosition = new Vector2(capacityChildPanel.width - 6 - capacityField.width, 6);
@@ -218,7 +217,7 @@ namespace ImageOverlayRenewal {
             #region Side Length
             var sizePanel = MainParameterCard.AddChildPanel();
             MainParameterCard.AddTextLabel(sizePanel, Localization.Localize.ControlPanel_SideLength);
-            SideLength = MainParameterCard.AddTextField<CustomIntTextField>(sizePanel, 80f, 20f, (int)Config.Instance.SideLength, 10, 10, 8640);
+            SideLength = CustomField.AddIntValueField(sizePanel, 80f, 20f, (int)Config.Instance.SideLength, 10, 10, MaxSideLength);
             SideLength.relativePosition = new Vector2(sizePanel.width - 80 - 6, (sizePanel.height - 20) / 2);
             SideLength.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
             SideLength.OnValueChanged += (v) => {
@@ -241,7 +240,7 @@ namespace ImageOverlayRenewal {
             var positionPanel = MainParameterCard.AddChildPanel();
             MainParameterCard.AddTextLabel(positionPanel, Localization.Localize.ControlPanel_Position);
 
-            PositionYField = MainParameterCard.AddTextField<CustomIntTextField>(positionPanel, 80f, 20f, (int)Config.Instance.PositionY, 10, -10000, 10000);
+            PositionYField = CustomField.AddIntValueField(positionPanel, 80f, 20f, (int)Config.Instance.PositionY, 10, -10000, 10000);
             PositionYField.OnValueChanged += (v) => Config.Instance.PositionY = v;
             PositionYField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
             PositionYField.relativePosition = new Vector2(positionPanel.width - PositionYField.width - 6, (positionPanel.height - 20) / 2);
@@ -249,7 +248,7 @@ namespace ImageOverlayRenewal {
             var yText = MainParameterCard.AddTextLabel(positionPanel, "y:");
             yText.relativePosition = new Vector2(PositionYField.relativePosition.x - 15, (positionPanel.height - yText.height) / 2);
 
-            PositionXField = MainParameterCard.AddTextField<CustomIntTextField>(positionPanel, 80f, 20f, (int)Config.Instance.PositionX, 10, -10000, 10000);
+            PositionXField = CustomField.AddIntValueField(positionPanel, 80f, 20f, (int)Config.Instance.PositionX, 10, -10000, 10000);
             PositionXField.OnValueChanged += (v) => Config.Instance.PositionX = v;
             PositionXField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
             PositionXField.relativePosition = new Vector2(yText.relativePosition.x - 10 - PositionXField.width, (positionPanel.height - 20) / 2);
@@ -261,7 +260,7 @@ namespace ImageOverlayRenewal {
             #region Rotation
             var rotationPanel = MainParameterCard.AddChildPanel();
             MainParameterCard.AddTextLabel(rotationPanel, Localization.Localize.ControlPanel_Rotation);
-            RotationField = MainParameterCard.AddFloatField(rotationPanel, 80f, 20f, Config.Instance.Rotation, 1, 0, 360);
+            RotationField = CustomField.AddFloatValueField(rotationPanel, 80f, 20f, Config.Instance.Rotation, 1, 0, 360);
             RotationField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
             RotationField.OnValueChanged += (v) => Config.Instance.Rotation = v;
             RotationField.relativePosition = new Vector2(rotationPanel.width - 80 - 6, (rotationPanel.height - 20) / 2);

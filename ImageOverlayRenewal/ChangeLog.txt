@@ -1,4 +1,8 @@
 ﻿
+V1.8.2
+[UPT]Increase the maximum adjustable side length.
+[ADD]Add Japanese and French localization.
+
 V1.8.1
 [ADD]Added display image hotkey toggle.
 [FIX]Fixed an issue that the control panel language was incorrect after game language was switched.

@@ -117,127 +117,112 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompatibilityCheck_Incompatible" xml:space="preserve">
-    <value>このMODは互換性がありません。</value>
+  <data name="ControlPanel_ApplyOpacity" xml:space="preserve">
+    <value>不透明度を適用</value>
   </data>
-  <data name="CompatibilityCheck_SameFunctionality" xml:space="preserve">
-    <value>既に同じ機能が含まれています。</value>
+  <data name="ControlPanel_Capacity" xml:space="preserve">
+    <value>容量</value>
   </data>
-  <data name="CompatibilityCheck_UseInstead" xml:space="preserve">
-    <value>代わりに {0} を使用して下さい。</value>
+  <data name="ControlPanel_Custom" xml:space="preserve">
+    <value>カスタム</value>
   </data>
-  <data name="CompatibilityMessageBox_Unsubscribe" xml:space="preserve">
-    <value>サブスクを解除</value>
+  <data name="ControlPanel_Image" xml:space="preserve">
+    <value>画像</value>
   </data>
-  <data name="KeyBinding_PressAnyKey" xml:space="preserve">
-    <value>何かキーを押してください</value>
+  <data name="ControlPanel_No" xml:space="preserve">
+    <value>いいえ</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>言語</value>
+  <data name="ControlPanel_NoPNG" xml:space="preserve">
+    <value>指定されたフォルダ内に、PNG画像が見つかりません。指定のフォルダは、MODのオプションパネルから確認できます。</value>
   </data>
-  <data name="Language_de" xml:space="preserve">
-    <value>ドイツ語</value>
+  <data name="ControlPanel_Position" xml:space="preserve">
+    <value>位置</value>
   </data>
-  <data name="Language_en" xml:space="preserve">
-    <value>英語</value>
+  <data name="ControlPanel_ReloadTexture" xml:space="preserve">
+    <value>テクスチャを再読み込み</value>
   </data>
-  <data name="Language_es_ES" xml:space="preserve">
-    <value>スペイン語</value>
+  <data name="ControlPanel_Reset" xml:space="preserve">
+    <value>デフォルトのパラメータにリセット</value>
   </data>
-  <data name="Language_fr" xml:space="preserve">
-    <value>フランス語</value>
+  <data name="ControlPanel_Rotation" xml:space="preserve">
+    <value>回転</value>
   </data>
-  <data name="Language_GameLanguage" xml:space="preserve">
-    <value>ゲームの言語</value>
+  <data name="ControlPanel_ScrollWheel" xml:space="preserve">
+    <value>ホイールをスクロールして変更: Shift x10 / Ctrl x0.1</value>
   </data>
-  <data name="Language_it" xml:space="preserve">
-    <value>イタリア語</value>
+  <data name="ControlPanel_SelectedImageWarning" xml:space="preserve">
+    <value>画像の選択時は解像度の情報をチェックするため、画像のロード時間は解像度で変化します。</value>
   </data>
-  <data name="Language_ja" xml:space="preserve">
-    <value>日本語</value>
+  <data name="ControlPanel_ShowImage" xml:space="preserve">
+    <value>画像を表示</value>
   </data>
-  <data name="Language_ko" xml:space="preserve">
-    <value>韓国語</value>
+  <data name="ControlPanel_SideLength" xml:space="preserve">
+    <value>辺の長さ</value>
   </data>
-  <data name="Language_nl" xml:space="preserve">
-    <value>オランダ語</value>
+  <data name="ControlPanel_Size" xml:space="preserve">
+    <value>サイズ</value>
   </data>
-  <data name="Language_pl" xml:space="preserve">
-    <value>ポーランド語</value>
+  <data name="ControlPanel_Yes" xml:space="preserve">
+    <value>はい</value>
   </data>
-  <data name="Language_pt" xml:space="preserve">
-    <value>ポルトガル語</value>
+  <data name="LoadSettings" xml:space="preserve">
+    <value>設定のロード</value>
   </data>
-  <data name="Language_pt_BR" xml:space="preserve">
-    <value>ポルトガル語-ブラジル</value>
+  <data name="MOD_Description" xml:space="preserve">
+    <value>マップ上に画像を重ね合わせて、実際の都市を再現できます。</value>
   </data>
-  <data name="Language_ru" xml:space="preserve">
-    <value>ロシア語</value>
+  <data name="OptionPanel_OpenPNGDirectory" xml:space="preserve">
+    <value>PNGのフォルダを開く</value>
   </data>
-  <data name="Language_zh_CN" xml:space="preserve">
-    <value>簡体字中国語</value>
+  <data name="OptionPanel_PNGFilePath" xml:space="preserve">
+    <value>PNGファイルのパス</value>
   </data>
-  <data name="Language_zh_TW" xml:space="preserve">
-    <value>繁体字中国語</value>
+  <data name="OptionPanel_PNGOptions" xml:space="preserve">
+    <value>PNGのオプション</value>
   </data>
-  <data name="LogMessageBox_Added" xml:space="preserve">
-    <value>追加</value>
+  <data name="OptionPanel_ShowControlPanel" xml:space="preserve">
+    <value>コントロールパネルを表示</value>
   </data>
-  <data name="LogMessageBox_Adjusted" xml:space="preserve">
-    <value>調整</value>
+  <data name="OptionPanel_ShowReloadResults" xml:space="preserve">
+    <value>テクスチャの再読み込み結果を常に表示</value>
   </data>
-  <data name="LogMessageBox_Fixed" xml:space="preserve">
-    <value>修正</value>
+  <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
+    <value>一致するPNGファイルが見つかりません</value>
   </data>
-  <data name="LogMessageBox_Optimized" xml:space="preserve">
-    <value>最適化</value>
+  <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
+    <value>テクスチャ {0} を再読み込み:</value>
   </data>
-  <data name="LogMessageBox_Removed" xml:space="preserve">
-    <value>削除</value>
+  <data name="UpdateLog_V1_8_0ADD1" xml:space="preserve">
+    <value>[ADD]ショートカットキーの代わりに、コントロールパネルを追加</value>
   </data>
-  <data name="LogMessageBox_Updated" xml:space="preserve">
-    <value>更新</value>
+  <data name="UpdateLog_V1_8_0ADD2" xml:space="preserve">
+    <value>[ADD]オーバーレイ画像用のパラメータ設定を追加</value>
   </data>
-  <data name="MessageBox_NormalPrompt" xml:space="preserve">
-    <value>互換性の無いMODは検出されませんでした。</value>
+  <data name="UpdateLog_V1_8_0ADD3" xml:space="preserve">
+    <value>[ADD]テクスチャの再読み込み結果を表示するように追加</value>
   </data>
-  <data name="MessageBox_OK" xml:space="preserve">
-    <value>OK</value>
+  <data name="UpdateLog_V1_8_0ADJ" xml:space="preserve">
+    <value>[ADJ]MODが完全に書き直されたため、設定がリセットされます</value>
   </data>
-  <data name="MessageBox_WarningPrompt" xml:space="preserve">
-    <value>互換性のないMODを検出しました。MODを正常に動作させるためには、以下のMODはサブスクを解除して下さい。</value>
+  <data name="UpdateLog_V1_8_0Fix" xml:space="preserve">
+    <value>[FIX]希に設定がリセットされる問題を修正</value>
   </data>
-  <data name="OptionPanel_Advanced" xml:space="preserve">
-    <value>詳細</value>
+  <data name="UpdateLog_V1_8_0OPT" xml:space="preserve">
+    <value>[OPT]パフォーマンスを向上させるために、テクスチャのロードロジックを最適化</value>
   </data>
-  <data name="OptionPanel_BuiltinFunction" xml:space="preserve">
-    <value>内蔵機能</value>
+  <data name="UpdateLog_V1_8_0UPT1" xml:space="preserve">
+    <value>[UPT]MODのフレームワーク全体をアップデートして拡張性の向上</value>
   </data>
-  <data name="OptionPanel_ChangeLog" xml:space="preserve">
-    <value>更新履歴</value>
+  <data name="UpdateLog_V1_8_0UPT2" xml:space="preserve">
+    <value>[UPT]画像の表示ロジックを更新</value>
   </data>
-  <data name="OptionPanel_CompatibilityCheck" xml:space="preserve">
-    <value>互換性の確認</value>
+  <data name="UpdateLog_V1_8_1ADD" xml:space="preserve">
+    <value>[ADD]表示画像をホットキーで切り替える機能を追加</value>
   </data>
-  <data name="OptionPanel_DebugMode" xml:space="preserve">
-    <value>デバッグモード</value>
+  <data name="UpdateLog_V1_8_1FIX" xml:space="preserve">
+    <value>[FIX]ゲーム言語を切り替えた後に、コントロールパネルの言語が正しく表示されない問題を修正</value>
   </data>
-  <data name="OptionPanel_General" xml:space="preserve">
-    <value>全般</value>
-  </data>
-  <data name="OptionPanel_Hotkeys" xml:space="preserve">
-    <value>ホットキー</value>
-  </data>
-  <data name="OptionPanel_IsDisabled" xml:space="preserve">
-    <value>= 無効化</value>
-  </data>
-  <data name="OptionPanel_IsEnabled" xml:space="preserve">
-    <value>= 有効化</value>
-  </data>
-  <data name="OptionPanel_Version" xml:space="preserve">
-    <value>バージョン</value>
-  </data>
-  <data name="XMLWariningMessageBox_Warning" xml:space="preserve">
-    <value>警告！ MODは以前の設定データを正常にロード出来ず、デフォルトの設定が適用されています。 ゲームを開始する前に、オプションパネルから設定を確認して下さい。</value>
+  <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
+    <value>[UPT]回転角度のステップを更新</value>
   </data>
 </root>

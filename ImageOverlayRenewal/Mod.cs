@@ -11,8 +11,9 @@ namespace ImageOverlayRenewal {
     public class Mod : ModBase<Mod, OptionPanel, Config> {
         public override string SolidModName => "ImageOverlayRenewal";
         public override string ModName => "Image Overlay Renewal";
-        public override Version ModVersion => new(1, 8, 1);
+        public override Version ModVersion => new(1, 8, 2);
         public override ulong ModID => 2616880500;
+        public override ulong? BetaID => 2671781645;
         public override string Description => Localize.MOD_Description;
 
         public override void SetModCulture(CultureInfo cultureInfo) => Localize.Culture = cultureInfo;
@@ -23,6 +24,7 @@ namespace ImageOverlayRenewal {
             CompatibilityCheck.CheckCompatibility();
             ModLogger.OutputPluginsList();
         }
+
         //public override void OnEnabled() {
         //    base.OnEnabled();
         //    HarmonyHelper.DoOnHarmonyReady(Patcher.EnablePatches);
@@ -48,11 +50,14 @@ namespace ImageOverlayRenewal {
         }
 
         public override List<ModUpdateInfo> ModUpdateLogs { get; set; } = new List<ModUpdateInfo>() {
+            new ModUpdateInfo(new Version(1,8,2),"2023/1/22",new List<string>{
+                "UpdateLog_V1_8_2ADD","UpdateLog_V1_8_2UPT",
+            }),
             new ModUpdateInfo(new Version(1,8,1),"2023/1/17",new List<string>{
                 "UpdateLog_V1_8_1ADD","UpdateLog_V1_8_1FIX","UpdateLog_V1_8_1UPT",
             }),
             new ModUpdateInfo(new Version(1, 8, 0), @"2022/01/14", new List<string> {
-                "UpdateLog_V1_8_0ADD1","UpdateLog_V1_8_0ADD2","UpdateLog_V1_8_0ADD3","UpdateLog_V1_8_0UPT1","UpdateLog_V1_8_0UPT2",
+"UpdateLog_V1_8_0ADD1","UpdateLog_V1_8_0ADD2","UpdateLog_V1_8_0ADD3","UpdateLog_V1_8_0UPT1","UpdateLog_V1_8_0UPT2",
                 "UpdateLog_V1_8_0OPT","UpdateLog_V1_8_0Fix","UpdateLog_V1_8_0ADJ"
             }),
         };

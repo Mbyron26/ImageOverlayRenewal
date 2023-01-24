@@ -7,7 +7,7 @@
 	  <Product>Image Overlay Renewal</Product>
 	  <Authors>Mbyron26</Authors>
 	  <Copyright>Copyright © 2022 Mbyron26</Copyright>
-	  <Version>1.8.1</Version>
+	  <Version>1.8.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -67,6 +67,10 @@
 
   <Import Project="..\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.zh-CN\CommonLocaleShared.zh-CN.projitems" Label="Shared" />
 
+  <Import Project="..\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.fr\CommonLocaleShared.fr.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.ja\CommonLocaleShared.ja.projitems" Label="Shared" />
+
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>C:\Users\SYS1\Desktop\Assembly\Assembly-CSharp.dll</HintPath>
@@ -90,6 +94,9 @@
     <Compile Update="D:\CitiesSkylines\MyMods\ImageOverlayRenewal\V1_8_0\ImageOverlayRenewal\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared\CommonLocale.Designer.cs">
       <DependentUpon>CommonLocale.resx</DependentUpon>
     </Compile>
+    <Compile Update="D:\CitiesSkylines\MyMods\ImageOverlayRenewal\V1_8_2\ImageOverlayRenewal\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared\CommonLocale.Designer.cs">
+      <DependentUpon>CommonLocale.resx</DependentUpon>
+    </Compile>
     <Compile Update="Localization\Localize.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -99,6 +106,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="D:\CitiesSkylines\MyMods\ImageOverlayRenewal\V1_8_0\ImageOverlayRenewal\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared\CommonLocale.resx">
+      <LastGenOutput>CommonLocale.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="D:\CitiesSkylines\MyMods\ImageOverlayRenewal\V1_8_2\ImageOverlayRenewal\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared\CommonLocale.resx">
       <LastGenOutput>CommonLocale.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Localization\Localize.resx">
