@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -118,117 +118,117 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ControlPanel_ApplyOpacity" xml:space="preserve">
-    <value>Apply opacity</value>
+    <value>Применить непрозрачность</value>
   </data>
   <data name="ControlPanel_Capacity" xml:space="preserve">
-    <value>Capacity</value>
+    <value>Прозрачность</value>
   </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
-    <value>Custom</value>
+    <value>Настраиваемый</value>
   </data>
   <data name="ControlPanel_Image" xml:space="preserve">
-    <value>Image</value>
+    <value>Изображение</value>
   </data>
   <data name="ControlPanel_No" xml:space="preserve">
-    <value>No</value>
+    <value>Нет</value>
   </data>
   <data name="ControlPanel_NoPNG" xml:space="preserve">
-    <value>No PNG images were detected in the specified directory, the specified directory can be found in Options Panel of this mod.</value>
+    <value>PNG-изображения не были обнаружены в указанном каталоге, каталог можно найти на Панели настроек этого мода.</value>
   </data>
   <data name="ControlPanel_Position" xml:space="preserve">
-    <value>Position</value>
+    <value>Положение</value>
   </data>
   <data name="ControlPanel_ReloadTexture" xml:space="preserve">
-    <value>Reload texture</value>
+    <value>Перезагрузить текстуру</value>
   </data>
   <data name="ControlPanel_Reset" xml:space="preserve">
-    <value>Reset to default parameters.</value>
+    <value>Сброс к параметрам по умолчанию.</value>
   </data>
   <data name="ControlPanel_Rotation" xml:space="preserve">
-    <value>Rotation</value>
+    <value>Поворот</value>
   </data>
   <data name="ControlPanel_ScrollWheel" xml:space="preserve">
-    <value>Scroll the wheel to change, Shift X10, Ctrl X0.1</value>
+    <value>Крутите колесо мыши для изменения, Shift X10, Ctrl X0.1</value>
   </data>
   <data name="ControlPanel_SelectedImageWarning" xml:space="preserve">
-    <value>When selected an image, the image pixel information needs to be loaded, and loading time depends on the number of pixels of image.</value>
+    <value>При выборе изображения необходимо загрузить информацию о пикселях изображения, и время загрузки зависит от количества пикселей.</value>
   </data>
   <data name="ControlPanel_ShowImage" xml:space="preserve">
-    <value>Show image</value>
+    <value>Показать изображение</value>
   </data>
   <data name="ControlPanel_SideLength" xml:space="preserve">
-    <value>Side length</value>
+    <value>Длина стороны</value>
   </data>
   <data name="ControlPanel_Size" xml:space="preserve">
-    <value>Size</value>
+    <value>Размер</value>
   </data>
   <data name="ControlPanel_Yes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Да</value>
   </data>
   <data name="LoadSettings" xml:space="preserve">
-    <value>Load Settings</value>
+    <value>Загрузка настроек</value>
   </data>
   <data name="MOD_Description" xml:space="preserve">
-    <value>Overlay images on top of the map, allowing you to replicate real city.</value>
+    <value>Наложение изображений поверх карты, позволяет воссоздать реальный город.</value>
   </data>
   <data name="OptionPanel_OpenPNGDirectory" xml:space="preserve">
-    <value>Open PNG directory</value>
+    <value>Открыть папку с PNG</value>
   </data>
   <data name="OptionPanel_PNGFilePath" xml:space="preserve">
-    <value>PNG file path</value>
+    <value>Путь к файлу PNG</value>
   </data>
   <data name="OptionPanel_PNGOptions" xml:space="preserve">
-    <value>PNG Options</value>
+    <value>Параметры PNG</value>
   </data>
   <data name="OptionPanel_ShowControlPanel" xml:space="preserve">
-    <value>Show control panel</value>
+    <value>Показать панель управления</value>
   </data>
   <data name="OptionPanel_ShowReloadResults" xml:space="preserve">
-    <value>Always show reload texture results</value>
+    <value>Всегда показывать результат перезагрузки текстуры</value>
   </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
-    <value>No matching PNG files found.</value>
+    <value>Подходящие PNG-файлы не найдены.</value>
   </data>
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
-    <value>Reload {0} texture:</value>
+    <value>Перезагрузить {0} текстуру:</value>
   </data>
   <data name="UpdateLog_V1_8_0ADD1" xml:space="preserve">
-    <value>[ADD]Add control panel instead of shortcut key.</value>
+    <value>[ADD]Добавлена панель управления вместо горячих клавиш.</value>
   </data>
   <data name="UpdateLog_V1_8_0ADD2" xml:space="preserve">
-    <value>[ADD]Add overlay image parameter settings.</value>
+    <value>[ADD]Добавлены настройки параметров изображения.</value>
   </data>
   <data name="UpdateLog_V1_8_0ADD3" xml:space="preserve">
-    <value>[ADD]Added display reload texture results.</value>
+    <value>[ADD]Добавлено отображение перезагрузки текстур.</value>
   </data>
   <data name="UpdateLog_V1_8_0ADJ" xml:space="preserve">
-    <value>[ADJ]Because of mod was completely rewritten so settings will be reseted.</value>
+    <value>[ADJ]Из-за того, что мод был полностью переписан, настройки будут сброшены.</value>
   </data>
   <data name="UpdateLog_V1_8_0Fix" xml:space="preserve">
-    <value>[FIX]Fixed an issue where occasional settings were reseted.</value>
+    <value>[FIX]Исправлена проблема, когда время от времени сбрасывались настройки.</value>
   </data>
   <data name="UpdateLog_V1_8_0OPT" xml:space="preserve">
-    <value>[OPT]Optimized loading texture logic to improve performance.</value>
+    <value>[OPT]Оптимизирована логика загрузки текстур для повышения производительности.</value>
   </data>
   <data name="UpdateLog_V1_8_0UPT1" xml:space="preserve">
-    <value>[UPT]Update whole mod framework to improve expansibility.</value>
+    <value>[UPT]Обновлен весь фреймворк мода для улучшения расширяемости.</value>
   </data>
   <data name="UpdateLog_V1_8_0UPT2" xml:space="preserve">
-    <value>[UPT]Update show image logic.</value>
+    <value>[UPT]Обновлена логика показа изображения.</value>
   </data>
   <data name="UpdateLog_V1_8_1ADD" xml:space="preserve">
-    <value>[ADD]Added display image hotkey toggle.</value>
+    <value>[ADD]Добавлено переключение горячей клавиши изображения.</value>
   </data>
   <data name="UpdateLog_V1_8_1FIX" xml:space="preserve">
-    <value>[FIX]Fixed an issue that the control panel language was incorrect after game language was switched.</value>
+    <value>[FIX]Исправлена проблема, связанная с неправильным языком панели управления после переключения языка игры.</value>
   </data>
   <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
-    <value>[UPT]Updated rotation angle step.</value>
+    <value>[UPT]Обновлен шаг угла поворота.</value>
   </data>
   <data name="UpdateLog_V1_8_2ADD" xml:space="preserve">
-    <value>[ADD]Add Japanese and French localization.</value>
+    <value>[ADD]Добавлена японская и французская локализация.</value>
   </data>
   <data name="UpdateLog_V1_8_2UPT" xml:space="preserve">
-    <value>[UPT]Increase the maximum adjustable side length.</value>
+    <value>[UPT]Увеличена максимальная регулируемая длина стороны.</value>
   </data>
 </root>

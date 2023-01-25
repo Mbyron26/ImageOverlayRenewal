@@ -225,4 +225,10 @@
   <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
     <value>[UPT]回転角度のステップを更新</value>
   </data>
+  <data name="UpdateLog_V1_8_2ADD" xml:space="preserve">
+    <value>[ADD]日本語とフランス語の翻訳を追加</value>
+  </data>
+  <data name="UpdateLog_V1_8_2UPT" xml:space="preserve">
+    <value>[UPT]調整可能な辺の最大長を拡大</value>
+  </data>
 </root>

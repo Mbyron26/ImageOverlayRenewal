@@ -13,7 +13,7 @@ namespace ImageOverlayRenewal {
         public override string ModName => "Image Overlay Renewal";
         public override Version ModVersion => new(1, 8, 2);
         public override ulong ModID => 2616880500;
-        public override ulong? BetaID => 2671781645;
+        //public override ulong? BetaID => 2671781645;
         public override string Description => Localize.MOD_Description;
 
         public override void SetModCulture(CultureInfo cultureInfo) => Localize.Culture = cultureInfo;

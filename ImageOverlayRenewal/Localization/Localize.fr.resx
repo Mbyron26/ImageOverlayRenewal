@@ -225,4 +225,10 @@
   <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
     <value>[UPT]Mise à jour du pas de l'angle de rotation.</value>
   </data>
+  <data name="UpdateLog_V1_8_2ADD" xml:space="preserve">
+    <value>[ADD]Add Japanese and French localization.</value>
+  </data>
+  <data name="UpdateLog_V1_8_2UPT" xml:space="preserve">
+    <value>[UPT]Increase the maximum adjustable side length.</value>
+  </data>
 </root>
