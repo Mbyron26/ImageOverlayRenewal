@@ -286,119 +286,47 @@ namespace ImageOverlayRenewal.Localization {
         }
         
         /// <summary>
-        ///   查找类似 [ADD]Add control panel instead of shortcut key. 的本地化字符串。
+        ///   查找类似 [ADD]Added UUI button to invoke control panel. 的本地化字符串。
         /// </summary>
-        internal static string UpdateLog_V1_8_0ADD1 {
+        internal static string UpdateLog_V1_8_3ADD1 {
             get {
-                return ResourceManager.GetString("UpdateLog_V1_8_0ADD1", resourceCulture);
+                return ResourceManager.GetString("UpdateLog_V1_8_3ADD1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 [ADD]Add overlay image parameter settings. 的本地化字符串。
+        ///   查找类似 [ADD]Added Italian and Spanish localization. 的本地化字符串。
         /// </summary>
-        internal static string UpdateLog_V1_8_0ADD2 {
+        internal static string UpdateLog_V1_8_3ADD2 {
             get {
-                return ResourceManager.GetString("UpdateLog_V1_8_0ADD2", resourceCulture);
+                return ResourceManager.GetString("UpdateLog_V1_8_3ADD2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 [ADD]Added display reload texture results. 的本地化字符串。
+        ///   查找类似 [FIX]Fixed an issue with control panel background texture not displaying correctly. 的本地化字符串。
         /// </summary>
-        internal static string UpdateLog_V1_8_0ADD3 {
+        internal static string UpdateLog_V1_8_3FIX {
             get {
-                return ResourceManager.GetString("UpdateLog_V1_8_0ADD3", resourceCulture);
+                return ResourceManager.GetString("UpdateLog_V1_8_3FIX", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 [ADJ]Because of mod was completely rewritten so settings will be reseted. 的本地化字符串。
+        ///   查找类似 [FIX]Fixed exception thrown when there is no file. 的本地化字符串。
         /// </summary>
-        internal static string UpdateLog_V1_8_0ADJ {
+        internal static string UpdateLog_V1_8_3FIX1 {
             get {
-                return ResourceManager.GetString("UpdateLog_V1_8_0ADJ", resourceCulture);
+                return ResourceManager.GetString("UpdateLog_V1_8_3FIX1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 [FIX]Fixed an issue where occasional settings were reseted. 的本地化字符串。
+        ///   查找类似 [UPT]Updated option panel UI style. 的本地化字符串。
         /// </summary>
-        internal static string UpdateLog_V1_8_0Fix {
+        internal static string UpdateLog_V1_8_3UPT {
             get {
-                return ResourceManager.GetString("UpdateLog_V1_8_0Fix", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 [OPT]Optimized loading texture logic to improve performance. 的本地化字符串。
-        /// </summary>
-        internal static string UpdateLog_V1_8_0OPT {
-            get {
-                return ResourceManager.GetString("UpdateLog_V1_8_0OPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 [UPT]Update whole mod framework to improve expansibility. 的本地化字符串。
-        /// </summary>
-        internal static string UpdateLog_V1_8_0UPT1 {
-            get {
-                return ResourceManager.GetString("UpdateLog_V1_8_0UPT1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 [UPT]Update show image logic. 的本地化字符串。
-        /// </summary>
-        internal static string UpdateLog_V1_8_0UPT2 {
-            get {
-                return ResourceManager.GetString("UpdateLog_V1_8_0UPT2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 [ADD]Added display image hotkey toggle. 的本地化字符串。
-        /// </summary>
-        internal static string UpdateLog_V1_8_1ADD {
-            get {
-                return ResourceManager.GetString("UpdateLog_V1_8_1ADD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 [FIX]Fixed an issue that the control panel language was incorrect after game language was switched. 的本地化字符串。
-        /// </summary>
-        internal static string UpdateLog_V1_8_1FIX {
-            get {
-                return ResourceManager.GetString("UpdateLog_V1_8_1FIX", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 [UPT]Updated rotation angle step. 的本地化字符串。
-        /// </summary>
-        internal static string UpdateLog_V1_8_1UPT {
-            get {
-                return ResourceManager.GetString("UpdateLog_V1_8_1UPT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 [ADD]Add Japanese and French localization. 的本地化字符串。
-        /// </summary>
-        internal static string UpdateLog_V1_8_2ADD {
-            get {
-                return ResourceManager.GetString("UpdateLog_V1_8_2ADD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 [UPT]Increase the maximum adjustable side length. 的本地化字符串。
-        /// </summary>
-        internal static string UpdateLog_V1_8_2UPT {
-            get {
-                return ResourceManager.GetString("UpdateLog_V1_8_2UPT", resourceCulture);
+                return ResourceManager.GetString("UpdateLog_V1_8_3UPT", resourceCulture);
             }
         }
     }

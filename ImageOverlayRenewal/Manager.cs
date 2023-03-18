@@ -99,6 +99,7 @@ namespace ImageOverlayRenewal {
 
         public static void ApplayOpacity(bool isFlip) {
             if (IsLoaded) {
+                if (Texture is null) return;
                 if (!isFlip) {
                     Texture = SetOpacity(Texture, GetOpacity());
                 } else {

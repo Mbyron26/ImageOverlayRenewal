@@ -4,7 +4,7 @@ using MbyronModsCommon;
 namespace ImageOverlayRenewal {
     internal class ReloadTextureResultsMessageBox : MessageBoxBase {
         public ReloadTextureResultsMessageBox() {
-            AddButtons(1, 1, CommonLocale.MessageBox_OK, Close);
+            AddButtons(1, 1, CommonLocalize.MessageBox_OK, Close);
             Initialize();
         }
         public void Initialize() {

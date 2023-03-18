@@ -192,43 +192,19 @@
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
     <value>Recharger la texture {0} :</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD1" xml:space="preserve">
-    <value>[ADD]Ajout d'un panneau de contrôle à la place de la touche de raccourci.</value>
+  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
+    <value>[ADD]Added UUI button to invoke control panel.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD2" xml:space="preserve">
-    <value>[ADD]Ajout de paramètres pour l'image superposée.</value>
+  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
+    <value>[ADD]Added Italian and Spanish localization.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD3" xml:space="preserve">
-    <value>[ADD]Ajout de l'affichage des résultats du rechargement de texture.</value>
+  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
+    <value>[FIX]Fixed an issue with control panel background texture not displaying correctly.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADJ" xml:space="preserve">
-    <value>[ADJ]Comme le mod a été complètement réécrit, les paramètres seront réinitialisés.</value>
+  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
+    <value>[FIX]Fixed exception thrown when there is no file.</value>
   </data>
-  <data name="UpdateLog_V1_8_0Fix" xml:space="preserve">
-    <value>[FIX]Correction d'un problème où des paramètres étaient occasionnellement réinitialisés.</value>
-  </data>
-  <data name="UpdateLog_V1_8_0OPT" xml:space="preserve">
-    <value>[OPT]Optimisation de la logique du chargement de texture pour améliorer les performances.</value>
-  </data>
-  <data name="UpdateLog_V1_8_0UPT1" xml:space="preserve">
-    <value>[UPT]Mise à jour de l'ensemble du framework du mod pour améliorer son évolutivité.</value>
-  </data>
-  <data name="UpdateLog_V1_8_0UPT2" xml:space="preserve">
-    <value>[UPT]Mise à jour de la logique d'affichage des images.</value>
-  </data>
-  <data name="UpdateLog_V1_8_1ADD" xml:space="preserve">
-    <value>[ADD]Ajout d'une touche de raccourci pour afficher l'image.</value>
-  </data>
-  <data name="UpdateLog_V1_8_1FIX" xml:space="preserve">
-    <value>[FIX]Correction d'un problème où la langue du panneau de contrôle était incorrecte après le changement de langue du jeu.</value>
-  </data>
-  <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
-    <value>[UPT]Mise à jour du pas de l'angle de rotation.</value>
-  </data>
-  <data name="UpdateLog_V1_8_2ADD" xml:space="preserve">
-    <value>[ADD]Add Japanese and French localization.</value>
-  </data>
-  <data name="UpdateLog_V1_8_2UPT" xml:space="preserve">
-    <value>[UPT]Increase the maximum adjustable side length.</value>
+  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
+    <value>[UPT]Updated option panel UI style.</value>
   </data>
 </root>

@@ -7,69 +7,20 @@
 	  <Product>Image Overlay Renewal</Product>
 	  <Authors>Mbyron26</Authors>
 	  <Copyright>Copyright © 2022 Mbyron26</Copyright>
-	  <Version>1.8.2</Version>
+	  <Version>1.8.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\ArrowDown.png" />
-    <None Remove="Resources\CloseButtonHovered.png" />
-    <None Remove="Resources\CloseButtonNormal.png" />
-    <None Remove="Resources\CloseButtonPressed.png" />
-    <None Remove="Resources\FieldDisabledLeft.png" />
-    <None Remove="Resources\FieldDisabledRight.png" />
-    <None Remove="Resources\FieldFocusedLeft.png" />
-    <None Remove="Resources\FieldFocusedRight.png" />
-    <None Remove="Resources\FieldHoveredLeft.png" />
-    <None Remove="Resources\FieldHoveredRight.png" />
-    <None Remove="Resources\FieldNormalLeft.png" />
-    <None Remove="Resources\FieldNormalRight.png" />
-    <None Remove="Resources\RefreshButtonHovered.png" />
-    <None Remove="Resources\RefreshButtonNormal.png" />
-    <None Remove="Resources\RefreshButtonPressed.png" />
-    <None Remove="Resources\ResetButtonHovered.png" />
-    <None Remove="Resources\ResetButtonNormal.png" />
-    <None Remove="Resources\ResetButtonPressed.png" />
+    <None Remove="UI\UUIResource\UUI.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ArrowDown.png" />
-    <EmbeddedResource Include="Resources\CloseButtonHovered.png" />
-    <EmbeddedResource Include="Resources\CloseButtonNormal.png" />
-    <EmbeddedResource Include="Resources\CloseButtonPressed.png" />
-    <EmbeddedResource Include="Resources\FieldDisabledLeft.png" />
-    <EmbeddedResource Include="Resources\FieldDisabledRight.png" />
-    <EmbeddedResource Include="Resources\FieldFocusedLeft.png" />
-    <EmbeddedResource Include="Resources\FieldFocusedRight.png" />
-    <EmbeddedResource Include="Resources\FieldHoveredLeft.png" />
-    <EmbeddedResource Include="Resources\FieldHoveredRight.png" />
-    <EmbeddedResource Include="Resources\FieldNormalLeft.png" />
-    <EmbeddedResource Include="Resources\FieldNormalRight.png" />
-    <EmbeddedResource Include="Resources\ResetButtonHovered.png" />
-    <EmbeddedResource Include="Resources\ResetButtonNormal.png" />
-    <EmbeddedResource Include="Resources\ResetButtonPressed.png" />
+    <EmbeddedResource Include="UI\UUIResource\UUI.png" />
   </ItemGroup>
 
-  <Import Project="..\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared\CommonLocaleShared.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.en\CommonLocaleShared.en.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\KeyBindingShared\KeyBindingShared.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\MessageBoxShared\MessageBoxShared.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\ModUtilsShared\ModUtilsShared.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\ModBaseShared\ModBaseShared.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\OptionPanelShared\OptionPanelShared.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\UIShared\UIShared.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.zh-CN\CommonLocaleShared.zh-CN.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.fr\CommonLocaleShared.fr.projitems" Label="Shared" />
-
-  <Import Project="..\MbyronModsCommonShared\LocalizationShared\CommonLocaleShared.ja\CommonLocaleShared.ja.projitems" Label="Shared" />
+  <ItemGroup>
+    <PackageReference Include="UnifiedUILib" Version="2.2.12" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
@@ -114,6 +65,36 @@
     <EmbeddedResource Update="Localization\Localize.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Localize.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\CommonLocalize\CommonLocalize.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\MbyronModsCommon.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\en\en.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\es-ES\es-ES.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\fr\fr.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\ja\ja.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\zh-CN\zh-CN.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\ru\ru.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <Compile Update="D:\CitiesSkylines\MyMods\ImageOverlayRenewal\V1_8_3\ImageOverlayRenewal\MbyronModsCommon\MbyronModsCommon\Localization\CommonLocalize\CommonLocalize.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommonLocalize.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="D:\CitiesSkylines\MyMods\ImageOverlayRenewal\V1_8_3\ImageOverlayRenewal\MbyronModsCommon\MbyronModsCommon\Localization\CommonLocalize\CommonLocalize.resx">
+      <LastGenOutput>CommonLocalize.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

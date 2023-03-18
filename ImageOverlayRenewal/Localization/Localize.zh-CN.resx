@@ -192,43 +192,19 @@
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
     <value>载入了{0}个纹理：</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD1" xml:space="preserve">
-    <value>[ADD]添加了控制面板来代替快捷键。</value>
+  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
+    <value>[ADD]Added UUI button to invoke control panel.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD2" xml:space="preserve">
-    <value>[ADD]添加了覆盖图像的参数设置。</value>
+  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
+    <value>[ADD]Added Italian and Spanish localization.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD3" xml:space="preserve">
-    <value>[ADD]添加了显示加载新纹理结果的功能。</value>
+  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
+    <value>[FIX]Fixed an issue with control panel background texture not displaying correctly.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADJ" xml:space="preserve">
-    <value>[ADJ]因为模组已被完全重写，所以设置将被重置。</value>
+  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
+    <value>[FIX]Fixed exception thrown when there is no file.</value>
   </data>
-  <data name="UpdateLog_V1_8_0Fix" xml:space="preserve">
-    <value>[FIX]修复了模组设置偶尔会被重置的问题。</value>
-  </data>
-  <data name="UpdateLog_V1_8_0OPT" xml:space="preserve">
-    <value>[OPT]优化了加载纹理的逻辑以改善性能。</value>
-  </data>
-  <data name="UpdateLog_V1_8_0UPT1" xml:space="preserve">
-    <value>[UPT]更新了整个模组框架，以提高扩展性。</value>
-  </data>
-  <data name="UpdateLog_V1_8_0UPT2" xml:space="preserve">
-    <value>[UPT]更新了显示图像的逻辑。</value>
-  </data>
-  <data name="UpdateLog_V1_8_1ADD" xml:space="preserve">
-    <value>[ADD]添加了显示图像的快捷键。</value>
-  </data>
-  <data name="UpdateLog_V1_8_1FIX" xml:space="preserve">
-    <value>[FIX]修复了切换游戏语言后，模组控制面板语言不正确的问题。</value>
-  </data>
-  <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
-    <value>[UPT]更新了旋转角度的步长。</value>
-  </data>
-  <data name="UpdateLog_V1_8_2ADD" xml:space="preserve">
-    <value>[ADD]Add Japanese and French localization.</value>
-  </data>
-  <data name="UpdateLog_V1_8_2UPT" xml:space="preserve">
-    <value>[UPT]Increase the maximum adjustable side length.</value>
+  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
+    <value>[UPT]Updated option panel UI style.</value>
   </data>
 </root>

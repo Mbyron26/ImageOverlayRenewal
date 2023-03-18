@@ -1,5 +1,4 @@
-﻿//using CitiesHarmony.API;
-using ColossalFramework.Globalization;
+﻿using ColossalFramework.Globalization;
 using ICities;
 using ImageOverlayRenewal.Localization;
 using MbyronModsCommon;
@@ -11,9 +10,11 @@ namespace ImageOverlayRenewal {
     public class Mod : ModBase<Mod, OptionPanel, Config> {
         public override string SolidModName => "ImageOverlayRenewal";
         public override string ModName => "Image Overlay Renewal";
-        public override Version ModVersion => new(1, 8, 2);
+        public override Version ModVersion => new(1, 8, 3);
         public override ulong ModID => 2616880500;
-        //public override ulong? BetaID => 2671781645;
+#if DEBUG
+        public override ulong? BetaID => 2671781645;
+#endif
         public override string Description => Localize.MOD_Description;
 
         public override void SetModCulture(CultureInfo cultureInfo) => Localize.Culture = cultureInfo;
@@ -25,17 +26,6 @@ namespace ImageOverlayRenewal {
             ModLogger.OutputPluginsList();
         }
 
-        //public override void OnEnabled() {
-        //    base.OnEnabled();
-        //    HarmonyHelper.DoOnHarmonyReady(Patcher.EnablePatches);
-        //}
-        //public override void OnDisabled() {
-        //    base.OnDisabled();
-        //    if (HarmonyHelper.IsHarmonyInstalled) {
-        //        Patcher.DisablePatches();
-        //    }
-        //}
-
         protected override void SettingsUI(UIHelperBase helper) {
             base.SettingsUI(helper);
             LocaleManager.eventLocaleChanged += ControlPanelManager.OnLocaleChanged;
@@ -46,25 +36,23 @@ namespace ImageOverlayRenewal {
             if (mode == LoadMode.NewMap || mode == LoadMode.LoadMap || mode == LoadMode.NewGame || mode == LoadMode.LoadGame) {
                 Manager.OnLoaded();
             }
-
+            UI.UUI.Initialize();
         }
 
-        public override List<ModUpdateInfo> ModUpdateLogs { get; set; } = new List<ModUpdateInfo>() {
-            new ModUpdateInfo(new Version(1,8,2),"2023/1/22",new List<string>{
-                "UpdateLog_V1_8_2ADD","UpdateLog_V1_8_2UPT",
-            }),
-            new ModUpdateInfo(new Version(1,8,1),"2023/1/17",new List<string>{
-                "UpdateLog_V1_8_1ADD","UpdateLog_V1_8_1FIX","UpdateLog_V1_8_1UPT",
-            }),
-            new ModUpdateInfo(new Version(1, 8, 0), @"2022/01/14", new List<string> {
-"UpdateLog_V1_8_0ADD1","UpdateLog_V1_8_0ADD2","UpdateLog_V1_8_0ADD3","UpdateLog_V1_8_0UPT1","UpdateLog_V1_8_0UPT2",
-                "UpdateLog_V1_8_0OPT","UpdateLog_V1_8_0Fix","UpdateLog_V1_8_0ADJ"
-            }),
-        };
+        public override void OnLevelUnloading() {
+            base.OnLevelUnloading();
+            UI.UUI.Destory();
+        }
 
         private List<IncompatibleModInfo> ConflictMods { get; set; } = new() {
             new IncompatibleModInfo(814102166, @"Image Overlay", true),
             new IncompatibleModInfo(662933818, @"OverLayer v2", true),
+        };
+
+        public override List<ModChangeLog> ChangeLog => new() {
+            new ModChangeLog(new Version(1, 8, 3), new(2023, 3, 15), new List<string> {
+                Localize.UpdateLog_V1_8_3ADD1, Localize.UpdateLog_V1_8_3ADD2, Localize.UpdateLog_V1_8_3UPT, Localize.UpdateLog_V1_8_3FIX, Localize.UpdateLog_V1_8_3FIX1
+            })
         };
     }
 }

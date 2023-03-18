@@ -1,39 +1,38 @@
 ﻿using ColossalFramework.UI;
 using MbyronModsCommon;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ImageOverlayRenewal {
     internal class ControlPanel : UIPanel {
         private const float PanelWidth = 370;
         private const float ElementPadding = 10;
-        private const float CardWidth = PanelWidth - 2 * ElementPadding;
+        private const float GroupWidth = PanelWidth - 2 * ElementPadding;
         private const float PanelHeight = 300;
         private const float CaptionHeight = 40;
         private const string Name = nameof(ImageOverlayRenewal) + nameof(ControlPanel);
-        
+
+        private static RectOffset DefaultOffset { get; } = new RectOffset(6, 6, 6, 6);
         public static Vector2 ButtonSize => new(28, 28);
         private static int MaxSideLength => 8640 * 3;
         public static Vector2 PanelPosition { get; set; }
-        private UIDragHandle DragBar { get; set; }
-        private UILabel Title { get; set; }
-        private UIButton CloseButton { get; set; }
-        private PropertyCardPanel ShowImageCard { get; set; }
-        private PropertyCardPanel MainParameterCard { get; set; }
-        private PropertyCardPanel CapacityCard { get; set; }
-        private PairButton ShowImageButton { get; set; }
-        private UIDropDown ImageSize { get; set; }
-        private CustomIntValueField SideLength { get; set; }
-        private UIButton ResetButton { get; set; }
+
+        private PropertyPanel showImageProperty;
+        private PropertyPanel parameterProperty;
+        private PropertyPanel capacityProperty;
+
+
         private UIButton RefreshButton { get; set; }
         private CustomIntValueField PositionXField { get; set; }
         private CustomIntValueField PositionYField { get; set; }
-        private CustomFloatValueField RotationField { get; set; }
 
+        private CustomFloatValueField rotationField;
 
         public ControlPanel() {
             name = Name;
             autoLayout = false;
+            atlas = CustomAtlas.InGameAtlas;
             backgroundSprite = "UnlockingItemBackground";
             isVisible = true;
             canFocus = true;
@@ -42,9 +41,9 @@ namespace ImageOverlayRenewal {
             height = PanelHeight;
 
             AddCaption();
-            AddShowImageCard();
-            AddMainParameterCard();
-            AddCapacityCard();
+            AddShowImageProperty();
+            AddParameterProperty();
+            AddCapacityProperty();
             AddRefreshButton();
 
             SetPosition();
@@ -59,14 +58,14 @@ namespace ImageOverlayRenewal {
             } else {
                 relativePosition = PanelPosition;
             }
-            height = CaptionHeight + ShowImageCard.height + 10 + CapacityCard.height + 10 + MainParameterCard.height + 10 + RefreshButton.height + 10;
-            ShowImageCard.relativePosition = new Vector2(ElementPadding, CaptionHeight);
-            MainParameterCard.relativePosition = new Vector2(ElementPadding, ShowImageCard.relativePosition.y + ShowImageCard.size.y + 10);
-            CapacityCard.relativePosition = new Vector2(ElementPadding, MainParameterCard.relativePosition.y + MainParameterCard.size.y + 10);
-            RefreshButton.relativePosition = new Vector2(ElementPadding, CapacityCard.relativePosition.y + CapacityCard.size.y + 10);
+            height = CaptionHeight + showImageProperty.height + 10 + capacityProperty.height + 10 + parameterProperty.height + 10 + RefreshButton.height + 10;
+            showImageProperty.relativePosition = new Vector2(ElementPadding, CaptionHeight);
+            parameterProperty.relativePosition = new Vector2(ElementPadding, showImageProperty.relativePosition.y + showImageProperty.size.y + 10);
+            capacityProperty.relativePosition = new Vector2(ElementPadding, parameterProperty.relativePosition.y + parameterProperty.size.y + 10);
+            RefreshButton.relativePosition = new Vector2(ElementPadding, capacityProperty.relativePosition.y + capacityProperty.size.y + 10);
         }
 
-        private string[] GetImageSizeList() => new string[] { Localization.Localize.ControlPanel_Custom, "1x1", "3x3", "5x5", "9x9" };
+        private string[] GetImageSizeList() => new string[] { Localization.Localize.ControlPanel_Custom, "1×1", "3×3", "5×5", "9×9" };
 
         private void AddRefreshButton() {
             RefreshButton = AddUIComponent<UIButton>();
@@ -96,18 +95,12 @@ namespace ImageOverlayRenewal {
             RefreshButton.eventClicked += (c, v) => ControlPanelManager.RefreshPanel();
         }
 
-        private void AddCapacityCard() {
-            CapacityCard = AddUIComponent<PropertyCardPanel>();
-            CapacityCard.width = PanelWidth - 10 * 2;
-            var capacityChildPanel = CapacityCard.AddChildPanel();
-            CapacityCard.AddTextLabel(capacityChildPanel, Localization.Localize.ControlPanel_Capacity);
+        private void AddCapacityProperty() {
+            ControlPanelTool.AddGroup(this, GroupWidth, null);
+            ControlPanelTool.AddField(Localization.Localize.ControlPanel_Capacity, null, 80f, Config.Instance.Opacity, 10, 1, 100, (v) => Config.Instance.Opacity = (byte)v, out CustomIntValueField _);
+            var applyPanel = ControlPanelTool.AddChildPanel();
+            applyPanel.height = 38f;
 
-            var capacityField = CustomField.AddIntValueField(capacityChildPanel, 80f, 20f, Config.Instance.Opacity, 10, 1, 100);
-            capacityField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
-            capacityField.OnValueChanged += (value) => Config.Instance.Opacity = (byte)value;
-            capacityField.relativePosition = new Vector2(capacityChildPanel.width - 6 - capacityField.width, 6);
-
-            var applyPanel = CapacityCard.AddChildPanel(38f);
             var button = applyPanel.AddUIComponent<UIButton>();
             button.autoSize = false;
             button.width = applyPanel.width - 2 * 6;
@@ -127,147 +120,91 @@ namespace ImageOverlayRenewal {
             button.text = Localization.Localize.ControlPanel_ApplyOpacity;
             button.relativePosition = new Vector2(6, 6);
             button.eventClicked += (c, v) => Manager.ApplayOpacity(false);
+            capacityProperty = ControlPanelTool.Group;
+            ControlPanelTool.Reset();
         }
 
-        private void AddMainParameterCard() {
-            MainParameterCard = AddUIComponent<PropertyCardPanel>();
-            MainParameterCard.width = CardWidth;
+        private void OnSelectionChanged() {
+            if (Manager.TextureData.Count > 0 && Manager.TextureData.TryGetValue(selectImage.selectedValue, out Texture2D texture))
+                Manager.ApplyTexture(texture, selectImage.selectedValue);
+        }
 
-            #region Image flag
-            var warningPanel = MainParameterCard.AddChildPanel();
+        private UIDropDown selectImage;
+        private UIDropDown imageSize;
+        private CustomIntValueField sideLength;
+
+
+        private void AddParameterProperty() {
+            ControlPanelTool.AddGroup(this, GroupWidth, null);
+
+            var warningPanel = ControlPanelTool.AddChildPanel();
             if (Manager.TextureData.Count == 0) {
-                var error = warningPanel.AddUIComponent<UILabel>();
-                error.autoSize = false;
-                error.autoHeight = true;
-                error.wordWrap = true;
-                error.width = warningPanel.width - 12;
-                error.textScale = 0.8f;
+                var error = CustomLabel.AddLabel(warningPanel, Localization.Localize.ControlPanel_NoPNG, warningPanel.width - 12, new RectOffset(5, 5, 5, 5), 0.8f);
                 error.backgroundSprite = "ButtonWhite";
                 error.color = new Color32(253, 77, 60, 255);
-                error.padding = new RectOffset(5, 5, 5, 5);
-                error.text = Localization.Localize.ControlPanel_NoPNG;
                 error.relativePosition = new Vector2(6, 6);
-
-                var label = warningPanel.AddUIComponent<UILabel>();
-                label.autoSize = false;
-                label.autoHeight = true;
-                label.wordWrap = true;
-                label.width = warningPanel.width - 12;
-                label.textScale = 0.8f;
-                label.backgroundSprite = "ButtonWhite";
-                label.color = new Color32(253, 150, 62, 255);
-                label.padding = new RectOffset(5, 5, 5, 5);
-                label.text = Localization.Localize.ControlPanel_SelectedImageWarning;
-                label.relativePosition = new Vector2(6, error.relativePosition.y + error.size.y + 6);
-
-                warningPanel.height = label.height + error.height + 18;
+                warningPanel.height = error.height + 12;
             } else {
-                var label = warningPanel.AddUIComponent<UILabel>();
-                label.autoSize = false;
-                label.autoHeight = true;
-                label.wordWrap = true;
-                label.width = warningPanel.width - 12;
-                label.textScale = 0.8f;
+                var label = CustomLabel.AddLabel(warningPanel, Localization.Localize.ControlPanel_SelectedImageWarning, warningPanel.width - 12, new RectOffset(5, 5, 5, 5), 0.8f);
                 label.backgroundSprite = "ButtonWhite";
                 label.color = new Color32(253, 150, 62, 255);
-                label.padding = new RectOffset(5, 5, 5, 5);
-                label.text = Localization.Localize.ControlPanel_SelectedImageWarning;
                 label.relativePosition = new Vector2(6, 6);
-
                 warningPanel.height = label.height + 12;
             }
-            #endregion
 
-            #region Select Image
-            var selectImagePanel = MainParameterCard.AddChildPanel();
-            MainParameterCard.AddTextLabel(selectImagePanel, Localization.Localize.ControlPanel_Image);
-            var SelectImage = MainParameterCard.AddDropDown(selectImagePanel, 200f, 20f);
-            SelectImage.items = GetAllPNGNames();
-            if (SelectImage.items.Length > 0) {
-                if (Manager.TextureData.Count > 0) {
-                    SelectImage.selectedValue = Manager.CurrentPNG;
-                } else {
-                    SelectImage.selectedValue = SelectImage.items[0];
-                }
-            }
-            SelectImage.eventSelectedIndexChanged += (c, v) => {
-                if (Manager.TextureData.Count > 0 && Manager.TextureData.TryGetValue(SelectImage.selectedValue, out Texture2D texture)) {
-                    Manager.ApplyTexture(texture, SelectImage.selectedValue);
-                }
-            };
-            #endregion
+            ControlPanelTool.AddDropDown(Localization.Localize.ControlPanel_Image, null, GetAllPNGNames(), GetDefaultSelection(), 200f, out selectImage, eventCallback: (_) => OnSelectionChanged());
 
-            #region Image Size
-            var imageSizePanel = MainParameterCard.AddChildPanel();
-            MainParameterCard.AddTextLabel(imageSizePanel, Localization.Localize.ControlPanel_Size);
-            ImageSize = MainParameterCard.AddDropDown(imageSizePanel, 130f, 20f);
-            ImageSize.items = GetImageSizeList();
-            ImageSize.selectedIndex = (int)Config.Instance.OverlayType;
-            ImageSize.eventSelectedIndexChanged += (c, v) => {
+            ControlPanelTool.AddDropDown(Localization.Localize.ControlPanel_Size, null, GetImageSizeList(), (int)Config.Instance.OverlayType, 130f, out imageSize, eventCallback: (v) => {
                 Config.Instance.OverlayType = Manager.GetOverlayTileSize(v);
                 var index = Manager.GetOverlayTileSize(Config.Instance.OverlayType);
-                if (SideLength is not null && index != 0) {
+                if (sideLength is not null && index != 0) {
                     var length = Manager.GetIntegerTilesSize(Config.Instance.OverlayType);
                     Config.Instance.SideLength = length;
-                    SideLength.Value = (int)length;
+                    sideLength.Value = (int)length;
                 }
-            };
-            #endregion
+            });
 
-            #region Side Length
-            var sizePanel = MainParameterCard.AddChildPanel();
-            MainParameterCard.AddTextLabel(sizePanel, Localization.Localize.ControlPanel_SideLength);
-            SideLength = CustomField.AddIntValueField(sizePanel, 80f, 20f, (int)Config.Instance.SideLength, 10, 10, MaxSideLength);
-            SideLength.relativePosition = new Vector2(sizePanel.width - 80 - 6, (sizePanel.height - 20) / 2);
-            SideLength.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
-            SideLength.OnValueChanged += (v) => {
+            ControlPanelTool.AddField(Localization.Localize.ControlPanel_SideLength, null, 80f, (int)Config.Instance.SideLength, 10, 10, MaxSideLength, (v) => {
                 if (v == 960) {
-                    ImageSize.selectedIndex = 1;
+                    imageSize.selectedIndex = 1;
                 } else if (v == 2880) {
-                    ImageSize.selectedIndex = 2;
+                    imageSize.selectedIndex = 2;
                 } else if (v == 4800) {
-                    ImageSize.selectedIndex = 3;
+                    imageSize.selectedIndex = 3;
                 } else if (v == 8640) {
-                    ImageSize.selectedIndex = 4;
+                    imageSize.selectedIndex = 4;
                 } else {
-                    ImageSize.selectedIndex = 0;
+                    imageSize.selectedIndex = 0;
                 }
                 Config.Instance.SideLength = v;
-            };
-            #endregion
+            }, out sideLength);
 
-            #region Position
-            var positionPanel = MainParameterCard.AddChildPanel();
-            MainParameterCard.AddTextLabel(positionPanel, Localization.Localize.ControlPanel_Position);
+            var positionPanel = ControlPanelTool.AddChildPanel();
+            var label0 = CustomLabel.AddLabel(positionPanel, Localization.Localize.ControlPanel_Position, null, textScale: 0.8f);
+            var groupPanel = positionPanel.AddUIComponent<AutoMatchChildPanel>();
+            groupPanel.autoLayoutDirection = LayoutDirection.Horizontal;
+            groupPanel.autoLayoutPadding = new(5, 0, 0, 0);
+            CustomLabel.AddLabel(groupPanel, "x", null, new(0, 0, 4, 0), textScale: 0.8f);
+            PositionXField = CustomField.AddField<CustomIntValueField, int>(groupPanel, 80f, 20f, (int)Config.Instance.PositionX, 10, -10000, 10000, (v) => Config.Instance.PositionX = v);
+            CustomLabel.AddLabel(groupPanel, "y", null, new(0, 0, 4, 0), textScale: 0.8f);
+            PositionYField = CustomField.AddField<CustomIntValueField, int>(groupPanel, 80f, 20f, (int)Config.Instance.PositionY, 10, -10000, 10000, (v) => Config.Instance.PositionY = v);
+            IUIStyle tool = new UIStyleAlpha(positionPanel, groupPanel, label0, null, DefaultOffset);
+            tool.RefreshLayout();
 
-            PositionYField = CustomField.AddIntValueField(positionPanel, 80f, 20f, (int)Config.Instance.PositionY, 10, -10000, 10000);
-            PositionYField.OnValueChanged += (v) => Config.Instance.PositionY = v;
-            PositionYField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
-            PositionYField.relativePosition = new Vector2(positionPanel.width - PositionYField.width - 6, (positionPanel.height - 20) / 2);
+            ControlPanelTool.AddField(Localization.Localize.ControlPanel_Rotation, null, 80f, Config.Instance.Rotation, 1, 0, 360, (v) => Config.Instance.Rotation = v, out rotationField);
 
-            var yText = MainParameterCard.AddTextLabel(positionPanel, "y:");
-            yText.relativePosition = new Vector2(PositionYField.relativePosition.x - 15, (positionPanel.height - yText.height) / 2);
-
-            PositionXField = CustomField.AddIntValueField(positionPanel, 80f, 20f, (int)Config.Instance.PositionX, 10, -10000, 10000);
-            PositionXField.OnValueChanged += (v) => Config.Instance.PositionX = v;
-            PositionXField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
-            PositionXField.relativePosition = new Vector2(yText.relativePosition.x - 10 - PositionXField.width, (positionPanel.height - 20) / 2);
-
-            var xText = MainParameterCard.AddTextLabel(positionPanel, "x:");
-            xText.relativePosition = new Vector2(PositionXField.relativePosition.x - 15, (positionPanel.height - yText.height) / 2);
-            #endregion
-
-            #region Rotation
-            var rotationPanel = MainParameterCard.AddChildPanel();
-            MainParameterCard.AddTextLabel(rotationPanel, Localization.Localize.ControlPanel_Rotation);
-            RotationField = CustomField.AddFloatValueField(rotationPanel, 80f, 20f, Config.Instance.Rotation, 1, 0, 360);
-            RotationField.tooltip = Localization.Localize.ControlPanel_ScrollWheel;
-            RotationField.OnValueChanged += (v) => Config.Instance.Rotation = v;
-            RotationField.relativePosition = new Vector2(rotationPanel.width - 80 - 6, (rotationPanel.height - 20) / 2);
-            #endregion
-
+            parameterProperty = ControlPanelTool.Group;
+            ControlPanelTool.Reset();
         }
 
+        private static int GetDefaultSelection() {
+            var list = GetAllPNGNames();
+            if (list.Length > 0 && Manager.TextureData.Count > 0) {
+                var t = list.Select((s, index) => new { s, index }).FirstOrDefault(x => x.s.Equals(Manager.CurrentPNG))?.index ?? -1;
+                return t != -1 ? t : 0;
+            }
+            return 0;
+        }
         private static string[] GetAllPNGNames() {
             if (Manager.TextureData.Count > 0) {
                 List<string> buffer = new();
@@ -280,53 +217,51 @@ namespace ImageOverlayRenewal {
             }
         }
 
-        private void AddShowImageCard() {
-            ShowImageCard = AddUIComponent<PropertyCardPanel>();
-            ShowImageCard.width = CardWidth;
-            var showImagePanel = ShowImageCard.AddChildPanel();
-            ShowImageCard.AddTextLabel(showImagePanel, Localization.Localize.ControlPanel_ShowImage);
-            ShowImageButton = CustomMultiStateButton.AddPairButton(showImagePanel, Localization.Localize.ControlPanel_Yes, Localization.Localize.ControlPanel_No, Config.Instance.ShowImage, 140, 20, (v) => Config.Instance.ShowImage = v == 0);
-            ShowImageButton.relativePosition = new Vector2(showImagePanel.width - 6 - ShowImageButton.width, 6);
+        private void AddShowImageProperty() {
+            ControlPanelTool.AddGroup(this, GroupWidth, null, null);
+            ControlPanelTool.AddToggleButton(Localization.Localize.ControlPanel_ShowImage, null, Config.Instance.ShowImage, (_) => Config.Instance.ShowImage = _, out ToggleButton _);
+            showImageProperty = ControlPanelTool.Group;
+            ControlPanelTool.Reset();
         }
 
         private void AddCaption() {
-            CloseButton = AddUIComponent<UIButton>();
-            CloseButton.atlas = ModAtlas.Atlas;
-            CloseButton.size = ButtonSize;
-            CloseButton.normalFgSprite = ModAtlas.CloseButtonNormal;
-            CloseButton.focusedFgSprite = ModAtlas.CloseButtonNormal;
-            CloseButton.hoveredFgSprite = ModAtlas.CloseButtonHovered;
-            CloseButton.pressedFgSprite = ModAtlas.CloseButtonPressed;
-            CloseButton.relativePosition = new Vector2(width - 6f - 28f, 6f);
-            CloseButton.eventClicked += (c, p) => ControlPanelManager.Close();
+            var closeButton = AddUIComponent<UIButton>();
+            closeButton.atlas = CustomAtlas.CommonAtlas;
+            closeButton.size = ButtonSize;
+            closeButton.normalFgSprite = CustomAtlas.CloseButtonNormal;
+            closeButton.focusedFgSprite = CustomAtlas.CloseButtonNormal;
+            closeButton.hoveredFgSprite = CustomAtlas.CloseButtonHovered;
+            closeButton.pressedFgSprite = CustomAtlas.CloseButtonPressed;
+            closeButton.relativePosition = new Vector2(width - 6f - 28f, 6f);
+            closeButton.eventClicked += (c, p) => ControlPanelManager.Close();
 
-            ResetButton = AddUIComponent<UIButton>();
-            ResetButton.atlas = ModAtlas.Atlas;
-            ResetButton.size = ButtonSize;
-            ResetButton.normalFgSprite = ModAtlas.ResetButtonNormal;
-            ResetButton.focusedFgSprite = ModAtlas.ResetButtonNormal;
-            ResetButton.hoveredFgSprite = ModAtlas.ResetButtonHovered;
-            ResetButton.pressedFgSprite = ModAtlas.ResetButtonPressed;
-            ResetButton.relativePosition = new Vector2(width - 6f - 28f - 28f, 6f);
-            ResetButton.eventClicked += (c, p) => {
-                SideLength.Value = 960;
+            var resetButton = AddUIComponent<UIButton>();
+            resetButton.atlas = CustomAtlas.CommonAtlas;
+            resetButton.size = ButtonSize;
+            resetButton.normalFgSprite = CustomAtlas.ResetButtonNormal;
+            resetButton.focusedFgSprite = CustomAtlas.ResetButtonNormal;
+            resetButton.hoveredFgSprite = CustomAtlas.ResetButtonHovered;
+            resetButton.pressedFgSprite = CustomAtlas.ResetButtonPressed;
+            resetButton.relativePosition = new Vector2(width - 6f - 28f - 28f, 6f);
+            resetButton.eventClicked += (c, p) => {
+                sideLength.Value = 960;
                 PositionXField.Value = 0;
                 PositionYField.Value = 0;
-                RotationField.Value = 0;
+                rotationField.Value = 0;
             };
-            ResetButton.tooltip = Localization.Localize.ControlPanel_Reset;
-            ResetButton.eventClicked += (c, v) => ResetButton.tooltipBox.Hide();
+            resetButton.tooltip = Localization.Localize.ControlPanel_Reset;
+            resetButton.eventClicked += (c, v) => resetButton.tooltipBox.Hide();
 
-            DragBar = AddUIComponent<UIDragHandle>();
-            DragBar.width = ResetButton.relativePosition.x;
-            DragBar.height = CaptionHeight;
-            DragBar.relativePosition = Vector2.zero;
+            var dragBar = AddUIComponent<UIDragHandle>();
+            dragBar.width = resetButton.relativePosition.x;
+            dragBar.height = CaptionHeight;
+            dragBar.relativePosition = Vector2.zero;
 
-            Title = DragBar.AddUIComponent<UILabel>();
-            Title.textAlignment = UIHorizontalAlignment.Center;
-            Title.verticalAlignment = UIVerticalAlignment.Middle;
-            Title.text = ModMainInfo<Mod>.ModName;
-            Title.CenterToParent();
+            var title = dragBar.AddUIComponent<UILabel>();
+            title.textAlignment = UIHorizontalAlignment.Center;
+            title.verticalAlignment = UIVerticalAlignment.Middle;
+            title.text = ModMainInfo<Mod>.ModName;
+            title.CenterToParent();
         }
 
     }

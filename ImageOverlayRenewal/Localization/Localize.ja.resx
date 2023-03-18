@@ -192,43 +192,19 @@
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
     <value>テクスチャ {0} を再読み込み:</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD1" xml:space="preserve">
-    <value>[ADD]ショートカットキーの代わりに、コントロールパネルを追加</value>
+  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
+    <value>[ADD]Added UUI button to invoke control panel.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD2" xml:space="preserve">
-    <value>[ADD]オーバーレイ画像用のパラメータ設定を追加</value>
+  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
+    <value>[ADD]Added Italian and Spanish localization.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD3" xml:space="preserve">
-    <value>[ADD]テクスチャの再読み込み結果を表示するように追加</value>
+  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
+    <value>[FIX]Fixed an issue with control panel background texture not displaying correctly.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADJ" xml:space="preserve">
-    <value>[ADJ]MODが完全に書き直されたため、設定がリセットされます</value>
+  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
+    <value>[FIX]Fixed exception thrown when there is no file.</value>
   </data>
-  <data name="UpdateLog_V1_8_0Fix" xml:space="preserve">
-    <value>[FIX]希に設定がリセットされる問題を修正</value>
-  </data>
-  <data name="UpdateLog_V1_8_0OPT" xml:space="preserve">
-    <value>[OPT]パフォーマンスを向上させるために、テクスチャのロードロジックを最適化</value>
-  </data>
-  <data name="UpdateLog_V1_8_0UPT1" xml:space="preserve">
-    <value>[UPT]MODのフレームワーク全体をアップデートして拡張性の向上</value>
-  </data>
-  <data name="UpdateLog_V1_8_0UPT2" xml:space="preserve">
-    <value>[UPT]画像の表示ロジックを更新</value>
-  </data>
-  <data name="UpdateLog_V1_8_1ADD" xml:space="preserve">
-    <value>[ADD]表示画像をホットキーで切り替える機能を追加</value>
-  </data>
-  <data name="UpdateLog_V1_8_1FIX" xml:space="preserve">
-    <value>[FIX]ゲーム言語を切り替えた後に、コントロールパネルの言語が正しく表示されない問題を修正</value>
-  </data>
-  <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
-    <value>[UPT]回転角度のステップを更新</value>
-  </data>
-  <data name="UpdateLog_V1_8_2ADD" xml:space="preserve">
-    <value>[ADD]日本語とフランス語の翻訳を追加</value>
-  </data>
-  <data name="UpdateLog_V1_8_2UPT" xml:space="preserve">
-    <value>[UPT]調整可能な辺の最大長を拡大</value>
+  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
+    <value>[UPT]Updated option panel UI style.</value>
   </data>
 </root>
