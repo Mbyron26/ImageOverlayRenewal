@@ -63,6 +63,7 @@ namespace MbyronModsCommon {
 
         public void OnSettingsUI(UIHelperBase helper) {
             ModLogger.GameLog($"Setting UI.");
+            ModLogger.GameLog($"{Environment.StackTrace}");
             LoadLocale();
             LocaleManager.eventLocaleChanged += LoadLocale;
             OptionPanelManager<Mod, OptionPanel>.SettingsUI(helper);
