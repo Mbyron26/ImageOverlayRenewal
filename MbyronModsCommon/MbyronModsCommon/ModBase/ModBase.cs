@@ -26,6 +26,8 @@ namespace MbyronModsCommon {
         public bool IsBeta => BetaID.HasValue;
         public string Name => IsBeta ? ModName + " Beta " + ModVersion : ModName + " " + ModVersion;
         public abstract string Description { get; }
+        public abstract List<ModChangeLog> ChangeLog { get; }
+        public string VersionType => IsBeta ? "Beta" : "Stable";
 
         private string configFilePath;
         public string ConfigFilePath {
@@ -90,8 +92,6 @@ namespace MbyronModsCommon {
         public void LoadConfig() => XMLUtils.LoadData<Config>(ConfigFilePath);
         public void SaveConfig() => XMLUtils.SaveData<Config>(ConfigFilePath);
 
-        public abstract List<ModChangeLog> ChangeLog { get; }
-        public string VersionType => IsBeta ? "Beta" : "Stable";
 
         public virtual void OnEnabled() {
             if (UIView.GetAView() is not null) {
@@ -102,9 +102,7 @@ namespace MbyronModsCommon {
             LoadingManager.instance.m_introLoaded += IntroActions;
         }
 
-        public virtual void IntroActions() {
-            GetDeserializationState();
-        }
+        public virtual void IntroActions() => GetDeserializationState();
 
         public virtual void OnDisabled() { }
         public virtual void OnCreated(ILoading loading) { }
