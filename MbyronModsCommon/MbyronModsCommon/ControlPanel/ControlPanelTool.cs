@@ -1,10 +1,7 @@
 ﻿using ColossalFramework.UI;
-using Epic.OnlineServices.Platform;
 using ICities;
-using MbyronModsCommon.UI;
 using System;
 using UnityEngine;
-using static TerrainModify;
 
 namespace MbyronModsCommon {
     public static class ControlPanelTool {
@@ -16,24 +13,32 @@ namespace MbyronModsCommon {
 
         public static UIPanel AddChildPanel() => Group.AddChildPanel();
 
-        public static void AddGroup(UIComponent parent, float width, string caption, RectOffset groupPanelPadding = null) {
+        public static void AddGroup(UIComponent parent, float width, string caption) {
             Group = parent.AddUIComponent<PropertyPanel>();
             Group.width = width;
-            Group.Init(width, caption, new(6, 0, 0, 0), 0.9f, CustomColor.White, groupPanelPadding, null);
+            Group.Init(width, caption, new(6, 0, 0, 0), 0.9f, CustomColor.White, null, null);
         }
-        public static void AddLabelWithSliderGamma(string text, Vector2 siderSize, float min, float max, float step, float defaultValue, PropertyChangedEventHandler<float> callback, out UILabel label, out UISlider slider) {
+
+        public static UIPanel AddSliderGamma(string majorText, string minorText, Vector2 siderSize, float min, float max, float step, float defaultValue, PropertyChangedEventHandler<float> callback, out UISlider slider, RectOffset majorOffset = null, RectOffset minorOffset = null) {
             if (Group is null) {
                 ModLogger.ModLog("ControlPanelTools_Group is null");
-                label = null;
                 slider = null;
-                return;
+                return null;
             }
             var panel = Group.AddChildPanel();
-            label = CustomLabel.AddLabel(panel, text, 10, new(), 0.8f, Color.white);
+            UILabel majorLabel = null;
+            UILabel minorLabel = null;
+            if (majorText is not null) {
+                majorLabel = CustomLabel.AddLabel(panel, majorText, 10, majorOffset, 0.8f);
+                if (minorText is not null) {
+                    minorLabel = CustomLabel.AddLabel(panel, minorText, 10, minorOffset, 0.7f, CustomColor.OffWhite);
+                }
+            }
             slider = CustomSlider.AddSliderGamma(panel, siderSize, min, max, step, defaultValue, callback);
-            Group.UITool = new UIStyleGamma(panel) { MajorLabel = label, Child = slider, Padding = new(6, 6, 6, 6) };
+            Group.UITool = new UIStyleGamma(panel, slider, majorLabel, minorLabel, new(6, 6, 6, 6));
             Group.UITool.RefreshLayout();
             Group.UITool = null;
+            return panel;
         }
 
         public static UIPanel AddDropDown(string majorText, string minorText, string[] options, int defaultSelection, float width, out UIDropDown dropDown, float height = 20, OnDropdownSelectionChanged eventCallback = null, RectOffset majorOffset = null, RectOffset minorOffset = null) {
