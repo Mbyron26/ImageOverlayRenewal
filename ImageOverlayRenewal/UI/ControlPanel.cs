@@ -218,7 +218,7 @@ namespace ImageOverlayRenewal {
         }
 
         private void AddShowImageProperty() {
-            ControlPanelTool.AddGroup(this, GroupWidth, null, null);
+            ControlPanelTool.AddGroup(this, GroupWidth, null);
             ControlPanelTool.AddToggleButton(Localization.Localize.ControlPanel_ShowImage, null, Config.Instance.ShowImage, (_) => Config.Instance.ShowImage = _, out ToggleButton _);
             showImageProperty = ControlPanelTool.Group;
             ControlPanelTool.Reset();
