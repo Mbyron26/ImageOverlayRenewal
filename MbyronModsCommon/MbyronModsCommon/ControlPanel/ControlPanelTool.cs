@@ -19,7 +19,7 @@ namespace MbyronModsCommon {
 
         public static UIPanel AddSliderGamma(string majorText, string minorText, Vector2 siderSize, float min, float max, float step, float defaultValue, PropertyChangedEventHandler<float> callback, out UISlider slider, RectOffset majorOffset = null, RectOffset minorOffset = null) {
             if (Group is null) {
-                ModLogger.ModLog("ControlPanelTools_Group is null");
+                ModLogger.ModLog("ControlPanelTools_Group is null.");
                 slider = null;
                 return null;
             }
@@ -85,7 +85,7 @@ namespace MbyronModsCommon {
 
         public static UIPanel AddField<TypeValueField, TypeValue>(string majorText, string minorText, float width, TypeValue defaultValue, TypeValue wheelStep, TypeValue minLimit, TypeValue maxLimit, Action<TypeValue> callback, out TypeValueField typeValueField, float height = 20f) where TypeValueField : CustomValueFieldBase<TypeValue> where TypeValue : IComparable {
             if (Group is null) {
-                ModLogger.ModLog("ControlPanelTools_Group is null");
+                ModLogger.ModLog("ControlPanelTools_Group is null.");
                 typeValueField = null;
                 return null;
             }
