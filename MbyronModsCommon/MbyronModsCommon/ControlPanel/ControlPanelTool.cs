@@ -7,9 +7,7 @@ namespace MbyronModsCommon {
     public static class ControlPanelTool {
         public static PropertyPanel Group { get; set; }
         public static RectOffset DefaultOffset => new(6, 6, 6, 6);
-        static ControlPanelTool() {
-            ModLogger.ModLog("Initialize control panel tool.");
-        }
+        static ControlPanelTool() => ModLogger.ModLog("Initialize control panel tool.");
 
         public static UIPanel AddChildPanel() => Group.AddChildPanel();
 
