@@ -28,6 +28,17 @@ namespace MbyronModsCommon.UI {
             Parent = parent;
             IsInitialized = true;
         }
+
+        public UIStyleGamma(UIComponent parent, UIComponent child, UILabel major, UILabel minor) : this(parent) {
+            Child = child;
+            MajorLabel = major;
+            MinorLabel = minor;
+        }
+
+        public UIStyleGamma(UIComponent parent, UIComponent child, UILabel major, UILabel minor, RectOffset padding) : this(parent, child, major, minor) {
+            Padding = padding;
+        }
+
         public override void RefreshLayout() {
             Processing = true;
 
