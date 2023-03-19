@@ -17,15 +17,17 @@ namespace MbyronModsCommon {
             Group.Init(width, caption, new(6, 0, 0, 0), 0.9f, CustomColor.White, null, null);
         }
 
-        public static UIPanel AddSliderGamma(string majorText, string minorText, Vector2 siderSize, float min, float max, float step, float defaultValue, PropertyChangedEventHandler<float> callback, out UISlider slider, RectOffset majorOffset = null, RectOffset minorOffset = null) {
+        public static UIPanel AddSliderGamma(string majorText, string minorText, Vector2 siderSize, float min, float max, float step, float defaultValue, PropertyChangedEventHandler<float> callback, out UILabel majorLabel, out UILabel minorLabel, out UISlider slider, RectOffset majorOffset = null, RectOffset minorOffset = null) {
             if (Group is null) {
                 ModLogger.ModLog("ControlPanelTools_Group is null.");
                 slider = null;
+                majorLabel = null;
+                minorLabel = null;
                 return null;
             }
             var panel = Group.AddChildPanel();
-            UILabel majorLabel = null;
-            UILabel minorLabel = null;
+            majorLabel = null;
+            minorLabel = null;
             if (majorText is not null) {
                 majorLabel = CustomLabel.AddLabel(panel, majorText, 10, majorOffset, 0.8f);
                 if (minorText is not null) {
@@ -33,7 +35,7 @@ namespace MbyronModsCommon {
                 }
             }
             slider = CustomSlider.AddSliderGamma(panel, siderSize, min, max, step, defaultValue, callback);
-            Group.UITool = new UIStyleGamma(panel, slider, majorLabel, minorLabel, new(6, 6, 6, 6));
+            Group.UITool = new UIStyleGamma(panel, slider, majorLabel, minorLabel, DefaultOffset);
             Group.UITool.RefreshLayout();
             Group.UITool = null;
             return panel;
