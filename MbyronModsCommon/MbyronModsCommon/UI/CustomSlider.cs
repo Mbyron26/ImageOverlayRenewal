@@ -25,7 +25,7 @@ namespace MbyronModsCommon.UI {
             return slider;
         }
 
-        public static SliderAlpha AddSliderAlpha(UIComponent parent, string text, float min, float max, float step, float defaultValue, SliderAlphaSize size, PropertyChangedEventHandler<float> callback, string leftLabel, string rightLabel, RectOffset padding, float textScale = 0.75f) {
+        public static SliderAlpha AddSliderAlpha(UIComponent parent, string text, float min, float max, float step, float defaultValue, SliderAlphaSize size, PropertyChangedEventHandler<float> callback, string leftLabel, string rightLabel, RectOffset padding = null, float textScale = 0.75f) {
             var customSliderStyleA = parent.AddUIComponent<SliderAlpha>();
             customSliderStyleA.SliderSize = size;
             customSliderStyleA.FillValue(text, min, max, step, defaultValue, callback, leftLabel, rightLabel, textScale, padding);
@@ -114,7 +114,7 @@ namespace MbyronModsCommon.UI {
             var label = AddUIComponent<UILabel>();
             label.autoSize = false;
             label.size = new Vector2(sliderSize.ClampedLabelWidth, sliderSize.SliderHeight);
-            label.autoHeight = true;
+            label.autoHeight = false;
             label.wordWrap = true;
             label.atlas = CustomAtlas.CommonAtlas;
             label.backgroundSprite = backgroundSprite;

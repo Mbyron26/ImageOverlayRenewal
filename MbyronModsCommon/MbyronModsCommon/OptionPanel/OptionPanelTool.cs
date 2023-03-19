@@ -150,7 +150,7 @@ namespace MbyronModsCommon {
                 return null;
             }
             var panel = AddChildPanel();
-            slider = CustomSlider.AddSliderAlpha(panel, sliderText, min, max, step, defaultVal, sliderSize, callback, min.ToString(), max.ToString(), new(0, 0, 6, 0));
+            slider = CustomSlider.AddSliderAlpha(panel, sliderText, min, max, step, defaultVal, sliderSize, callback, min.ToString(), max.ToString(), new(0, 0, 4, 0));
             majorLabel = null;
             minorLabel = null;
             if (majorText is not null) {
@@ -187,7 +187,7 @@ namespace MbyronModsCommon {
             return panel;
         }
 
-        public static UIPanel AddDropDown(string majorText, string minorText, string[] options, int defaultSelection, float dropDownWidth, float dropDownHeight, out UILabel majorLabel, out UILabel minorLabel, out UIDropDown dropDown, RectOffset majorOffset = null, RectOffset minorOffset = null) {
+        public static UIPanel AddDropDown(string majorText, string minorText, string[] options, int defaultSelection, float dropDownWidth, float dropDownHeight, out UILabel majorLabel, out UILabel minorLabel, out UIDropDown dropDown, OnDropdownSelectionChanged eventCallback = null, RectOffset majorOffset = null, RectOffset minorOffset = null) {
             if (Group is null) {
                 ModLogger.ModLog("ControlPanelTools_Group is null.");
                 majorLabel = null;
@@ -196,7 +196,7 @@ namespace MbyronModsCommon {
                 return null;
             }
             var panel = AddChildPanel();
-            dropDown = CustomDropDown.AddOPDropDown(panel, options, defaultSelection, dropDownWidth, dropDownHeight);
+            dropDown = CustomDropDown.AddOPDropDown(panel, options, defaultSelection, dropDownWidth, dropDownHeight, eventCallback);
             majorLabel = null;
             minorLabel = null;
             if (majorText is not null) {

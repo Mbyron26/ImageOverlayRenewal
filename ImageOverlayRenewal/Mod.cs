@@ -10,7 +10,7 @@ namespace ImageOverlayRenewal {
     public class Mod : ModBase<Mod, OptionPanel, Config> {
         public override string SolidModName => "ImageOverlayRenewal";
         public override string ModName => "Image Overlay Renewal";
-        public override Version ModVersion => new(1, 8, 3);
+        public override Version ModVersion => new(1, 8, 3, 319);
         public override ulong ModID => 2616880500;
 #if DEBUG
         public override ulong? BetaID => 2671781645;
