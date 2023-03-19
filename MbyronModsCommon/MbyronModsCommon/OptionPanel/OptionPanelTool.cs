@@ -196,7 +196,6 @@ namespace MbyronModsCommon {
                 return null;
             }
             var panel = AddChildPanel();
-            majorLabel = CustomLabel.AddLabel(panel, majorText, 10, majorOffset, 1f, CustomColor.White);
             dropDown = CustomDropDown.AddOPDropDown(panel, options, defaultSelection, dropDownWidth, dropDownHeight);
             majorLabel = null;
             minorLabel = null;
