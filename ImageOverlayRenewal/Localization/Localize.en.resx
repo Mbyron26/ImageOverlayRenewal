@@ -192,43 +192,19 @@
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
     <value>Reload {0} texture:</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD1" xml:space="preserve">
-    <value>[ADD]Add control panel instead of shortcut key.</value>
+  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
+    <value>[ADD]Added UUI button to invoke control panel.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD2" xml:space="preserve">
-    <value>[ADD]Add overlay image parameter settings.</value>
+  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
+    <value>[ADD]Added Italian and Spanish localization.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADD3" xml:space="preserve">
-    <value>[ADD]Added display reload texture results.</value>
+  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
+    <value>[FIX]Fixed an issue with control panel background texture not displaying correctly.</value>
   </data>
-  <data name="UpdateLog_V1_8_0ADJ" xml:space="preserve">
-    <value>[ADJ]Because of mod was completely rewritten so settings will be reseted.</value>
+  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
+    <value>[FIX]Fixed exception thrown when there is no file.</value>
   </data>
-  <data name="UpdateLog_V1_8_0Fix" xml:space="preserve">
-    <value>[FIX]Fixed an issue where occasional settings were reseted.</value>
-  </data>
-  <data name="UpdateLog_V1_8_0OPT" xml:space="preserve">
-    <value>[OPT]Optimized loading texture logic to improve performance.</value>
-  </data>
-  <data name="UpdateLog_V1_8_0UPT1" xml:space="preserve">
-    <value>[UPT]Update whole mod framework to improve expansibility.</value>
-  </data>
-  <data name="UpdateLog_V1_8_0UPT2" xml:space="preserve">
-    <value>[UPT]Update show image logic.</value>
-  </data>
-  <data name="UpdateLog_V1_8_1ADD" xml:space="preserve">
-    <value>[ADD]Added display image hotkey toggle.</value>
-  </data>
-  <data name="UpdateLog_V1_8_1FIX" xml:space="preserve">
-    <value>[FIX]Fixed an issue that the control panel language was incorrect after game language was switched.</value>
-  </data>
-  <data name="UpdateLog_V1_8_1UPT" xml:space="preserve">
-    <value>[UPT]Updated rotation angle step.</value>
-  </data>
-  <data name="UpdateLog_V1_8_2ADD" xml:space="preserve">
-    <value>[ADD]Add Japanese and French localization.</value>
-  </data>
-  <data name="UpdateLog_V1_8_2UPT" xml:space="preserve">
-    <value>[UPT]Increase the maximum adjustable side length.</value>
+  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
+    <value>[UPT]Updated option panel UI style.</value>
   </data>
 </root>

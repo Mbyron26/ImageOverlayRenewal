@@ -10,6 +10,14 @@
 	  <Version>1.8.3</Version>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="UI\UUIResource\UUI.png" />
   </ItemGroup>
@@ -98,4 +106,17 @@
     </EmbeddedResource>
   </ItemGroup>
 
+	<PropertyGroup>
+		<OutDir>$(LOCALAPPDATA)/Colossal Order/Cities_Skylines/Addons/Mods/$(SolutionName)/Locale</OutDir>
+		<RunPostBuildEvent>Always</RunPostBuildEvent>
+	</PropertyGroup>
+
+	<Target Name="DeployToLocalModDir" AfterTargets="Build">
+		<ItemGroup>
+			<DLLToMove Include="$(OutDir)\*.dll*" />
+			<DLLDir Include="$(LOCALAPPDATA)/Colossal Order/Cities_Skylines/Addons/Mods/$(SolutionName)/" />
+		</ItemGroup>
+		<Move SourceFiles="@(DLLToMove)" DestinationFolder="@(DLLDir)" />
+	</Target>
+	
 </Project>

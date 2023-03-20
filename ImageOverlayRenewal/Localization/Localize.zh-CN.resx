@@ -193,18 +193,18 @@
     <value>载入了{0}个纹理：</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
-    <value>[ADD]Added UUI button to invoke control panel.</value>
+    <value>[ADD]新增了 UUI 按钮，点击其可以打开控制面板。</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]Added Italian and Spanish localization.</value>
+    <value>[ADD]添加了意大利语和西班牙语翻译。</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
-    <value>[FIX]Fixed an issue with control panel background texture not displaying correctly.</value>
+    <value>[FIX]修复了控制面板的背景纹理显示不正确的问题。</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
-    <value>[FIX]Fixed exception thrown when there is no file.</value>
+    <value>[FIX]修复了没有文件时会抛出异常信息的问题。</value>
   </data>
   <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
-    <value>[UPT]Updated option panel UI style.</value>
+    <value>[UPT]更新了选项面板的 UI 风格。</value>
   </data>
 </root>

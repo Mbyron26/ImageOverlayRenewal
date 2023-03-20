@@ -118,93 +118,93 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ControlPanel_ApplyOpacity" xml:space="preserve">
-    <value>不透明度を適用</value>
+    <value>Deckkraft anwenden</value>
   </data>
   <data name="ControlPanel_Capacity" xml:space="preserve">
-    <value>容量</value>
+    <value>Kapazität</value>
   </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
-    <value>カスタム</value>
+    <value>Benutzerdefiniert</value>
   </data>
   <data name="ControlPanel_Image" xml:space="preserve">
-    <value>画像</value>
+    <value>Grafik</value>
   </data>
   <data name="ControlPanel_No" xml:space="preserve">
-    <value>いいえ</value>
+    <value>Nein</value>
   </data>
   <data name="ControlPanel_NoPNG" xml:space="preserve">
-    <value>指定されたフォルダ内に、PNG画像が見つかりません。指定のフォルダは、MODのオプションパネルから確認できます。</value>
+    <value>Im angegebenen Verzeichnis wurden keine PNG Bilder erkannt, das angegebene Verzeichnis kann in den Optionen dieses Mods gefunden werden.</value>
   </data>
   <data name="ControlPanel_Position" xml:space="preserve">
-    <value>位置</value>
+    <value>Position</value>
   </data>
   <data name="ControlPanel_ReloadTexture" xml:space="preserve">
-    <value>テクスチャを再読み込み</value>
+    <value>Textur neu laden</value>
   </data>
   <data name="ControlPanel_Reset" xml:space="preserve">
-    <value>デフォルトのパラメータにリセット</value>
+    <value>Auf Standardparameter zurücksetzen.</value>
   </data>
   <data name="ControlPanel_Rotation" xml:space="preserve">
-    <value>回転</value>
+    <value>Drehung</value>
   </data>
   <data name="ControlPanel_ScrollWheel" xml:space="preserve">
-    <value>ホイールをスクロールして変更: Shift x10 / Ctrl x0.1</value>
+    <value>Zum Ändern das Mausrad drehen, Shift X10, Strg X0,1</value>
   </data>
   <data name="ControlPanel_SelectedImageWarning" xml:space="preserve">
-    <value>画像の選択時は解像度の情報をチェックするため、画像のロード時間は解像度で変化します。</value>
+    <value>Wenn ein Bild ausgewählt wird, müssen die Bildpixelinformationen geladen werden, und die Ladezeit hängt von der Anzahl der Bildpixel ab.</value>
   </data>
   <data name="ControlPanel_ShowImage" xml:space="preserve">
-    <value>画像を表示</value>
+    <value>Grafik anzeigen</value>
   </data>
   <data name="ControlPanel_SideLength" xml:space="preserve">
-    <value>辺の長さ</value>
+    <value>Seitenlänge</value>
   </data>
   <data name="ControlPanel_Size" xml:space="preserve">
-    <value>サイズ</value>
+    <value>Größe</value>
   </data>
   <data name="ControlPanel_Yes" xml:space="preserve">
-    <value>はい</value>
+    <value>Ja</value>
   </data>
   <data name="LoadSettings" xml:space="preserve">
-    <value>設定のロード</value>
+    <value>Einstellungen laden</value>
   </data>
   <data name="MOD_Description" xml:space="preserve">
-    <value>マップ上に画像を重ね合わせて、実際の都市を再現できます。</value>
+    <value>Überlagere die Bilder oben auf der Karte, was dir erlaubt, eine echte Stadt zu replizieren.</value>
   </data>
   <data name="OptionPanel_OpenPNGDirectory" xml:space="preserve">
-    <value>PNGのフォルダを開く</value>
+    <value>PNG Verzeichnis öffnen</value>
   </data>
   <data name="OptionPanel_PNGFilePath" xml:space="preserve">
-    <value>PNGファイルのパス</value>
+    <value>PNG Dateipfad</value>
   </data>
   <data name="OptionPanel_PNGOptions" xml:space="preserve">
-    <value>PNGのオプション</value>
+    <value>PNG Einstellungen</value>
   </data>
   <data name="OptionPanel_ShowControlPanel" xml:space="preserve">
-    <value>コントロールパネルを表示</value>
+    <value>Kontrollleiste anzeigen</value>
   </data>
   <data name="OptionPanel_ShowReloadResults" xml:space="preserve">
-    <value>テクスチャの再読み込み結果を常に表示</value>
+    <value>Texturergebnisse immer anzeigen</value>
   </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
-    <value>一致するPNGファイルが見つかりません</value>
+    <value>Keine übereinstimmenden PNG Dateien gefunden.</value>
   </data>
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
-    <value>テクスチャ {0} を再読み込み:</value>
+    <value>Textur {0} neu laden:</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
-    <value>[ADD]コントロールパネル起動用のUUIボタンを追加</value>
+    <value>[ADD]UUI Knopf zum Aufrufen des Bedienfelds hinzugefügt.</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]イタリア語とスペイン語の翻訳を追加</value>
+    <value>[ADD]Italienische und spanische Übersetzung hinzugefügt.</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
-    <value>[FIX]コントロールパネルの背景テクスチャが正しく表示されない問題を修正</value>
+    <value>[FIX]Es wurde ein Problem behoben, bei dem die Hintergrundtextur des Bedienfelds nicht korrekt angezeigt wurde.</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
-    <value>[FIX]ファイルが無い場合に発生する例外エラーを修正</value>
+    <value>[FIX]Fehler behoben, der ausgelöst wird, wenn keine Datei vorhanden ist.</value>
   </data>
   <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
-    <value>[UPT]オプションパネルのUIコンポーネントを更新</value>
+    <value>[UPT]UI Optionsleistenstil aktualisiert.</value>
   </data>
 </root>
