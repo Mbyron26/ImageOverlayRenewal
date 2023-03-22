@@ -14,6 +14,12 @@ namespace ImageOverlayRenewal {
         }
     }
 
+    public class OptionPanel_Advanced : AdvancedBase<Mod, Config> {
+        public OptionPanel_Advanced(UIComponent parent, TypeWidth typeWidth) : base(parent, typeWidth) { }
+        protected override void ResetSettings() => ResetSettings<OptionPanel>();
+
+    }
+
     public class OptionPanel_Hotkey {
         public OptionPanel_Hotkey(UIComponent parent, TypeWidth typeWidth) {
             OptionPanelTool.AddGroup(parent, (float)typeWidth, CommonLocalize.OptionPanel_Hotkeys);
