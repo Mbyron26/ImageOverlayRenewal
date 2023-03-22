@@ -196,7 +196,7 @@
     <value>[ADD]UUI Knopf zum Aufrufen des Bedienfelds hinzugefügt.</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]Italienische und spanische Übersetzung hinzugefügt.</value>
+    <value>[ADD]Added advanced option for reset mod config.</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
     <value>[FIX]Es wurde ein Problem behoben, bei dem die Hintergrundtextur des Bedienfelds nicht korrekt angezeigt wurde.</value>

@@ -6,7 +6,6 @@ using ColossalFramework.IO;
 using System.IO;
 using System.Globalization;
 using ColossalFramework.Globalization;
-using ColossalFramework;
 
 namespace MbyronModsCommon {
     public class ModMainInfo<Mod> : SingletonMod<Mod> where Mod : IMod {
@@ -28,18 +27,7 @@ namespace MbyronModsCommon {
         public abstract string Description { get; }
         public abstract List<ModChangeLog> ChangeLog { get; }
         public string VersionType => IsBeta ? "Beta" : "Stable";
-
-        private string configFilePath;
-        public string ConfigFilePath {
-            get {
-                if (configFilePath.IsNullOrWhiteSpace()) {
-                    var path = Path.Combine(DataLocation.localApplicationData, $"{SolidModName}Config.xml");
-                    configFilePath = path;
-                    return path;
-                }
-                return configFilePath;
-            }
-        }
+        public string ConfigFilePath => Path.Combine(DataLocation.localApplicationData, $"{SolidModName}Config.xml");
 
         private CultureInfo modCulture;
         public CultureInfo ModCulture {
@@ -63,7 +51,6 @@ namespace MbyronModsCommon {
 
         public void OnSettingsUI(UIHelperBase helper) {
             ModLogger.GameLog($"Setting UI.");
-            ModLogger.GameLog($"{Environment.StackTrace}");
             LoadLocale();
             LocaleManager.eventLocaleChanged += LoadLocale;
             OptionPanelManager<Mod, OptionPanel>.SettingsUI(helper);

@@ -1,26 +1,39 @@
 ﻿using ColossalFramework.UI;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
 namespace MbyronModsCommon {
-    public class AdvancedBase<Mod, Config> where Mod : IMod where Config : ModConfigBase<Config> {
+    public class AdvancedBase<Mod, Config> where Mod : IMod where Config : ModConfigBase<Config>, new() {
         public AdvancedBase(UIComponent parent, TypeWidth typeWidth) {
             OptionPanelTool.AddGroup(parent, (float)typeWidth, CommonLocalize.OptionPanel_Advanced);
             OptionPanelTool.AddToggleButton(SingletonMod<Config>.Instance.DebugMode, CommonLocalize.OptionPanel_DebugMode, CommonLocalize.OptionPanel_DebugMinor, _ => SingletonMod<Config>.Instance.DebugMode = _, out UILabel _, out UILabel _, out ToggleButton _);
             OptionPanelTool.AddButton(CommonLocalize.ChangeLog_Major, null, CommonLocalize.ChangeLog, 250, 30, ShowLog, out UILabel _, out UILabel _, out UIButton _);
             OptionPanelTool.AddButton(CommonLocalize.CompatibilityCheck_Major, CommonLocalize.CompatibilityCheck_Minor, CommonLocalize.Check, 250, 30, ShowCompatibility, out UILabel _, out UILabel _, out UIButton _);
+            OptionPanelTool.AddButton(CommonLocalize.ResetModMajor, CommonLocalize.ResetModMinor, CommonLocalize.Reset, 250, 30, ResetSettings, out UILabel _, out UILabel _, out UIButton _);
             OptionPanelTool.Reset();
         }
-        private static void ShowLog() {
-            var messageBox = MessageBox.Show<LogMessageBox>();
-            messageBox.Initialize<Mod>(false);
-        }
-        private static void ShowCompatibility() {
-            var messageBox = MessageBox.Show<CompatibilityMessageBox>();
-            messageBox.Initialize(ModMainInfo<Mod>.ModName);
+
+        protected virtual void ResetSettings() { }
+
+        protected void ResetSettings<OptionPanel>() where OptionPanel : UIPanel {
+            try {
+                ModLogger.GameLog($"Start resetting mod config.");
+                SingletonMod<Config>.Instance = null;
+                SingletonMod<Config>.Instance = new();
+                OptionPanelManager<Mod, OptionPanel>.LocaleChanged();
+                ModLogger.GameLog($"Reset mod config succeeded.");
+                MessageBox.Show<ResetModMessageBox>().Init<Mod>();
+            }
+            catch (Exception e) {
+                ModLogger.GameLog($"Reset settings failed:", e);
+                MessageBox.Show<ResetModMessageBox>().Init<Mod>(false);
+            }
         }
 
+        private static void ShowLog() => MessageBox.Show<LogMessageBox>().Initialize<Mod>(false);
+        private static void ShowCompatibility() => MessageBox.Show<CompatibilityMessageBox>().Initialize(ModMainInfo<Mod>.ModName);
     }
 
     public class GeneralOptionsBase<Mod, Config> where Mod : IMod where Config : ModConfigBase<Config> {

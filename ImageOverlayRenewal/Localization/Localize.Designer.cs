@@ -295,7 +295,7 @@ namespace ImageOverlayRenewal.Localization {
         }
         
         /// <summary>
-        ///   查找类似 [ADD]Added Italian and Spanish localization. 的本地化字符串。
+        ///   查找类似 [ADD]Added advanced option for reset mod config. 的本地化字符串。
         /// </summary>
         internal static string UpdateLog_V1_8_3ADD2 {
             get {

@@ -196,7 +196,7 @@
     <value>[ADD]新增了 UUI 按钮，点击其可以打开控制面板。</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]添加了意大利语和西班牙语翻译。</value>
+    <value>[ADD]添加了重置模组配置的高级选项。</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
     <value>[FIX]修复了控制面板的背景纹理显示不正确的问题。</value>

@@ -92,6 +92,10 @@
 
   <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\ru\ru.projitems" Label="Shared" />
 
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\zh-TW\zh-TW.projitems" Label="Shared" />
+
+  <Import Project="..\MbyronModsCommon\MbyronModsCommon\Localization\de\de.projitems" Label="Shared" />
+
   <ItemGroup>
     <Compile Update="D:\CitiesSkylines\MyMods\ImageOverlayRenewal\V1_8_3\ImageOverlayRenewal\MbyronModsCommon\MbyronModsCommon\Localization\CommonLocalize\CommonLocalize.Designer.cs">
       <DesignTime>True</DesignTime>

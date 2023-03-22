@@ -196,7 +196,7 @@
     <value>[ADD]コントロールパネル起動用のUUIボタンを追加</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]イタリア語とスペイン語の翻訳を追加</value>
+    <value>[ADD]Added advanced option for reset mod config.</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
     <value>[FIX]コントロールパネルの背景テクスチャが正しく表示されない問題を修正</value>

@@ -88,12 +88,14 @@ Global
 		MbyronModsCommon\MbyronModsCommon\Localization\zh-TW\zh-TW.projitems*{4aed5791-3998-443d-a69b-0893b528a755}*SharedItemsImports = 13
 		MbyronModsCommon\MbyronModsCommon\Localization\tr\tr.projitems*{5b4d3436-ecc9-46d3-8f54-fca0f458853b}*SharedItemsImports = 13
 		MbyronModsCommon\MbyronModsCommon\Localization\CommonLocalize\CommonLocalize.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommon\MbyronModsCommon\Localization\de\de.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
 		MbyronModsCommon\MbyronModsCommon\Localization\en\en.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
 		MbyronModsCommon\MbyronModsCommon\Localization\es-ES\es-ES.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
 		MbyronModsCommon\MbyronModsCommon\Localization\fr\fr.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
 		MbyronModsCommon\MbyronModsCommon\Localization\ja\ja.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
 		MbyronModsCommon\MbyronModsCommon\Localization\ru\ru.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
 		MbyronModsCommon\MbyronModsCommon\Localization\zh-CN\zh-CN.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		MbyronModsCommon\MbyronModsCommon\Localization\zh-TW\zh-TW.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
 		MbyronModsCommon\MbyronModsCommon\MbyronModsCommon.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
 		MbyronModsCommon\MbyronModsCommon\MbyronModsCommon.projitems*{6c5e0fc8-fbaa-4fa1-af55-fd675486e4e7}*SharedItemsImports = 13
 		MbyronModsCommon\MbyronModsCommon\Localization\fr\fr.projitems*{90c69788-ae0b-4529-b9d9-8d9ae0a9efa5}*SharedItemsImports = 13

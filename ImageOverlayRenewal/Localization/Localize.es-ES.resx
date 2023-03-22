@@ -197,7 +197,7 @@ Mayús x10, Ctrl x0.1</value>
     <value>[ADD]Added UUI button to invoke control panel.</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]Added Italian and Spanish localization.</value>
+    <value>[ADD]Added advanced option for reset mod config.</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
     <value>[FIX]Fixed an issue with control panel background texture not displaying correctly.</value>

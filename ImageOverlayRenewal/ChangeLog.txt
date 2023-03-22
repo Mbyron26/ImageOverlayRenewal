@@ -2,7 +2,7 @@
 
 V1.8.3
 [ADD]Added UUI button to invoke control panel.
-[ADD]Added Italian and Spanish localization.
+[ADD]Added advanced option for reset mod config.
 [UPT]Updated option panel UI style.
 [FIX]Fixed an issue with control panel background texture not displaying correctly.
 [FIX]Fixed exception thrown when there is no file.
