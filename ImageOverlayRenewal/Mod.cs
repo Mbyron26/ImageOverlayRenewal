@@ -50,8 +50,8 @@ namespace ImageOverlayRenewal {
         };
 
         public override List<ModChangeLog> ChangeLog => new() {
-            new ModChangeLog(new Version(1, 8, 3), new(2023, 3, 15), new List<string> {
-                Localize.UpdateLog_V1_8_3ADD1, Localize.UpdateLog_V1_8_3ADD2, Localize.UpdateLog_V1_8_3UPT, Localize.UpdateLog_V1_8_3FIX, Localize.UpdateLog_V1_8_3FIX1
+            new ModChangeLog(new Version(1, 8, 3), new(2023, 3, 22), new List<string> {
+               "[UPT]Updated to support game version 1.16.1", Localize.UpdateLog_V1_8_3UPT, Localize.UpdateLog_V1_8_3ADD1, Localize.UpdateLog_V1_8_3ADD2, Localize.UpdateLog_V1_8_3FIX, Localize.UpdateLog_V1_8_3FIX1
             })
         };
     }

@@ -2,7 +2,6 @@
 using ColossalFramework.UI;
 using ImageOverlayRenewal.Localization;
 using MbyronModsCommon;
-using UnityEngine;
 
 namespace ImageOverlayRenewal {
     public class OptionPanel : UIPanel {
@@ -58,6 +57,7 @@ namespace ImageOverlayRenewal {
             OptionPanelTool.AddGroup(parent, width, Localize.OptionPanel_PNGOptions);
             OptionPanelTool.AddStringField(Localize.OptionPanel_PNGFilePath, path, null, out UILabel _, out UILabel _, out UITextField _);
             OptionPanelTool.AddButton(Localize.OptionPanel_OpenPNGDirectory, null, Localize.OptionPanel_OpenPNGDirectory, null, 30, () => System.Diagnostics.Process.Start(path), out UILabel _, out UILabel _, out UIButton _);
+            OptionPanelTool.Reset();
         }
 
     }
