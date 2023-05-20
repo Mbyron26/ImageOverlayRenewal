@@ -186,6 +186,9 @@
   <data name="OptionPanel_ShowReloadResults" xml:space="preserve">
     <value>Always show reload texture results</value>
   </data>
+  <data name="ReloadError" xml:space="preserve">
+    <value>Make sure the PNG file is properly placed.</value>
+  </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
     <value>No matching PNG files found.</value>
   </data>

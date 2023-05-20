@@ -10,40 +10,25 @@ internal class ReloadTextureResultsMessageBox : MessageBoxBase {
         Initialize();
     }
     public void Initialize() {
-        var label = MainPanel.AddUIComponent<UILabel>();
-        label.autoSize = false;
-        label.autoHeight = true;
-        label.width = MessageBoxParm.ComponentWidth;
-        label.wordWrap = true;
-        //label.font = CustomFont.SemiBold;
-        label.textScale = 1.3f;
-        label.textAlignment = UIHorizontalAlignment.Center;
-        label.textAlignment = UIHorizontalAlignment.Center;
-        label.text = ModMainInfo<Mod>.ModName;
-        var spce = MainPanel.AddUIComponent<CustomUIPanel>();
-        spce.size = new UnityEngine.Vector2(MessageBoxParm.ComponentWidth, 30);
         var count = Manager.TextureData.Count;
         if (count > 0) {
-            AddLabel(MainPanel, string.Format(ModLocalize.ReloadMessageBox_Reload0Texture, count));
+            TitleText = string.Format(ModLocalize.ReloadMessageBox_Reload0Texture, count);
             foreach (var item in Manager.TextureData.Keys) {
                 AddLabel(MainPanel, item);
             }
         } else {
-            AddLabel(MainPanel, ModLocalize.ReloadMessageBox_NoMatching);
+            TitleText = ModLocalize.ReloadMessageBox_NoMatching;
+            AddLabel(MainPanel, ModLocalize.ReloadError);
         }
-
-
     }
     private void AddLabel(UIComponent root, string text) {
-        var label = root.AddUIComponent<UILabel>();
-        label.textAlignment = UIHorizontalAlignment.Center;
-        label.textAlignment = UIHorizontalAlignment.Center;
+        var label = root.AddUIComponent<CustomUILabel>();
+        label.TextHorizontalAlignment = UIHorizontalAlignment.Center;
+        label.TextVerticalAlignment = UIVerticalAlignment.Middle;
         label.autoSize = false;
-        label.wordWrap = true;
-        label.width = 580;
-        label.autoHeight = true;
-        label.text = text;
-        label.autoHeight = false;
-
+        label.WordWrap = true;
+        label.width = 560;
+        label.AutoHeight = true;
+        label.Text = text;
     }
 }

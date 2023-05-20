@@ -121,6 +121,11 @@ namespace ImageOverlayRenewal
 		public static string OptionPanel_ShowReloadResults => LocaleManager.GetString("OptionPanel_ShowReloadResults", Culture);
 
 		/// <summary>
+		/// Make sure the PNG file is properly placed.
+		/// </summary>
+		public static string ReloadError => LocaleManager.GetString("ReloadError", Culture);
+
+		/// <summary>
 		/// No matching PNG files found.
 		/// </summary>
 		public static string ReloadMessageBox_NoMatching => LocaleManager.GetString("ReloadMessageBox_NoMatching", Culture);
