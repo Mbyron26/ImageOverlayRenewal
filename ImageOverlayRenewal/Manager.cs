@@ -20,11 +20,11 @@ namespace ImageOverlayRenewal {
             IsLoaded = true;
             LoadAllPNGs();
             if (TextureData.Count == 0) {
-                ModLogger.ModLog("Couldn't find any PNG image on loaded.");
+                InternalLogger.Log("Couldn't find any PNG image on loaded.");
                 return;
             } else {
                 ApplyTexture(TextureData.Values.First(), TextureData.Keys.First(), true);
-                ModLogger.ModLog("Load image succeed on loaded.");
+                InternalLogger.Log("Load image succeed on loaded.");
             }
             RenderOver.OnLevelLoaded();
         }
@@ -67,16 +67,16 @@ namespace ImageOverlayRenewal {
                 foreach (var item in TextureData) {
                     names += item.Key + ", ";
                 }
-                ModLogger.ModLog($"Loaded PNGs: {names}");
+                InternalLogger.Log($"Loaded PNGs: {names}");
             }
         }
 
         public static void ShowImageByHotkey() {
             Config.Instance.ShowImage = !Config.Instance.ShowImage;
             SingletonMod<Mod>.Instance.SaveConfig();
-            if (ControlPanelManager.IsVisible) {
-                ControlPanelManager.OnLocaleChanged();
-            }
+            //if (ControlPanelManager<>.IsVisible) {
+            //    ControlPanelManager.OnLocaleChanged();
+            //}
         }
 
         public static int GetOverlayTileSize(OverlayTileSize size) => size switch {
@@ -162,9 +162,8 @@ namespace ImageOverlayRenewal {
                     names[i] = files[i].Name;
                 }
                 return names;
-            }
-            catch (Exception e) {
-                ModLogger.ModLog($"Get PNG files name falied, detial: {e}");
+            } catch (Exception e) {
+                InternalLogger.Exception($"Get PNG files name falied.", e);
                 return new string[] { "Null" };
             }
         }

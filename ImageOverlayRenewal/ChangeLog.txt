@@ -1,4 +1,6 @@
-﻿
+﻿V1.8.4
+[*]Added Dutch translation.
+[*]Added Korean translation.
 
 V1.8.3
 [ADD]Added UUI button to invoke control panel.
