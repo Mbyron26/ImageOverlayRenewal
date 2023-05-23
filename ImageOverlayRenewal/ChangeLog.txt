@@ -1,4 +1,8 @@
-﻿
+﻿V1.8.4
+[*]Updated to support game version 1.17.0
+[*]Added Dutch translation.
+[*]Added Korean translation.
+[*]Updated to the latest common framework.
 
 V1.8.3
 [ADD]Added UUI button to invoke control panel.
