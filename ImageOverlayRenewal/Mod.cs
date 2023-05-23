@@ -1,6 +1,5 @@
 ﻿global using MbyronModsCommon;
 namespace ImageOverlayRenewal;
-using ColossalFramework.Globalization;
 using ICities;
 using System;
 using System.Collections.Generic;
@@ -9,9 +8,7 @@ using System.Globalization;
 public class Mod : ModBase<Mod, Config> {
     public override string ModName { get; } = "Image Overlay Renewal";
     public override ulong StableID => 2616880500;
-#if DEBUG
     public override ulong? BetaID => 2671781645;
-#endif
     public override string Description => Localize.MOD_Description;
 #if BETA_DEBUG
     public override BuildVersion VersionType => BuildVersion.BetaDebug;
@@ -51,13 +48,11 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
     };
 
     public override List<ModChangeLog> ChangeLog => new() {
-        new ModChangeLog(new Version(1, 8, 4), new(2023, 5, 20), new List<LogString> {
+        new ModChangeLog(new Version(1, 8, 4), new(2023, 5, 23), new List<LogString> {
+            new(LogFlag.Updated,"Updated to support game version 1.17.0"),
+            new(LogFlag.Updated, Localize.UpdateLog_V1_8_4UPT),
             new(LogFlag.Translation, Localize.UpdateLog_V1_8_4TRA0),
-            new(LogFlag.Translation, Localize.UpdateLog_V1_8_4TRA1),
-            new(LogFlag.Added, Localize.UpdateLog_V1_8_3ADD1),
-            new(LogFlag.Added, Localize.UpdateLog_V1_8_3ADD2),
-            new(LogFlag.Fixed, Localize.UpdateLog_V1_8_3FIX),
-            new(LogFlag.Fixed, Localize.UpdateLog_V1_8_3FIX1),
+            new(LogFlag.Translation, Localize.UpdateLog_V1_8_4TRA1), 
         }),
         new ModChangeLog(new Version(1, 8, 3), new(2023, 3, 22), new List<LogString> {
             new(LogFlag.Updated, "[UPT]Updated to support game version 1.16.1"),

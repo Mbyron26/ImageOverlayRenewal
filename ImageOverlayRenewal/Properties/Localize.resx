@@ -216,4 +216,7 @@
   <data name="UpdateLog_V1_8_4TRA1" xml:space="preserve">
     <value>Added Korean translation.</value>
   </data>
+  <data name="UpdateLog_V1_8_4UPT" xml:space="preserve">
+    <value>Updated to the latest common framework.</value>
+  </data>
 </root>

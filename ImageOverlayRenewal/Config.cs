@@ -1,6 +1,5 @@
 ﻿namespace ImageOverlayRenewal;
 using MbyronModsCommon;
-using System.Xml.Serialization;
 using UnityEngine;
 
 public class Config : ModConfig<Config> {

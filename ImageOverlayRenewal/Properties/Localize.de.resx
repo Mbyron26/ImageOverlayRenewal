@@ -186,6 +186,9 @@
   <data name="OptionPanel_ShowReloadResults" xml:space="preserve">
     <value>Texturergebnisse immer anzeigen</value>
   </data>
+  <data name="ReloadError" xml:space="preserve">
+    <value>Make sure the PNG file is properly placed.</value>
+  </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
     <value>Keine übereinstimmenden PNG Dateien gefunden.</value>
   </data>
@@ -206,5 +209,14 @@
   </data>
   <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
     <value>[UPT]UI Optionsleistenstil aktualisiert.</value>
+  </data>
+  <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
+    <value>Added Dutch translation.</value>
+  </data>
+  <data name="UpdateLog_V1_8_4TRA1" xml:space="preserve">
+    <value>Added Korean translation.</value>
+  </data>
+  <data name="UpdateLog_V1_8_4UPT" xml:space="preserve">
+    <value>Updated to the latest common framework.</value>
   </data>
 </root>

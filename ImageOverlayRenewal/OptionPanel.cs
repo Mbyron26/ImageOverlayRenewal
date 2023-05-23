@@ -9,9 +9,11 @@ public class OptionPanel : OptionPanelBase<Mod, Config, OptionPanel> {
     protected override void FillGeneralContainer() {
         AddLoadSettingsProperty();
         AddPNGSettingsProperty();
+#if BETA_DEBUG
         OptionPanelHelper.AddGroup(GeneralContainer, null);
         OptionPanelHelper.AddButton("Control panel", null, "Open", null, 30, () => ControlPanelManager<Mod, ControlPanel>.CallPanel());
         OptionPanelHelper.Reset();
+#endif
     }
 
     protected override void FillHotkeyContainer() {

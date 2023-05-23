@@ -169,5 +169,10 @@ namespace ImageOverlayRenewal
 		/// Added Korean translation.
 		/// </summary>
 		public static string UpdateLog_V1_8_4TRA1 => LocaleManager.GetString("UpdateLog_V1_8_4TRA1", Culture);
+
+		/// <summary>
+		/// Updated to the latest common framework.
+		/// </summary>
+		public static string UpdateLog_V1_8_4UPT => LocaleManager.GetString("UpdateLog_V1_8_4UPT", Culture);
 	}
 }
