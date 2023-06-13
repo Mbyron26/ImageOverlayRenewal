@@ -8,6 +8,6 @@ public class ThreadExtension : ModThreadExtensionBase {
         base.OnUpdate(realTimeDelta, simulationTimeDelta);
 
         AddCallOnceInvoke(Config.Instance.ShowControlPanelHotkey.IsPressed(), ref showControlPanel, ControlPanelManager<Mod, ControlPanel>.CallPanel);
-        AddCallOnceInvoke(Config.Instance.ShowImageHotkey.IsPressed(), ref showImage, Manager.ShowImageByHotkey);
+        AddCallOnceInvoke(Config.Instance.ShowImageHotkey.IsPressed(), ref showImage, SingletonManager<Manager>.Instance.ShowImageByHotkey);
     }
 }

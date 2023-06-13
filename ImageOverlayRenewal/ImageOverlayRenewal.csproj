@@ -10,11 +10,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>1.8.4.52319</Version>
+		<Version>1.8.5.3613</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Stable Release' OR '$(Configuration)' == 'Stable Debug'">
-		<Version>1.8.4</Version>
+		<Version>1.8.5</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Beta Debug|AnyCPU'">
@@ -48,11 +48,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="UI\UUIResource\UUI.png" />
+		<None Remove="UI\Resources\InGameButton.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="UI\UUIResource\UUI.png" />
+		<EmbeddedResource Include="UI\Resources\InGameButton.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -151,5 +151,7 @@
 	</Target>
 
 	<Import Project="..\..\..\..\MbyronModsCommon\MbyronModsCommon\MbyronModsCommon.projitems" Label="Shared" />
+
+	<Import Project="..\..\..\..\MbyronModsCommon\ToolButtonShared\ToolButtonShared.projitems" Label="Shared" />
 
 </Project>

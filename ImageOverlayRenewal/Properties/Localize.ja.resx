@@ -120,9 +120,6 @@
   <data name="ControlPanel_ApplyOpacity" xml:space="preserve">
     <value>不透明度を適用</value>
   </data>
-  <data name="ControlPanel_Capacity" xml:space="preserve">
-    <value>容量</value>
-  </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
     <value>カスタム</value>
   </data>
@@ -134,6 +131,9 @@
   </data>
   <data name="ControlPanel_NoPNG" xml:space="preserve">
     <value>指定されたフォルダ内に、PNG画像が見つかりません。指定のフォルダは、MODのオプションパネルから確認できます。</value>
+  </data>
+  <data name="ControlPanel_Opacity" xml:space="preserve">
+    <value>不透明度</value>
   </data>
   <data name="ControlPanel_Position" xml:space="preserve">
     <value>位置</value>
@@ -187,13 +187,16 @@
     <value>テクスチャの再読み込み結果を常に表示</value>
   </data>
   <data name="ReloadError" xml:space="preserve">
-    <value>Make sure the PNG file is properly placed.</value>
+    <value>PNGファイルが正しく配置されていることを確認して下さい。</value>
   </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
     <value>一致するPNGファイルが見つかりません</value>
   </data>
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
     <value>テクスチャ {0} を再読み込み:</value>
+  </data>
+  <data name="ResetWarning" xml:space="preserve">
+    <value>本当にデフォルトのパラメータにリセットしますか？</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
     <value>[ADD]コントロールパネル起動用のUUIボタンを追加</value>
@@ -211,12 +214,24 @@
     <value>[UPT]オプションパネルのUIコンポーネントを更新</value>
   </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
-    <value>Added Dutch translation.</value>
+    <value>オランダ語の翻訳を追加</value>
   </data>
   <data name="UpdateLog_V1_8_4TRA1" xml:space="preserve">
-    <value>Added Korean translation.</value>
+    <value>韓国語の翻訳を追加</value>
   </data>
   <data name="UpdateLog_V1_8_4UPT" xml:space="preserve">
-    <value>Updated to the latest common framework.</value>
+    <value>最新の共通フレームワークに更新</value>
+  </data>
+  <data name="UpdateLog_V1_8_5FIX0" xml:space="preserve">
+    <value>ゲームをロードした後にPNGファイルを配置すると、画像が表示されない問題を修正</value>
+  </data>
+  <data name="UpdateLog_V1_8_5FIX1" xml:space="preserve">
+    <value>OSXシステムのオプションパネルで、PNGのフォルダが正しくない問題を修正</value>
+  </data>
+  <data name="UpdateLog_V1_8_5UPT0" xml:space="preserve">
+    <value>ゲームバージョン 1.17.1をサポートするように更新</value>
+  </data>
+  <data name="UpdateLog_V1_8_5UPT1" xml:space="preserve">
+    <value>UUIボタンと個別のツールボタンをオプション化</value>
   </data>
 </root>

@@ -1,4 +1,11 @@
-﻿V1.8.4
+﻿
+V1.8.5
+[*]Updated to support game version 1.17.1
+[*]UUI button and separate tool button are now optional.
+[*]Fixed an issue where placing PNG files after loading the game would not display images.
+[*]Fixed an issue with incorrect PNG folder directory in the option panel under OSX system.
+
+V1.8.4
 [*]Updated to support game version 1.17.0
 [*]Added Dutch translation.
 [*]Added Korean translation.

@@ -7,33 +7,26 @@ using UnityEngine;
 using ModLocalize = Localize;
 
 internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
-    public override float PanelWidth { get; protected set; } = 370;
-    public override float PanelHeight { get; protected set; } = 566;
-    public override float PorpertyPanelWidth => PanelWidth - 2 * 10;
-    private const float ElementPadding = 10;
-
-    private CustomUIPanel contentPanel;
-
-    private static int MaxSideLength => 8640 * 3;
-
     private UIIntValueField positionXField;
     private UIIntValueField positionYField;
     private UIFloatValueField rotationField;
+    private CustomUIPanel contentPanel;
+    private const float ElementPadding = 10;
+
+    public override float PanelWidth { get; protected set; } = 370;
+    public override float PanelHeight { get; protected set; } = 566;
+    public override float PorpertyPanelWidth => PanelWidth - 2 * 10;
+    private static int MaxSideLength => 8640 * 3;
 
     protected override void InitComponents() {
         AddButtons();
         var resetButton = AddUIComponent<CustomUIButton>();
-        resetButton.Atlas = CustomUIAtlas.MbyronModsAtlas;
+        resetButton.BgAtlas = CustomUIAtlas.MbyronModsAtlas;
         resetButton.size = ButtonSize;
         resetButton.OnBgSprites.SetSprites(CustomUIAtlas.ResetButton);
         resetButton.OnBgSprites.SetColors(CustomUIColor.White, CustomUIColor.OffWhite, new Color32(180, 180, 180, 255), CustomUIColor.White, CustomUIColor.White);
         resetButton.relativePosition = new Vector2(width - 6f - 28f - 28f, 6f);
-        resetButton.eventClicked += (c, p) => {
-            sideLength.Value = 960;
-            positionXField.Value = 0;
-            positionYField.Value = 0;
-            rotationField.Value = 0;
-        };
+        resetButton.eventClicked += (c, p) => ResetButtonClicked();
         resetButton.tooltip = ModLocalize.ControlPanel_Reset;
         resetButton.eventClicked += (c, v) => resetButton.tooltipBox.Hide();
         AddDragBar(resetButton.relativePosition.x);
@@ -49,8 +42,20 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
         AddParameterProperty();
         AddCapacityProperty();
         AddRefreshButton();
+        ControlPanelManager<Mod, ControlPanel>.EventPanelClosing += (_) => {
+            if (SingletonManager<ToolButtonManager>.Instance.InGameToolButton is not null) {
+                SingletonManager<ToolButtonManager>.Instance.InGameToolButton.IsOn = false;
+            }
+        };
+        contentPanel.eventSizeChanged += (c, v) => height = dragBar.height + contentPanel.height + ElementPadding;
     }
 
+    private void ResetButtonClicked() => MessageBox.Show<TwoButtonMessageBox>().Init(ModMainInfo<Mod>.ModName, ModLocalize.ResetWarning, () => {
+        sideLength.Value = 960;
+        positionXField.Value = 0;
+        positionYField.Value = 0;
+        rotationField.Value = 0;
+    });
 
     private string[] GetImageSizeList() => new string[] { ModLocalize.ControlPanel_Custom, "1×1", "3×3", "5×5", "9×9" };
 
@@ -58,19 +63,18 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
 
     public static void RefreshPanel() {
         if (ControlPanelManager<Mod, ControlPanel>.IsVisible) {
-            Manager.ReloadTexture();
+            SingletonManager<Manager>.Instance.ReloadTexture();
             ControlPanelManager<Mod, ControlPanel>.Close();
             ControlPanelManager<Mod, ControlPanel>.Create();
             if (Config.Instance.ShowReloadResults) {
-                MessageBox.Show<ReloadTextureResultsMessageBox>();
+                MessageBox.Show<ReloadTextureResultsMessageBox>().Init();
             }
         }
     }
 
-
     private void OnSelectionChanged() {
-        if (Manager.TextureData.Count > 0 && Manager.TextureData.TryGetValue(selectImage.SelectedValue, out Texture2D texture))
-            Manager.ApplyTexture(texture, selectImage.SelectedValue);
+        if (SingletonManager<Manager>.Instance.TextureData.Count > 0 && SingletonManager<Manager>.Instance.TextureData.TryGetValue(selectImage.SelectedValue, out Texture2D texture))
+            SingletonManager<Manager>.Instance.ApplyTexture(texture, selectImage.SelectedValue);
     }
 
     private CustomUIDropDown selectImage;
@@ -79,10 +83,10 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
     private CustomUILabel warningLabel;
     private void AddWarningLabel() {
         warningLabel = CustomUILabel.Add(contentPanel, ModLocalize.ControlPanel_SelectedImageWarning, PorpertyPanelWidth, 0.7f, new RectOffset(5, 5, 5, 5));
-        warningLabel.Atlas = CustomUIAtlas.MbyronModsAtlas;
+        warningLabel.BgAtlas = CustomUIAtlas.MbyronModsAtlas;
         warningLabel.BgSprite = CustomUIAtlas.RoundedRectangle2;
         warningLabel.BgNormalColor = new Color32(194, 120, 50, 255);
-        if (Manager.TextureData.Count == 0) {
+        if (SingletonManager<Manager>.Instance.TextureData.Count == 0) {
             warningLabel.BgNormalColor = new Color32(184, 54, 42, 255);
             warningLabel.Text = ModLocalize.ControlPanel_NoPNG;
         }
@@ -99,10 +103,10 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
         var dropDown = ControlPanelHelper.AddDropDown(ModLocalize.ControlPanel_Image, null, GetAllPNGNames(), GetDefaultSelection(), 200, 24, (_) => OnSelectionChanged());
         selectImage = dropDown.Child as CustomUIDropDown;
         var dropDown1 = ControlPanelHelper.AddDropDown(ModLocalize.ControlPanel_Size, null, GetImageSizeList(), (int)Config.Instance.OverlayType, 130f, 24, (v) => {
-            Config.Instance.OverlayType = Manager.GetOverlayTileSize(v);
-            var index = Manager.GetOverlayTileSize(Config.Instance.OverlayType);
+            Config.Instance.OverlayType = SingletonManager<Manager>.Instance.GetOverlayTileSize(v);
+            var index = SingletonManager<Manager>.Instance.GetOverlayTileSize(Config.Instance.OverlayType);
             if (sideLength is not null && index != 0) {
-                var length = Manager.GetIntegerTilesSize(Config.Instance.OverlayType);
+                var length = SingletonManager<Manager>.Instance.GetIntegerTilesSize(Config.Instance.OverlayType);
                 Config.Instance.SideLength = length;
                 sideLength.Value = (int)length;
             }
@@ -135,10 +139,10 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
 
     private void AddCapacityProperty() {
         ControlPanelHelper.AddGroup(contentPanel, PorpertyPanelWidth, null);
-        ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_Capacity, null, 80, (int)Config.Instance.Opacity, 10, 1, 100, (v) => Config.Instance.Opacity = (byte)v);
+        ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_Opacity, null, 80, (int)Config.Instance.Opacity, 10, 1, 100, (v) => Config.Instance.Opacity = (byte)v);
         var applyPanel = ControlPanelHelper.AddChildPanel<GammaSinglePropertyPanel>();
         applyPanel.height = 26 + 20;
-        var button = CustomUIButton.Add(applyPanel, ModLocalize.ControlPanel_ApplyOpacity, applyPanel.width - 2 * 10, 26, () => Manager.ApplayOpacity(false), 0.7f, false);
+        var button = CustomUIButton.Add(applyPanel, ModLocalize.ControlPanel_ApplyOpacity, applyPanel.width - 2 * 10, 26, () => SingletonManager<Manager>.Instance.ApplayOpacity(false), 0.7f, false);
         button.SetControlPanelStyle();
         button.relativePosition = new(10, 10);
         ControlPanelHelper.Reset();
@@ -146,16 +150,16 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
 
     private static int GetDefaultSelection() {
         var list = GetAllPNGNames();
-        if (list.Length > 0 && Manager.TextureData.Count > 0) {
-            var t = list.Select((s, index) => new { s, index }).FirstOrDefault(x => x.s.Equals(Manager.CurrentPNG))?.index ?? -1;
+        if (list.Length > 0 && SingletonManager<Manager>.Instance.TextureData.Count > 0) {
+            var t = list.Select((s, index) => new { s, index }).FirstOrDefault(x => x.s.Equals(SingletonManager<Manager>.Instance.CurrentPNG))?.index ?? -1;
             return t != -1 ? t : 0;
         }
         return 0;
     }
     private static string[] GetAllPNGNames() {
-        if (Manager.TextureData.Count > 0) {
+        if (SingletonManager<Manager>.Instance.TextureData.Count > 0) {
             List<string> buffer = new();
-            foreach (var item in Manager.TextureData) {
+            foreach (var item in SingletonManager<Manager>.Instance.TextureData) {
                 buffer.Add(item.Key);
             }
             return buffer.ToArray();

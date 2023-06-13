@@ -1,4 +1,5 @@
 ﻿namespace ImageOverlayRenewal;
+using ColossalFramework;
 using ColossalFramework.Math;
 using System;
 using System.Collections.Generic;
@@ -6,35 +7,30 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-internal class Manager {
-    public static bool IsLoaded { get; private set; }
-    public static Texture2D Texture { get; set; }
-    public static Dictionary<string, Texture2D> TextureData { get; set; } = new();
-    public static List<string> PNGBuffer { get; private set; } = new();
-    public static string PNGFormat => "*.png";
-    public static string PNGDirectory => "Files/";
-    public static string CurrentPNG { get; set; } = string.Empty;
+internal class Manager : SingletonManager<Manager> {
+    public override bool IsInit { get; set; }
+    public Texture2D Texture { get; set; }
+    public Dictionary<string, Texture2D> TextureData { get; set; } = new();
+    public List<string> PNGBuffer { get; private set; } = new();
+    public string PNGFormat => "*.png";
+    public string PNGDirectory => "Files/";
+    public string CurrentPNG { get; set; } = string.Empty;
 
-    public static void OnLoaded() {
-        IsLoaded = true;
+    public override void Init() {
         LoadAllPNGs();
         if (TextureData.Count == 0) {
-            InternalLogger.Log("Couldn't find any PNG image on loaded.");
+            InternalLogger.Log("No PNG files were found");
             return;
         } else {
             ApplyTexture(TextureData.Values.First(), TextureData.Keys.First(), true);
-            InternalLogger.Log("Load image succeed on loaded.");
         }
-        RenderOver.OnLevelLoaded();
     }
-
-    public static void OnUnloaded() {
-        IsLoaded = false;
+    public override void DeInit() {
         Texture = null;
         TextureData.Clear();
     }
 
-    public static void ReloadTexture() {
+    public void ReloadTexture() {
         LoadAllPNGs();
         if (TextureData.Count > 0) {
             ApplyTexture(TextureData.Values.First(), TextureData.Keys.First());
@@ -43,13 +39,13 @@ internal class Manager {
         }
     }
 
-    public static void ApplyTexture(Texture2D texture, string name, bool isFlip = true) {
+    public void ApplyTexture(Texture2D texture, string name, bool isFlip = true) {
         CurrentPNG = name;
         Texture = texture;
         ApplayOpacity(isFlip);
     }
 
-    public static void LoadAllPNGs() {
+    public void LoadAllPNGs() {
         TextureData.Clear();
         DirectoryInfo directoryInfo = new(PNGDirectory);
         FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
@@ -66,11 +62,12 @@ internal class Manager {
             foreach (var item in TextureData) {
                 names += item.Key + ", ";
             }
+            Singleton<RenderOver>.instance.Register();
             InternalLogger.Log($"Loaded PNGs: {names}");
         }
     }
 
-    public static void ShowImageByHotkey() {
+    public void ShowImageByHotkey() {
         Config.Instance.ShowImage = !Config.Instance.ShowImage;
         SingletonMod<Mod>.Instance.SaveConfig();
         //if (ControlPanelManager<>.IsVisible) {
@@ -78,7 +75,7 @@ internal class Manager {
         //}
     }
 
-    public static int GetOverlayTileSize(OverlayTileSize size) => size switch {
+    public int GetOverlayTileSize(OverlayTileSize size) => size switch {
         OverlayTileSize.Custom => 0,
         OverlayTileSize.Small => 1,
         OverlayTileSize.Medium => 2,
@@ -87,7 +84,7 @@ internal class Manager {
         _ => 0
     };
 
-    public static OverlayTileSize GetOverlayTileSize(int index) => index switch {
+    public OverlayTileSize GetOverlayTileSize(int index) => index switch {
         0 => OverlayTileSize.Custom,
         1 => OverlayTileSize.Small,
         2 => OverlayTileSize.Medium,
@@ -96,8 +93,8 @@ internal class Manager {
         _ => 0
     };
 
-    public static void ApplayOpacity(bool isFlip) {
-        if (IsLoaded) {
+    public void ApplayOpacity(bool isFlip) {
+        if (SingletonMod<Mod>.Instance.LevelLoaded) {
             if (Texture is null) return;
             if (!isFlip) {
                 Texture = SetOpacity(Texture, GetOpacity());
@@ -109,7 +106,7 @@ internal class Manager {
         }
     }
 
-    private static Texture2D FlipTexture(Texture2D textureToFlip) {
+    private Texture2D FlipTexture(Texture2D textureToFlip) {
         Texture2D texture = new(textureToFlip.width, textureToFlip.height);
         for (int y = 0; y < textureToFlip.height; ++y) {
             for (int x = 0; x < textureToFlip.width; ++x) {
@@ -119,7 +116,7 @@ internal class Manager {
         return texture;
     }
 
-    private static Texture2D SetOpacity(Texture2D texture, byte opacity) {
+    private Texture2D SetOpacity(Texture2D texture, byte opacity) {
         Color32[] oldColors = texture.GetPixels32();
         if (opacity == 0) {
             opacity = 1;
@@ -134,10 +131,10 @@ internal class Manager {
         return texture;
     }
 
-    public static byte GetOpacity() => (byte)Mathf.Clamp((int)Math.Ceiling(Config.Instance.Opacity / 100m * 255), 0, 255);
+    public byte GetOpacity() => (byte)Mathf.Clamp((int)Math.Ceiling(Config.Instance.Opacity / 100m * 255), 0, 255);
 
     [Obsolete]
-    public static string[] GetAllPNGsPath(bool isok) {
+    public string[] GetAllPNGsPath(bool isok) {
         DirectoryInfo directoryInfo = new(PNGDirectory);
         FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
         if (files.Length > 0) {
@@ -152,7 +149,7 @@ internal class Manager {
     }
 
     [Obsolete]
-    public static string[] GetAllPNGNames() {
+    public string[] GetAllPNGNames() {
         try {
             DirectoryInfo directoryInfo = new(PNGDirectory);
             FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
@@ -162,19 +159,19 @@ internal class Manager {
             }
             return names;
         } catch (Exception e) {
-            InternalLogger.Exception($"Get PNG files name falied.", e);
+            InternalLogger.Exception($"Get PNG files name falied", e);
             return new string[] { "Null" };
         }
     }
 
-    public static Dictionary<OverlayTileSize, float> TilesSizeData { get; } = new() {
+    public Dictionary<OverlayTileSize, float> TilesSizeData { get; } = new() {
         {OverlayTileSize.Small, 960f },
         {OverlayTileSize.Medium,2880f},
         {OverlayTileSize.Large,4800f},
         {OverlayTileSize.Overspread,8640f}
     };
 
-    public static float GetIntegerTilesSize(OverlayTileSize overlayTileSize) => overlayTileSize switch {
+    public float GetIntegerTilesSize(OverlayTileSize overlayTileSize) => overlayTileSize switch {
         OverlayTileSize.Small => 960f,
         OverlayTileSize.Medium => 2880f,
         OverlayTileSize.Large => 4800f,
@@ -185,8 +182,13 @@ internal class Manager {
 }
 
 public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISimulationManager, IRenderableManager {
-    public static void OnLevelLoaded() {
-        SimulationManager.RegisterManager(instance);
+    private bool IsInit { get; set; }
+    public void Register() {
+        if (!IsInit) {
+            SimulationManager.RegisterManager(instance);
+            InternalLogger.Log("Register RenderOver");
+            IsInit = true;
+        }
     }
 
     protected override void EndOverlayImpl(RenderManager.CameraInfo cameraInfo) {
@@ -207,10 +209,9 @@ public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISim
         position.c = rot * (position.c - center) + center;
         position.d = rot * (position.d - center) + center;
 
-        RenderManager.instance.OverlayEffect.DrawQuad(cameraInfo, Manager.Texture, Color.white, position, -1f, 1800f, false, true);
+        RenderManager.instance.OverlayEffect.DrawQuad(cameraInfo, SingletonManager<Manager>.Instance.Texture, Color.white, position, -1f, 1800f, false, true);
     }
 }
-
 
 public enum OverlayTileSize {
     Custom,
