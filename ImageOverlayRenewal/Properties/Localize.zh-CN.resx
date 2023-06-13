@@ -120,9 +120,6 @@
   <data name="ControlPanel_ApplyOpacity" xml:space="preserve">
     <value>应用不透明度</value>
   </data>
-  <data name="ControlPanel_Capacity" xml:space="preserve">
-    <value>不透明度</value>
-  </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
     <value>自定义</value>
   </data>
@@ -134,6 +131,9 @@
   </data>
   <data name="ControlPanel_NoPNG" xml:space="preserve">
     <value>未在指定的文件夹中检测到PNG图像，可以在该模组的选项面板中找到指定的文件夹。</value>
+  </data>
+  <data name="ControlPanel_Opacity" xml:space="preserve">
+    <value>透明度</value>
   </data>
   <data name="ControlPanel_Position" xml:space="preserve">
     <value>位置</value>
@@ -187,13 +187,16 @@
     <value>始终显示加载新纹理的结果</value>
   </data>
   <data name="ReloadError" xml:space="preserve">
-    <value>Make sure the PNG file is properly placed.</value>
+    <value>请确保 PNG 文件放置在正确的文件夹里。</value>
   </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
     <value>未找到匹配的 PNG 文件。</value>
   </data>
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
     <value>载入了{0}个纹理：</value>
+  </data>
+  <data name="ResetWarning" xml:space="preserve">
+    <value>你确定要重置为默认参数吗？</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
     <value>[ADD]新增了 UUI 按钮，点击其可以打开控制面板。</value>
@@ -211,12 +214,24 @@
     <value>[UPT]更新了选项面板的 UI 风格。</value>
   </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
-    <value>Added Dutch translation.</value>
+    <value>新增了荷兰语翻译。</value>
   </data>
   <data name="UpdateLog_V1_8_4TRA1" xml:space="preserve">
-    <value>Added Korean translation.</value>
+    <value>新增了韩语翻译。</value>
   </data>
   <data name="UpdateLog_V1_8_4UPT" xml:space="preserve">
-    <value>Updated to the latest common framework.</value>
+    <value>更新到最新的通用框架。</value>
+  </data>
+  <data name="UpdateLog_V1_8_5FIX0" xml:space="preserve">
+    <value>修复了在加载游戏后放置PNG文件不会显示图像的问题。</value>
+  </data>
+  <data name="UpdateLog_V1_8_5FIX1" xml:space="preserve">
+    <value>修复了 OSX 系统下选项面板的 PNG 文件夹目录不正确的问题。</value>
+  </data>
+  <data name="UpdateLog_V1_8_5UPT0" xml:space="preserve">
+    <value>更新支持游戏版本 1.17.1</value>
+  </data>
+  <data name="UpdateLog_V1_8_5UPT1" xml:space="preserve">
+    <value>现在可以选择模组面板按钮的显示位置：仅在 UUI 内显示 / 仅在游戏内单独显示 / 同时在 UUI 和游戏内显示。</value>
   </data>
 </root>

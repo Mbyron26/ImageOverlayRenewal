@@ -1,6 +1,7 @@
 ﻿global using MbyronModsCommon;
 namespace ImageOverlayRenewal;
 using ICities;
+using ImageOverlayRenewal.UI;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,7 +14,7 @@ public class Mod : ModBase<Mod, Config> {
 #if BETA_DEBUG
     public override BuildVersion VersionType => BuildVersion.BetaDebug;
 #elif BETA_RELEASE
-public override BuildVersion VersionType => BuildVersion.BetaRelease;
+    public override BuildVersion VersionType => BuildVersion.BetaRelease;
 #elif STABLE_DEBUG
 public override BuildVersion VersionType => BuildVersion.StableDebug;
 #else
@@ -32,14 +33,16 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
     public override void OnLevelLoaded(LoadMode mode) {
         base.OnLevelLoaded(mode);
         if (mode == LoadMode.NewMap || mode == LoadMode.LoadMap || mode == LoadMode.NewGame || mode == LoadMode.LoadGame) {
-            Manager.OnLoaded();
+            SingletonManager<Manager>.Instance.Init();
         }
-        UI.UUI.Initialize();
+        SingletonManager<ToolButtonManager>.Instance.Init();
+        ControlPanelManager<Mod, ControlPanel>.EventOnVisibleChanged += (_) => SingletonManager<ToolButtonManager>.Instance.UUIButtonIsPressed = _;
     }
 
     public override void OnLevelUnloading() {
         base.OnLevelUnloading();
-        UI.UUI.Destory();
+        SingletonManager<ToolButtonManager>.Instance.DeInit();
+        ControlPanelManager<Mod, ControlPanel>.EventOnVisibleChanged -= (_) => SingletonManager<ToolButtonManager>.Instance.UUIButtonIsPressed = _;
     }
 
     private List<IncompatibleModInfo> ConflictMods { get; set; } = new() {
@@ -48,11 +51,17 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
     };
 
     public override List<ModChangeLog> ChangeLog => new() {
+        new ModChangeLog(new Version(1, 8, 5), new(2023, 6, 13), new List<LogString> {
+            new(LogFlag.Updated, Localize.UpdateLog_V1_8_5UPT0),
+            new(LogFlag.Updated, Localize.UpdateLog_V1_8_5UPT1),
+            new(LogFlag.Fixed, Localize.UpdateLog_V1_8_5FIX0),
+            new(LogFlag.Fixed, Localize.UpdateLog_V1_8_5FIX1),
+        }),
         new ModChangeLog(new Version(1, 8, 4), new(2023, 5, 23), new List<LogString> {
             new(LogFlag.Updated,"Updated to support game version 1.17.0"),
             new(LogFlag.Updated, Localize.UpdateLog_V1_8_4UPT),
             new(LogFlag.Translation, Localize.UpdateLog_V1_8_4TRA0),
-            new(LogFlag.Translation, Localize.UpdateLog_V1_8_4TRA1), 
+            new(LogFlag.Translation, Localize.UpdateLog_V1_8_4TRA1),
         }),
         new ModChangeLog(new Version(1, 8, 3), new(2023, 3, 22), new List<LogString> {
             new(LogFlag.Updated, "[UPT]Updated to support game version 1.16.1"),

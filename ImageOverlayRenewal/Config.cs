@@ -2,7 +2,7 @@
 using MbyronModsCommon;
 using UnityEngine;
 
-public class Config : ModConfig<Config> {
+public class Config : SingletonConfig<Config> {
     public bool ShowImage { get; set; } = true;
     public OverlayTileSize OverlayType { get; set; } = OverlayTileSize.Overspread;
     public float SideLength { get; set; } = 8640f;

@@ -11,11 +11,6 @@ namespace ImageOverlayRenewal
 		public static string ControlPanel_ApplyOpacity => LocaleManager.GetString("ControlPanel_ApplyOpacity", Culture);
 
 		/// <summary>
-		/// Capacity
-		/// </summary>
-		public static string ControlPanel_Capacity => LocaleManager.GetString("ControlPanel_Capacity", Culture);
-
-		/// <summary>
 		/// Custom
 		/// </summary>
 		public static string ControlPanel_Custom => LocaleManager.GetString("ControlPanel_Custom", Culture);
@@ -34,6 +29,11 @@ namespace ImageOverlayRenewal
 		/// No PNG images were detected in the specified directory, the specified directory can be found in Opti
 		/// </summary>
 		public static string ControlPanel_NoPNG => LocaleManager.GetString("ControlPanel_NoPNG", Culture);
+
+		/// <summary>
+		/// Opacity
+		/// </summary>
+		public static string ControlPanel_Opacity => LocaleManager.GetString("ControlPanel_Opacity", Culture);
 
 		/// <summary>
 		/// Position
@@ -136,6 +136,11 @@ namespace ImageOverlayRenewal
 		public static string ReloadMessageBox_Reload0Texture => LocaleManager.GetString("ReloadMessageBox_Reload0Texture", Culture);
 
 		/// <summary>
+		/// Are you sure you want to reset to the default parameters?
+		/// </summary>
+		public static string ResetWarning => LocaleManager.GetString("ResetWarning", Culture);
+
+		/// <summary>
 		/// [ADD]Added UUI button to invoke control panel.
 		/// </summary>
 		public static string UpdateLog_V1_8_3ADD1 => LocaleManager.GetString("UpdateLog_V1_8_3ADD1", Culture);
@@ -174,5 +179,25 @@ namespace ImageOverlayRenewal
 		/// Updated to the latest common framework.
 		/// </summary>
 		public static string UpdateLog_V1_8_4UPT => LocaleManager.GetString("UpdateLog_V1_8_4UPT", Culture);
+
+		/// <summary>
+		/// Fixed an issue where placing PNG files after loading the game would not display images.
+		/// </summary>
+		public static string UpdateLog_V1_8_5FIX0 => LocaleManager.GetString("UpdateLog_V1_8_5FIX0", Culture);
+
+		/// <summary>
+		/// Fixed an issue with incorrect PNG folder directory in the option panel under OSX system.
+		/// </summary>
+		public static string UpdateLog_V1_8_5FIX1 => LocaleManager.GetString("UpdateLog_V1_8_5FIX1", Culture);
+
+		/// <summary>
+		/// Updated to support game version 1.17.1
+		/// </summary>
+		public static string UpdateLog_V1_8_5UPT0 => LocaleManager.GetString("UpdateLog_V1_8_5UPT0", Culture);
+
+		/// <summary>
+		/// UUI button and separate tool button are now optional.
+		/// </summary>
+		public static string UpdateLog_V1_8_5UPT1 => LocaleManager.GetString("UpdateLog_V1_8_5UPT1", Culture);
 	}
 }

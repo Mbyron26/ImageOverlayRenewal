@@ -121,7 +121,7 @@
     <value>Applica opacità</value>
   </data>
   <data name="ControlPanel_Capacity" xml:space="preserve">
-    <value>Capacità</value>
+    <value>Opacità</value>
   </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
     <value>Personalizzato</value>
@@ -188,7 +188,7 @@ Shift X10, Ctrl X0.1</value>
     <value>Mostra sempre i risultati di ricarica delle texture</value>
   </data>
   <data name="ReloadError" xml:space="preserve">
-    <value>Make sure the PNG file is properly placed.</value>
+    <value>Assicurarsi che il file PNG sia posizionato correttamente.</value>
   </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
     <value>Nessun file PNG corrispondente trovato.</value>
@@ -196,28 +196,31 @@ Shift X10, Ctrl X0.1</value>
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
     <value>Ricarica {0} texture:</value>
   </data>
+  <data name="ResetWarning" xml:space="preserve">
+    <value>Sei sicuro di voler reimpostare ai parametri predefiniti?</value>
+  </data>
   <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
-    <value>[ADD]Added UUI button to invoke control panel.</value>
+    <value>[ADD]Aggiunto il pulsante UUI per invocare il pannello di controllo.</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]Added advanced option for reset mod config.</value>
+    <value>[ADD]Aggiunta opzione avanzata per il reset della configurazione della mod.</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
-    <value>[FIX]Fixed an issue with control panel background texture not displaying correctly.</value>
+    <value>[FIX]Risolto un problema con la trama di sfondo del pannello di controllo non visualizzata correttamente.</value>
   </data>
   <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
-    <value>[FIX]Fixed exception thrown when there is no file.</value>
+    <value>[FIX]Fissa l'eccezione lanciata quando non c'è nessun file.</value>
   </data>
   <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
-    <value>[UPT]Updated option panel UI style.</value>
+    <value>[UPT]Aggiornamento stile interfaccia utente del pannello di opzione.</value>
   </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
-    <value>Added Dutch translation.</value>
+    <value>Aggiunta traduzione olandese.</value>
   </data>
   <data name="UpdateLog_V1_8_4TRA1" xml:space="preserve">
-    <value>Added Korean translation.</value>
+    <value>Aggiunta la traduzione in Coreano.</value>
   </data>
   <data name="UpdateLog_V1_8_4UPT" xml:space="preserve">
-    <value>Updated to the latest common framework.</value>
+    <value>Aggiornato all'ultimo quadro comune.</value>
   </data>
 </root>

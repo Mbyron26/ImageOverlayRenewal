@@ -121,7 +121,7 @@
     <value>Appliquer l'opacité</value>
   </data>
   <data name="ControlPanel_Capacity" xml:space="preserve">
-    <value>Capacité</value>
+    <value>Opacity</value>
   </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
     <value>Personnalisé</value>
@@ -194,6 +194,9 @@
   </data>
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
     <value>Recharger la texture {0} :</value>
+  </data>
+  <data name="ResetWarning" xml:space="preserve">
+    <value>Are you sure you want to reset to the default parameters?</value>
   </data>
   <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
     <value>[ADD]Added UUI button to invoke control panel.</value>
