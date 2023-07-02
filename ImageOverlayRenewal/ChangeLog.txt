@@ -1,4 +1,8 @@
 ﻿
+V1.9.0
+[*]Added independent support for multiple image parameters.添加多图像参数独立支持。
+[*]Added support for looping image shortcuts.添加循环图像快捷键支持。
+
 V1.8.5
 [*]Updated to support game version 1.17.1
 [*]UUI button and separate tool button are now optional.

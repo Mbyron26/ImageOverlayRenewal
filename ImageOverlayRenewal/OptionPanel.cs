@@ -21,7 +21,7 @@ public class OptionPanel : OptionPanelBase<Mod, Config, OptionPanel> {
     protected override void FillGeneralContainer() {
         AddLoadSettingsProperty();
         AddPNGSettingsProperty();
-        AddToolButtonOptions();
+        AddToolButtonOptions<ToolButtonManager>();
 #if BETA_DEBUG
         OptionPanelHelper.AddGroup(GeneralContainer, null);
         OptionPanelHelper.AddButton("Control panel", null, "Open", null, 30, () => ControlPanelManager<Mod, ControlPanel>.CallPanel());
@@ -29,20 +29,13 @@ public class OptionPanel : OptionPanelBase<Mod, Config, OptionPanel> {
 #endif
     }
 
-    protected override void AddToolButtonOptions() {
-        if (SingletonManager<ToolButtonManager>.Instance.UUISupport) {
-            base.AddToolButtonOptions();
-        }
-    }
     protected override void ToolButtonDropDownCallBack(int value) {
         base.ToolButtonDropDownCallBack(value);
-        if (!SingletonMod<Mod>.Instance.LevelLoaded) {
+        if (!SingletonMod<Mod>.Instance.IsLevelLoaded) {
             return;
         }
-        if (SingletonManager<ToolButtonManager>.Instance.UUISupport) {
-            SingletonManager<ToolButtonManager>.Instance.Disable();
-            SingletonManager<ToolButtonManager>.Instance.Enable();
-        }
+        SingletonTool<ToolButtonManager>.Instance.Disable();
+        SingletonTool<ToolButtonManager>.Instance.Enable();
     }
 
     protected override void FillHotkeyContainer() {
@@ -50,6 +43,7 @@ public class OptionPanel : OptionPanelBase<Mod, Config, OptionPanel> {
         OptionPanelHelper.AddGroup(HotkeyContainer, CommonLocalize.OptionPanel_Hotkeys);
         OptionPanelHelper.AddKeymapping(ModLocalize.OptionPanel_ShowControlPanel, Config.Instance.ShowControlPanelHotkey, null);
         OptionPanelHelper.AddKeymapping(ModLocalize.ControlPanel_ShowImage, Config.Instance.ShowImageHotkey, null);
+        OptionPanelHelper.AddKeymapping(ModLocalize.ControlPanel_LoopImage, Config.Instance.LoopImage, null);
         OptionPanelHelper.Reset();
     }
 

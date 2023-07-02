@@ -1,7 +1,6 @@
 ﻿global using MbyronModsCommon;
 namespace ImageOverlayRenewal;
 using ICities;
-using ImageOverlayRenewal.UI;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -21,36 +20,20 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
     public override BuildVersion VersionType => BuildVersion.StableRelease;
 #endif
     public override void SetModCulture(CultureInfo cultureInfo) => Localize.Culture = cultureInfo;
-    public override void IntroActions() {
-        base.IntroActions();
-        CompatibilityCheck.IncompatibleMods = ConflictMods;
-        CompatibilityCheck.CheckCompatibility();
-        ExternalLogger.OutputPluginsList();
-    }
-
+    public override void IntroActions() => ExternalLogger.OutputPluginsList();
     protected override void SettingsUI(UIHelperBase helper) => OptionPanelManager<Mod, OptionPanel>.SettingsUI(helper);
 
-    public override void OnLevelLoaded(LoadMode mode) {
-        base.OnLevelLoaded(mode);
-        if (mode == LoadMode.NewMap || mode == LoadMode.LoadMap || mode == LoadMode.NewGame || mode == LoadMode.LoadGame) {
-            SingletonManager<Manager>.Instance.Init();
-        }
-        SingletonManager<ToolButtonManager>.Instance.Init();
-        ControlPanelManager<Mod, ControlPanel>.EventOnVisibleChanged += (_) => SingletonManager<ToolButtonManager>.Instance.UUIButtonIsPressed = _;
-    }
-
-    public override void OnLevelUnloading() {
-        base.OnLevelUnloading();
-        SingletonManager<ToolButtonManager>.Instance.DeInit();
-        ControlPanelManager<Mod, ControlPanel>.EventOnVisibleChanged -= (_) => SingletonManager<ToolButtonManager>.Instance.UUIButtonIsPressed = _;
-    }
-
-    private List<IncompatibleModInfo> ConflictMods { get; set; } = new() {
-        new IncompatibleModInfo(814102166, @"Image Overlay", true),
-        new IncompatibleModInfo(662933818, @"OverLayer v2", true),
+    public override List<ConflictModInfo> ConflictMods { get; set; } = new() {
+        new ConflictModInfo(814102166, @"Image Overlay", true),
+        new ConflictModInfo(662933818, @"OverLayer v2", true),
     };
 
     public override List<ModChangeLog> ChangeLog => new() {
+        new ModChangeLog(new Version(1, 9, 0), new(2023, 7, 2), new List<LogString> {
+            new(LogFlag.Added, Localize.UpdateLog_V1_9_0ADD0),
+            new(LogFlag.Added, Localize.UpdateLog_V1_9_0ADD1),
+        }),
+
         new ModChangeLog(new Version(1, 8, 5), new(2023, 6, 13), new List<LogString> {
             new(LogFlag.Updated, Localize.UpdateLog_V1_8_5UPT0),
             new(LogFlag.Updated, Localize.UpdateLog_V1_8_5UPT1),
