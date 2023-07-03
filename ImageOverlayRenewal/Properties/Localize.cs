@@ -21,6 +21,11 @@ namespace ImageOverlayRenewal
 		public static string ControlPanel_Image => LocaleManager.GetString("ControlPanel_Image", Culture);
 
 		/// <summary>
+		/// Loop image
+		/// </summary>
+		public static string ControlPanel_LoopImage => LocaleManager.GetString("ControlPanel_LoopImage", Culture);
+
+		/// <summary>
 		/// No
 		/// </summary>
 		public static string ControlPanel_No => LocaleManager.GetString("ControlPanel_No", Culture);
@@ -199,5 +204,15 @@ namespace ImageOverlayRenewal
 		/// UUI button and separate tool button are now optional.
 		/// </summary>
 		public static string UpdateLog_V1_8_5UPT1 => LocaleManager.GetString("UpdateLog_V1_8_5UPT1", Culture);
+
+		/// <summary>
+		/// Added independent support for multiple image parameters.
+		/// </summary>
+		public static string UpdateLog_V1_9_0ADD0 => LocaleManager.GetString("UpdateLog_V1_9_0ADD0", Culture);
+
+		/// <summary>
+		/// Added support for looping image shortcuts.
+		/// </summary>
+		public static string UpdateLog_V1_9_0ADD1 => LocaleManager.GetString("UpdateLog_V1_9_0ADD1", Culture);
 	}
 }

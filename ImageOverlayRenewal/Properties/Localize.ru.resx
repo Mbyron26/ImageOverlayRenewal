@@ -120,20 +120,23 @@
   <data name="ControlPanel_ApplyOpacity" xml:space="preserve">
     <value>Применить непрозрачность</value>
   </data>
-  <data name="ControlPanel_Capacity" xml:space="preserve">
-    <value>Opacity</value>
-  </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
     <value>Настраиваемый</value>
   </data>
   <data name="ControlPanel_Image" xml:space="preserve">
     <value>Изображение</value>
   </data>
+  <data name="ControlPanel_LoopImage" xml:space="preserve">
+    <value>Loop image</value>
+  </data>
   <data name="ControlPanel_No" xml:space="preserve">
     <value>Нет</value>
   </data>
   <data name="ControlPanel_NoPNG" xml:space="preserve">
     <value>PNG-изображения не были обнаружены в указанном каталоге, каталог можно найти на Панели настроек этого мода.</value>
+  </data>
+  <data name="ControlPanel_Opacity" xml:space="preserve">
+    <value>Opacity</value>
   </data>
   <data name="ControlPanel_Position" xml:space="preserve">
     <value>Положение</value>
@@ -221,5 +224,23 @@
   </data>
   <data name="UpdateLog_V1_8_4UPT" xml:space="preserve">
     <value>Updated to the latest common framework.</value>
+  </data>
+  <data name="UpdateLog_V1_8_5FIX0" xml:space="preserve">
+    <value>Fixed an issue where placing PNG files after loading the game would not display images.</value>
+  </data>
+  <data name="UpdateLog_V1_8_5FIX1" xml:space="preserve">
+    <value>Fixed an issue with incorrect PNG folder directory in the option panel under OSX system.</value>
+  </data>
+  <data name="UpdateLog_V1_8_5UPT0" xml:space="preserve">
+    <value>Updated to support game version 1.17.1</value>
+  </data>
+  <data name="UpdateLog_V1_8_5UPT1" xml:space="preserve">
+    <value>UUI button and separate tool button are now optional.</value>
+  </data>
+  <data name="UpdateLog_V1_9_0ADD0" xml:space="preserve">
+    <value>Added independent support for multiple image parameters.</value>
+  </data>
+  <data name="UpdateLog_V1_9_0ADD1" xml:space="preserve">
+    <value>Added support for looping image shortcuts.</value>
   </data>
 </root>

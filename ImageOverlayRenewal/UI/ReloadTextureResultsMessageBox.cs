@@ -7,8 +7,8 @@ internal class ReloadTextureResultsMessageBox : MessageBoxBase {
         var count = SingletonManager<Manager>.Instance.TextureData.Count;
         if (count > 0) {
             TitleText = string.Format(ModLocalize.ReloadMessageBox_Reload0Texture, count);
-            foreach (var item in SingletonManager<Manager>.Instance.TextureData.Keys) {
-                AddLabelInMainPanel(item);
+            foreach (var item in SingletonManager<Manager>.Instance.TextureData) {
+                AddLabelInMainPanel(item.Name);
             }
         } else {
             TitleText = ModLocalize.ReloadMessageBox_NoMatching;

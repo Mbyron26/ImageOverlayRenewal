@@ -1,6 +1,7 @@
 ﻿namespace ImageOverlayRenewal;
 using ColossalFramework;
 using ColossalFramework.Math;
+using ImageOverlayRenewal.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,39 +10,76 @@ using UnityEngine;
 
 internal class Manager : SingletonManager<Manager> {
     public override bool IsInit { get; set; }
-    public Texture2D Texture { get; set; }
-    public Dictionary<string, Texture2D> TextureData { get; set; } = new();
-    public List<string> PNGBuffer { get; private set; } = new();
+    public List<ImageInfo> TextureData { get; private set; }
     public string PNGFormat => "*.png";
     public string PNGDirectory => "Files/";
     public string CurrentPNG { get; set; } = string.Empty;
 
     public override void Init() {
+        TextureData = new();
         LoadAllPNGs();
         if (TextureData.Count == 0) {
             InternalLogger.Log("No PNG files were found");
-            return;
         } else {
-            ApplyTexture(TextureData.Values.First(), TextureData.Keys.First(), true);
+            ApplyTexture(TextureData.First().Name, true);
         }
+        IsInit = true;
     }
+
     public override void DeInit() {
-        Texture = null;
-        TextureData.Clear();
+        TextureData = null;
+        IsInit = false;
     }
+
+    public void LoopImage() {
+        if (!IsInit || TextureData.Count == 0 || TextureData.Count == 1)
+            return;
+        if (TextureData.FindIndex(_ => _.Name == CurrentPNG) + 1 > (TextureData.Count - 1)) {
+            CurrentPNG = TextureData.FirstOrDefault().Name;     
+        } else {
+            CurrentPNG = TextureData[TextureData.FindIndex(_ => _.Name == CurrentPNG) + 1].Name;
+        }
+        ApplyTexture(CurrentPNG);
+        ControlPanelManager<Mod, ControlPanel>.OnLocaleChanged();
+    }
+
+    public ImageInfo GetCurrentImageInfo() {
+        var imageInfo = TextureData.Find(x => x.Name == CurrentPNG);
+        imageInfo ??= new ImageInfo(string.Empty, new(1, 1));
+        return imageInfo;
+    }
+
+    public void SetCurrentImageInfoParm(OverlayTileSize size, int sideLength, int positionX, int positionY, float rotation, byte opacity) {
+        var image = GetCurrentImageInfo();
+        image.Size = size;
+        image.SideLength = sideLength;
+        image.PositionX = positionX;
+        image.PositionY = positionY;
+        image.Rotation = rotation;
+        image.Opacity = opacity;
+    }
+
+    public void ReadCurrentImageInfoParm(ref OverlayTileSize size, ref int sideLength, ref float positionX, ref float positionY, ref float rotation, ref int opacity) {
+        var image = GetCurrentImageInfo();
+        size = image.Size;
+        sideLength = image.SideLength;
+        positionX = image.PositionX;
+        positionY = image.PositionY;
+        rotation = image.Rotation;
+        opacity = image.Opacity;
+    }
+
+    public Texture2D GetCurrentTexture() => GetCurrentImageInfo().Texture;
 
     public void ReloadTexture() {
         LoadAllPNGs();
         if (TextureData.Count > 0) {
-            ApplyTexture(TextureData.Values.First(), TextureData.Keys.First());
-        } else {
-            Texture = null;
+            ApplyTexture(TextureData.First().Name);
         }
     }
 
-    public void ApplyTexture(Texture2D texture, string name, bool isFlip = true) {
+    public void ApplyTexture(string name, bool isFlip = true) {
         CurrentPNG = name;
-        Texture = texture;
         ApplayOpacity(isFlip);
     }
 
@@ -51,28 +89,39 @@ internal class Manager : SingletonManager<Manager> {
         FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
         if (files.Length > 0) {
             for (int i = 0; i < files.Length; i++) {
-                var name = Path.GetFileNameWithoutExtension(files[i].FullName);
                 var fullName = files[i].FullName;
+                var name = Path.GetFileNameWithoutExtension(fullName);
                 Texture2D texture = new(1, 1);
                 var bytes = File.ReadAllBytes(fullName);
                 texture.LoadImage(bytes);
-                TextureData.Add(name, texture);
+                ImageInfo imageInfo = null;
+                foreach (var item in Config.Instance.ImageConfig) {
+                    if (item.Name == name) {
+                        imageInfo = new ImageInfo(item.Name, item.Size, item.SideLength, item.PositionX, item.PositionY, item.Rotation, item.Opacity, texture);
+                    }
+                }
+                imageInfo ??= new ImageInfo(name, texture);
+                TextureData.Add(imageInfo);
             }
+            Config.Instance.ImageConfig.Clear();
+            TextureData.ForEach(a => Config.Instance.ImageConfig.Add(a));
+
             string names = string.Empty;
             foreach (var item in TextureData) {
-                names += item.Key + ", ";
+                names += item.Name + ", ";
             }
             Singleton<RenderOver>.instance.Register();
+            SingletonMod<Mod>.Instance.SaveConfig();
             InternalLogger.Log($"Loaded PNGs: {names}");
+        } else {
+            Config.Instance.ImageConfig?.Clear();
         }
     }
 
     public void ShowImageByHotkey() {
         Config.Instance.ShowImage = !Config.Instance.ShowImage;
         SingletonMod<Mod>.Instance.SaveConfig();
-        //if (ControlPanelManager<>.IsVisible) {
-        //    ControlPanelManager.OnLocaleChanged();
-        //}
+        ControlPanelManager<Mod, ControlPanel>.OnLocaleChanged();
     }
 
     public int GetOverlayTileSize(OverlayTileSize size) => size switch {
@@ -94,15 +143,17 @@ internal class Manager : SingletonManager<Manager> {
     };
 
     public void ApplayOpacity(bool isFlip) {
-        if (SingletonMod<Mod>.Instance.LevelLoaded) {
-            if (Texture is null) return;
+        if (TextureData is null || TextureData.Count == 0)
+            return;
+        var image = TextureData.Find(_ => _.Name == CurrentPNG);
+        if (image is not null && image.Texture is not null) {
             if (!isFlip) {
-                Texture = SetOpacity(Texture, GetOpacity());
+                image.Texture = SetOpacity(image.Texture, GetOpacity());
             } else {
-                Texture = FlipTexture(Texture);
-                Texture = SetOpacity(Texture, GetOpacity());
+                image.Texture = FlipTexture(image.Texture);
+                image.Texture = SetOpacity(image.Texture, GetOpacity());
             }
-            Texture.Apply();
+            image.Texture.Apply();
         }
     }
 
@@ -131,7 +182,7 @@ internal class Manager : SingletonManager<Manager> {
         return texture;
     }
 
-    public byte GetOpacity() => (byte)Mathf.Clamp((int)Math.Ceiling(Config.Instance.Opacity / 100m * 255), 0, 255);
+    public byte GetOpacity() => (byte)Mathf.Clamp((int)Math.Ceiling(GetCurrentImageInfo().Opacity / 100m * 255), 0, 255);
 
     [Obsolete]
     public string[] GetAllPNGsPath(bool isok) {
@@ -171,12 +222,12 @@ internal class Manager : SingletonManager<Manager> {
         {OverlayTileSize.Overspread,8640f}
     };
 
-    public float GetIntegerTilesSize(OverlayTileSize overlayTileSize) => overlayTileSize switch {
-        OverlayTileSize.Small => 960f,
-        OverlayTileSize.Medium => 2880f,
-        OverlayTileSize.Large => 4800f,
-        OverlayTileSize.Overspread => 8640f,
-        _ => 480f,
+    public int GetIntegerTilesSize(OverlayTileSize overlayTileSize) => overlayTileSize switch {
+        OverlayTileSize.Small => 960,
+        OverlayTileSize.Medium => 2880,
+        OverlayTileSize.Large => 4800,
+        OverlayTileSize.Overspread => 8640,
+        _ => 480,
     };
 
 }
@@ -193,10 +244,12 @@ public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISim
 
     protected override void EndOverlayImpl(RenderManager.CameraInfo cameraInfo) {
         base.EndOverlayImpl(cameraInfo);
-        if (!Config.Instance.ShowImage) return;
-        float x = Config.Instance.PositionX, y = Config.Instance.PositionY;
-        float sclx = Config.Instance.SideLength, scly = Config.Instance.SideLength;
-        Quaternion rot = Quaternion.Euler(0, Config.Instance.Rotation, 0);
+        if (!Config.Instance.ShowImage)
+            return;
+        var image = SingletonManager<Manager>.Instance.GetCurrentImageInfo();
+        float x = image.PositionX, y = image.PositionY;
+        float sclx = image.SideLength, scly = image.SideLength;
+        Quaternion rot = Quaternion.Euler(0, image.Rotation, 0);
         Vector3 center = new(x, 0, y);
         Quad3 position = new(
             new Vector3(-sclx + x, 0, -scly + y),
@@ -209,7 +262,7 @@ public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISim
         position.c = rot * (position.c - center) + center;
         position.d = rot * (position.d - center) + center;
 
-        RenderManager.instance.OverlayEffect.DrawQuad(cameraInfo, SingletonManager<Manager>.Instance.Texture, Color.white, position, -1f, 1800f, false, true);
+        RenderManager.instance.OverlayEffect.DrawQuad(cameraInfo, SingletonManager<Manager>.Instance.GetCurrentTexture(), Color.white, position, -1f, 1800f, false, true);
     }
 }
 

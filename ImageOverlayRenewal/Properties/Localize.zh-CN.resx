@@ -126,6 +126,9 @@
   <data name="ControlPanel_Image" xml:space="preserve">
     <value>图像</value>
   </data>
+  <data name="ControlPanel_LoopImage" xml:space="preserve">
+    <value>循环图像</value>
+  </data>
   <data name="ControlPanel_No" xml:space="preserve">
     <value>否</value>
   </data>
@@ -233,5 +236,11 @@
   </data>
   <data name="UpdateLog_V1_8_5UPT1" xml:space="preserve">
     <value>现在可以选择模组面板按钮的显示位置：仅在 UUI 内显示 / 仅在游戏内单独显示 / 同时在 UUI 和游戏内显示。</value>
+  </data>
+  <data name="UpdateLog_V1_9_0ADD0" xml:space="preserve">
+    <value>添加多图像参数独立支持。</value>
+  </data>
+  <data name="UpdateLog_V1_9_0ADD1" xml:space="preserve">
+    <value>添加循环图像快捷键支持。</value>
   </data>
 </root>

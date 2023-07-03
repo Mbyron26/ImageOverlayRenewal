@@ -1,16 +1,20 @@
 ﻿namespace ImageOverlayRenewal.UI;
 using MbyronModsCommon;
 using MbyronModsCommon.UI;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using ModLocalize = Localize;
 
 internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
+    private CustomUIPanel contentPanel;
+    private CustomUIDropDown sizeDropDown;
     private UIIntValueField positionXField;
     private UIIntValueField positionYField;
     private UIFloatValueField rotationField;
-    private CustomUIPanel contentPanel;
+    private UIByteValueField opacityField;
+    private CustomUIDropDown selectImage;
+    private UIIntValueField sideLengthField;
+    private CustomUILabel warningLabel;
     private const float ElementPadding = 10;
 
     public override float PanelWidth { get; protected set; } = 370;
@@ -51,10 +55,10 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
     }
 
     private void ResetButtonClicked() => MessageBox.Show<TwoButtonMessageBox>().Init(ModMainInfo<Mod>.ModName, ModLocalize.ResetWarning, () => {
-        sideLength.Value = 960;
-        positionXField.Value = 0;
-        positionYField.Value = 0;
-        rotationField.Value = 0;
+        SingletonManager<Manager>.Instance.GetCurrentImageInfo().SetDefault();
+        SingletonManager<Manager>.Instance.ApplayOpacity(false);
+        SingletonMod<Mod>.Instance.SaveConfig();
+        ControlPanelManager<Mod, ControlPanel>.OnLocaleChanged();
     });
 
     private string[] GetImageSizeList() => new string[] { ModLocalize.ControlPanel_Custom, "1×1", "3×3", "5×5", "9×9" };
@@ -73,14 +77,32 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
     }
 
     private void OnSelectionChanged() {
-        if (SingletonManager<Manager>.Instance.TextureData.Count > 0 && SingletonManager<Manager>.Instance.TextureData.TryGetValue(selectImage.SelectedValue, out Texture2D texture))
-            SingletonManager<Manager>.Instance.ApplyTexture(texture, selectImage.SelectedValue);
+        var data = SingletonManager<Manager>.Instance.TextureData;
+        if (data is null || data.Count == 0)
+            return;
+        SingletonManager<Manager>.Instance.ApplyTexture(selectImage.SelectedValue);
+        var image = SingletonManager<Manager>.Instance.GetCurrentImageInfo();
+        sideLengthField.CallEventValueChanged = false;
+        positionXField.CallEventValueChanged = false;
+        positionYField.CallEventValueChanged = false;
+        rotationField.CallEventValueChanged = false;
+        opacityField.CallEventValueChanged = false;
+
+        sideLengthField.Value = image.SideLength;
+        positionXField.Value = image.PositionX;
+        positionYField.Value = image.PositionY;
+        rotationField.Value = image.Rotation;
+        opacityField.Value = image.Opacity;
+
+        sideLengthField.CallEventValueChanged = true;
+        positionXField.CallEventValueChanged = true;
+        positionYField.CallEventValueChanged = true;
+        rotationField.CallEventValueChanged = true;
+        opacityField.CallEventValueChanged = true;
+
+        sizeDropDown.SelectedIndex = (int)image.Size;
     }
 
-    private CustomUIDropDown selectImage;
-    private CustomUIDropDown imageSize;
-    private UIIntValueField sideLength;
-    private CustomUILabel warningLabel;
     private void AddWarningLabel() {
         warningLabel = CustomUILabel.Add(contentPanel, ModLocalize.ControlPanel_SelectedImageWarning, PorpertyPanelWidth, 0.7f, new RectOffset(5, 5, 5, 5));
         warningLabel.BgAtlas = CustomUIAtlas.MbyronModsAtlas;
@@ -102,44 +124,43 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
         ControlPanelHelper.AddGroup(contentPanel, PorpertyPanelWidth, null);
         var dropDown = ControlPanelHelper.AddDropDown(ModLocalize.ControlPanel_Image, null, GetAllPNGNames(), GetDefaultSelection(), 200, 24, (_) => OnSelectionChanged());
         selectImage = dropDown.Child as CustomUIDropDown;
-        var dropDown1 = ControlPanelHelper.AddDropDown(ModLocalize.ControlPanel_Size, null, GetImageSizeList(), (int)Config.Instance.OverlayType, 130f, 24, (v) => {
-            Config.Instance.OverlayType = SingletonManager<Manager>.Instance.GetOverlayTileSize(v);
-            var index = SingletonManager<Manager>.Instance.GetOverlayTileSize(Config.Instance.OverlayType);
-            if (sideLength is not null && index != 0) {
-                var length = SingletonManager<Manager>.Instance.GetIntegerTilesSize(Config.Instance.OverlayType);
-                Config.Instance.SideLength = length;
-                sideLength.Value = (int)length;
-            }
-        });
-        imageSize = dropDown1.Child as CustomUIDropDown;
-        var filed0 = ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_SideLength, null, 80f, (int)Config.Instance.SideLength, 10, 10, MaxSideLength, (v) => {
-            if (v == 960) {
-                imageSize.SelectedIndex = 1;
-            } else if (v == 2880) {
-                imageSize.SelectedIndex = 2;
-            } else if (v == 4800) {
-                imageSize.SelectedIndex = 3;
-            } else if (v == 8640) {
-                imageSize.SelectedIndex = 4;
-            } else {
-                imageSize.SelectedIndex = 0;
-            }
-            Config.Instance.SideLength = v;
-        });
-        sideLength = filed0.Child as UIIntValueField;
 
-        var filed1 = ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_Position + " X", null, 80, (int)Config.Instance.PositionX, 10, -10000, 10000, (v) => Config.Instance.PositionX = v);
-        positionXField = filed1.Child as UIIntValueField;
-        var filed2 = ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_Position + " Y", null, 80, (int)Config.Instance.PositionY, 10, -10000, 10000, (v) => Config.Instance.PositionY = v);
-        positionYField = filed2.Child as UIIntValueField;
-        var filed3 = ControlPanelHelper.AddField<UIFloatValueField, float>(ModLocalize.ControlPanel_Rotation, null, 80, Config.Instance.Rotation, 1, 0, 360, (v) => Config.Instance.Rotation = v);
+        sizeDropDown = ControlPanelHelper.AddDropDown(ModLocalize.ControlPanel_Size, null, GetImageSizeList(), (int)SingletonManager<Manager>.Instance.GetCurrentImageInfo().Size, 130f, 24, (_) => {
+            var index = SingletonManager<Manager>.Instance.GetOverlayTileSize(_);
+            if (index != 0)
+                sideLengthField.Value = SingletonManager<Manager>.Instance.GetIntegerTilesSize(index);
+            CallbackHandler();
+        }).Child as CustomUIDropDown;
+
+        sideLengthField = ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_SideLength, null, 80f, SingletonManager<Manager>.Instance.GetCurrentImageInfo().SideLength, 10, 10, MaxSideLength, (v) => {
+            if (v == 960) {
+                sizeDropDown.SelectedIndex = 1;
+            } else if (v == 2880) {
+                sizeDropDown.SelectedIndex = 2;
+            } else if (v == 4800) {
+                sizeDropDown.SelectedIndex = 3;
+            } else if (v == 8640) {
+                sizeDropDown.SelectedIndex = 4;
+            } else {
+                sizeDropDown.SelectedIndex = 0;
+            }
+            CallbackHandler();
+        }).Child as UIIntValueField;
+
+        positionXField = ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_Position + " X", null, 80, SingletonManager<Manager>.Instance.GetCurrentImageInfo().PositionX, 10, -10000, 10000, (_) => CallbackHandler()).Child as UIIntValueField;
+
+        positionYField = ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_Position + " Y", null, 80, SingletonManager<Manager>.Instance.GetCurrentImageInfo().PositionY, 10, -10000, 10000, (_) => CallbackHandler()).Child as UIIntValueField;
+
+        var filed3 = ControlPanelHelper.AddField<UIFloatValueField, float>(ModLocalize.ControlPanel_Rotation, null, 80, SingletonManager<Manager>.Instance.GetCurrentImageInfo().Rotation, 1, 0, 360, (_) => CallbackHandler());
         rotationField = filed3.Child as UIFloatValueField;
+
         ControlPanelHelper.Reset();
     }
 
     private void AddCapacityProperty() {
         ControlPanelHelper.AddGroup(contentPanel, PorpertyPanelWidth, null);
-        ControlPanelHelper.AddField<UIIntValueField, int>(ModLocalize.ControlPanel_Opacity, null, 80, (int)Config.Instance.Opacity, 10, 1, 100, (v) => Config.Instance.Opacity = (byte)v);
+        opacityField = ControlPanelHelper.AddField<UIByteValueField, byte>(ModLocalize.ControlPanel_Opacity, null, 80, SingletonManager<Manager>.Instance.GetCurrentImageInfo().Opacity, 10, 1, 100, (_) => CallbackHandler()).Child as UIByteValueField;
+
         var applyPanel = ControlPanelHelper.AddChildPanel<GammaSinglePropertyPanel>();
         applyPanel.height = 26 + 20;
         var button = CustomUIButton.Add(applyPanel, ModLocalize.ControlPanel_ApplyOpacity, applyPanel.width - 2 * 10, 26, () => SingletonManager<Manager>.Instance.ApplayOpacity(false), 0.7f, false);
@@ -148,7 +169,15 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
         ControlPanelHelper.Reset();
     }
 
-    private static int GetDefaultSelection() {
+    private void CallbackHandler() {
+        SingletonManager<Manager>.Instance.SetCurrentImageInfoParm(SingletonManager<Manager>.Instance.GetOverlayTileSize(sizeDropDown.SelectedIndex), sideLengthField.Value, positionXField.Value, positionYField.Value, rotationField.Value, opacityField.Value);
+        InternalLogger.Log("CallbackHandler");
+        SingletonMod<Mod>.Instance.SaveConfig();
+    }
+
+    private int GetDefaultSelection() {
+        if (!SingletonManager<Manager>.Instance.IsInit)
+            return 0;
         var list = GetAllPNGNames();
         if (list.Length > 0 && SingletonManager<Manager>.Instance.TextureData.Count > 0) {
             var t = list.Select((s, index) => new { s, index }).FirstOrDefault(x => x.s.Equals(SingletonManager<Manager>.Instance.CurrentPNG))?.index ?? -1;
@@ -156,15 +185,7 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
         }
         return 0;
     }
-    private static string[] GetAllPNGNames() {
-        if (SingletonManager<Manager>.Instance.TextureData.Count > 0) {
-            List<string> buffer = new();
-            foreach (var item in SingletonManager<Manager>.Instance.TextureData) {
-                buffer.Add(item.Key);
-            }
-            return buffer.ToArray();
-        } else {
-            return new string[0];
-        }
-    }
+
+    private string[] GetAllPNGNames() => SingletonManager<Manager>.Instance.IsInit ? SingletonManager<Manager>.Instance.TextureData.Select(_ => _.Name).ToArray() : new string[0];
+
 }

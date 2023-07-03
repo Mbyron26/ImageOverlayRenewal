@@ -126,6 +126,9 @@
   <data name="ControlPanel_Image" xml:space="preserve">
     <value>画像</value>
   </data>
+  <data name="ControlPanel_LoopImage" xml:space="preserve">
+    <value>画像をループ</value>
+  </data>
   <data name="ControlPanel_No" xml:space="preserve">
     <value>いいえ</value>
   </data>
@@ -233,5 +236,11 @@
   </data>
   <data name="UpdateLog_V1_8_5UPT1" xml:space="preserve">
     <value>UUIボタンと個別のツールボタンをオプション化</value>
+  </data>
+  <data name="UpdateLog_V1_9_0ADD0" xml:space="preserve">
+    <value>複数の画像パラメータに対して独立したサポートを追加</value>
+  </data>
+  <data name="UpdateLog_V1_9_0ADD1" xml:space="preserve">
+    <value>画像のループのショートカットのサポートを追加</value>
   </data>
 </root>
