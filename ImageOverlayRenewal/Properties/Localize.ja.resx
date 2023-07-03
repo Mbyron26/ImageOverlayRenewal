@@ -127,7 +127,7 @@
     <value>画像</value>
   </data>
   <data name="ControlPanel_LoopImage" xml:space="preserve">
-    <value>Loop image</value>
+    <value>画像をループ</value>
   </data>
   <data name="ControlPanel_No" xml:space="preserve">
     <value>いいえ</value>
@@ -238,9 +238,9 @@
     <value>UUIボタンと個別のツールボタンをオプション化</value>
   </data>
   <data name="UpdateLog_V1_9_0ADD0" xml:space="preserve">
-    <value>Added independent support for multiple image parameters.</value>
+    <value>複数の画像パラメータに対して独立したサポートを追加</value>
   </data>
   <data name="UpdateLog_V1_9_0ADD1" xml:space="preserve">
-    <value>Added support for looping image shortcuts.</value>
+    <value>画像のループのショートカットのサポートを追加</value>
   </data>
 </root>

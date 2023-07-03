@@ -29,7 +29,7 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
     };
 
     public override List<ModChangeLog> ChangeLog => new() {
-        new ModChangeLog(new Version(1, 9, 0), new(2023, 7, 2), new List<LogString> {
+        new ModChangeLog(new Version(1, 9, 0), new(2023, 7, 3), new List<LogString> {
             new(LogFlag.Added, Localize.UpdateLog_V1_9_0ADD0),
             new(LogFlag.Added, Localize.UpdateLog_V1_9_0ADD1),
         }),
