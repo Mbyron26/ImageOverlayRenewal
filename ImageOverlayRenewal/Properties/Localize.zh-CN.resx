@@ -201,21 +201,6 @@
   <data name="ResetWarning" xml:space="preserve">
     <value>你确定要重置为默认参数吗？</value>
   </data>
-  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
-    <value>[ADD]新增了 UUI 按钮，点击其可以打开控制面板。</value>
-  </data>
-  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]添加了重置模组配置的高级选项。</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
-    <value>[FIX]修复了控制面板的背景纹理显示不正确的问题。</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
-    <value>[FIX]修复了没有文件时会抛出异常信息的问题。</value>
-  </data>
-  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
-    <value>[UPT]更新了选项面板的 UI 风格。</value>
-  </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
     <value>新增了荷兰语翻译。</value>
   </data>

@@ -10,11 +10,11 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<Version>1.9.0.7315</Version>
+		<Version>1.9.1.8516</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)' == 'Stable Release' OR '$(Configuration)' == 'Stable Debug'">
-		<Version>1.9</Version>
+		<Version>1.9.1</Version>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Beta Debug|AnyCPU'">
@@ -34,6 +34,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Remove="Properties\Localize.cs.resx" />
 	  <EmbeddedResource Remove="Properties\Localize.de.resx" />
 	  <EmbeddedResource Remove="Properties\Localize.es-ES.resx" />
 	  <EmbeddedResource Remove="Properties\Localize.fr.resx" />
@@ -41,6 +42,7 @@
 	  <EmbeddedResource Remove="Properties\Localize.ja.resx" />
 	  <EmbeddedResource Remove="Properties\Localize.ko.resx" />
 	  <EmbeddedResource Remove="Properties\Localize.nl.resx" />
+	  <EmbeddedResource Remove="Properties\Localize.pt-BR.resx" />
 	  <EmbeddedResource Remove="Properties\Localize.resx" />
 	  <EmbeddedResource Remove="Properties\Localize.ru.resx" />
 	  <EmbeddedResource Remove="Properties\Localize.zh-CN.resx" />
@@ -56,6 +58,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include="Properties\Localize.cs.resx">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	  <None Include="Properties\Localize.de.resx">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
@@ -75,6 +80,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Include="Properties\Localize.nl.resx">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="Properties\Localize.pt-BR.resx">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	  <None Include="Properties\Localize.resx">
@@ -101,19 +109,19 @@
 
 	<ItemGroup>
 	  <Reference Include="Assembly-CSharp">
-	    <HintPath>C:\Users\SYS\Desktop\Assembly\Assembly-CSharp.dll</HintPath>
+	    <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\Assembly-CSharp.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
 	  <Reference Include="ColossalManaged">
-	    <HintPath>C:\Users\SYS\Desktop\Assembly\ColossalManaged.dll</HintPath>
+	    <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\ColossalManaged.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
 	  <Reference Include="ICities">
-	    <HintPath>C:\Users\SYS\Desktop\Assembly\ICities.dll</HintPath>
+	    <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\ICities.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
 	  <Reference Include="UnityEngine">
-	    <HintPath>C:\Users\SYS\Desktop\Assembly\UnityEngine.dll</HintPath>
+	    <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Cities_Skylines\Cities_Data\Managed\UnityEngine.dll</HintPath>
 	    <Private>False</Private>
 	  </Reference>
 	</ItemGroup>
