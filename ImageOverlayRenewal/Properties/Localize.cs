@@ -146,31 +146,6 @@ namespace ImageOverlayRenewal
 		public static string ResetWarning => LocaleManager.GetString("ResetWarning", Culture);
 
 		/// <summary>
-		/// [ADD]Added UUI button to invoke control panel.
-		/// </summary>
-		public static string UpdateLog_V1_8_3ADD1 => LocaleManager.GetString("UpdateLog_V1_8_3ADD1", Culture);
-
-		/// <summary>
-		/// [ADD]Added advanced option for reset mod config.
-		/// </summary>
-		public static string UpdateLog_V1_8_3ADD2 => LocaleManager.GetString("UpdateLog_V1_8_3ADD2", Culture);
-
-		/// <summary>
-		/// [FIX]Fixed an issue with control panel background texture not displaying correctly.
-		/// </summary>
-		public static string UpdateLog_V1_8_3FIX => LocaleManager.GetString("UpdateLog_V1_8_3FIX", Culture);
-
-		/// <summary>
-		/// [FIX]Fixed exception thrown when there is no file.
-		/// </summary>
-		public static string UpdateLog_V1_8_3FIX1 => LocaleManager.GetString("UpdateLog_V1_8_3FIX1", Culture);
-
-		/// <summary>
-		/// [UPT]Updated option panel UI style.
-		/// </summary>
-		public static string UpdateLog_V1_8_3UPT => LocaleManager.GetString("UpdateLog_V1_8_3UPT", Culture);
-
-		/// <summary>
 		/// Added Dutch translation.
 		/// </summary>
 		public static string UpdateLog_V1_8_4TRA0 => LocaleManager.GetString("UpdateLog_V1_8_4TRA0", Culture);

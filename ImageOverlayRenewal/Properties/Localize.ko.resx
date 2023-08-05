@@ -201,21 +201,6 @@
   <data name="ResetWarning" xml:space="preserve">
     <value>Are you sure you want to reset to the default parameters?</value>
   </data>
-  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
-    <value>[ADD]제어판을 호출하는 UUI 버튼을 추가했습니다.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]모드 설정을 초기화하는 고급 옵션을 추가했습니다.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
-    <value>[FIX]제어판 배경 텍스처가 올바르게 보이지 않는 문제를 수정했습니다.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
-    <value>[FIX]파일이 존재하지 않을 때 발생하는 예외처리 문제를 수정했습니다.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
-    <value>[UPT]설정 패널 UI 스타일을 변경했습니다.</value>
-  </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
     <value>Added Dutch translation.</value>
   </data>

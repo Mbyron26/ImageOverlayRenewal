@@ -118,85 +118,85 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ControlPanel_ApplyOpacity" xml:space="preserve">
-    <value>Применить непрозрачность</value>
+    <value>Použít průhlednost</value>
   </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
-    <value>Настраиваемый</value>
+    <value>Vlastní</value>
   </data>
   <data name="ControlPanel_Image" xml:space="preserve">
-    <value>Изображение</value>
+    <value>Obrázek</value>
   </data>
   <data name="ControlPanel_LoopImage" xml:space="preserve">
     <value>Loop image</value>
   </data>
   <data name="ControlPanel_No" xml:space="preserve">
-    <value>Нет</value>
+    <value>Ne</value>
   </data>
   <data name="ControlPanel_NoPNG" xml:space="preserve">
-    <value>PNG-изображения не были обнаружены в указанном каталоге, каталог можно найти на Панели настроек этого мода.</value>
+    <value>No PNG images were detected in the specified directory, the specified directory can be found in Options Panel of this mod.</value>
   </data>
   <data name="ControlPanel_Opacity" xml:space="preserve">
     <value>Opacity</value>
   </data>
   <data name="ControlPanel_Position" xml:space="preserve">
-    <value>Положение</value>
+    <value>Position</value>
   </data>
   <data name="ControlPanel_ReloadTexture" xml:space="preserve">
-    <value>Перезагрузить текстуру</value>
+    <value>Reload texture</value>
   </data>
   <data name="ControlPanel_Reset" xml:space="preserve">
-    <value>Сброс к параметрам по умолчанию.</value>
+    <value>Reset to default parameters.</value>
   </data>
   <data name="ControlPanel_Rotation" xml:space="preserve">
-    <value>Поворот</value>
+    <value>Rotation</value>
   </data>
   <data name="ControlPanel_ScrollWheel" xml:space="preserve">
-    <value>Крутите колесо мыши для изменения, Shift X10, Ctrl X0.1</value>
+    <value>Scroll the wheel to change, Shift X10, Ctrl X0.1</value>
   </data>
   <data name="ControlPanel_SelectedImageWarning" xml:space="preserve">
-    <value>При выборе изображения необходимо загрузить информацию о пикселях изображения, и время загрузки зависит от количества пикселей.</value>
+    <value>When selected an image, the image pixel information needs to be loaded, and loading time depends on the number of pixels of image.</value>
   </data>
   <data name="ControlPanel_ShowImage" xml:space="preserve">
-    <value>Показать изображение</value>
+    <value>Show image</value>
   </data>
   <data name="ControlPanel_SideLength" xml:space="preserve">
-    <value>Длина стороны</value>
+    <value>Side length</value>
   </data>
   <data name="ControlPanel_Size" xml:space="preserve">
-    <value>Размер</value>
+    <value>Size</value>
   </data>
   <data name="ControlPanel_Yes" xml:space="preserve">
-    <value>Да</value>
+    <value>Yes</value>
   </data>
   <data name="LoadSettings" xml:space="preserve">
-    <value>Загрузка настроек</value>
+    <value>Load Settings</value>
   </data>
   <data name="MOD_Description" xml:space="preserve">
-    <value>Наложение изображений поверх карты, позволяет воссоздать реальный город.</value>
+    <value>Overlay images on top of the map, allowing you to replicate real city.</value>
   </data>
   <data name="OptionPanel_OpenPNGDirectory" xml:space="preserve">
-    <value>Открыть папку с PNG</value>
+    <value>Open PNG directory</value>
   </data>
   <data name="OptionPanel_PNGFilePath" xml:space="preserve">
-    <value>Путь к файлу PNG</value>
+    <value>PNG file path</value>
   </data>
   <data name="OptionPanel_PNGOptions" xml:space="preserve">
-    <value>Параметры PNG</value>
+    <value>PNG Options</value>
   </data>
   <data name="OptionPanel_ShowControlPanel" xml:space="preserve">
-    <value>Показать панель управления</value>
+    <value>Show control panel</value>
   </data>
   <data name="OptionPanel_ShowReloadResults" xml:space="preserve">
-    <value>Всегда показывать результат перезагрузки текстуры</value>
+    <value>Always show reload texture results</value>
   </data>
   <data name="ReloadError" xml:space="preserve">
     <value>Make sure the PNG file is properly placed.</value>
   </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
-    <value>Подходящие PNG-файлы не найдены.</value>
+    <value>No matching PNG files found.</value>
   </data>
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
-    <value>Перезагрузить {0} текстуру:</value>
+    <value>Reload {0} texture:</value>
   </data>
   <data name="ResetWarning" xml:space="preserve">
     <value>Are you sure you want to reset to the default parameters?</value>

@@ -202,21 +202,6 @@ Shift X10, Ctrl X0.1</value>
   <data name="ResetWarning" xml:space="preserve">
     <value>Sei sicuro di voler reimpostare ai parametri predefiniti?</value>
   </data>
-  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
-    <value>[ADD]Aggiunto il pulsante UUI per invocare il pannello di controllo.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]Aggiunta opzione avanzata per il reset della configurazione della mod.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
-    <value>[FIX]Risolto un problema con la trama di sfondo del pannello di controllo non visualizzata correttamente.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
-    <value>[FIX]Fissa l'eccezione lanciata quando non c'è nessun file.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
-    <value>[UPT]Aggiornamento stile interfaccia utente del pannello di opzione.</value>
-  </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
     <value>Aggiunta traduzione olandese.</value>
   </data>

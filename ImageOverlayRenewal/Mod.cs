@@ -29,11 +29,14 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
     };
 
     public override List<ModChangeLog> ChangeLog => new() {
+        new ModChangeLog(new Version(1, 9, 1), new(2023, 8, 5), new List<LogString> {
+            new(LogFlag.Updated, "Updated mod common."),
+            new(LogFlag.Updated, "Updated localization."),
+        }),
         new ModChangeLog(new Version(1, 9, 0), new(2023, 7, 3), new List<LogString> {
             new(LogFlag.Added, Localize.UpdateLog_V1_9_0ADD0),
             new(LogFlag.Added, Localize.UpdateLog_V1_9_0ADD1),
         }),
-
         new ModChangeLog(new Version(1, 8, 5), new(2023, 6, 13), new List<LogString> {
             new(LogFlag.Updated, Localize.UpdateLog_V1_8_5UPT0),
             new(LogFlag.Updated, Localize.UpdateLog_V1_8_5UPT1),
@@ -45,14 +48,6 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
             new(LogFlag.Updated, Localize.UpdateLog_V1_8_4UPT),
             new(LogFlag.Translation, Localize.UpdateLog_V1_8_4TRA0),
             new(LogFlag.Translation, Localize.UpdateLog_V1_8_4TRA1),
-        }),
-        new ModChangeLog(new Version(1, 8, 3), new(2023, 3, 22), new List<LogString> {
-            new(LogFlag.Updated, "[UPT]Updated to support game version 1.16.1"),
-            new(LogFlag.Updated, Localize.UpdateLog_V1_8_3UPT),
-            new(LogFlag.Added, Localize.UpdateLog_V1_8_3ADD1),
-            new(LogFlag.Added, Localize.UpdateLog_V1_8_3ADD2),
-            new(LogFlag.Fixed, Localize.UpdateLog_V1_8_3FIX),
-            new(LogFlag.Fixed, Localize.UpdateLog_V1_8_3FIX1),
-        })
+        }),      
     };
 }

@@ -118,114 +118,114 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ControlPanel_ApplyOpacity" xml:space="preserve">
-    <value>Применить непрозрачность</value>
+    <value>Aplicar opacidade</value>
   </data>
   <data name="ControlPanel_Custom" xml:space="preserve">
-    <value>Настраиваемый</value>
+    <value>Personalizado</value>
   </data>
   <data name="ControlPanel_Image" xml:space="preserve">
-    <value>Изображение</value>
+    <value>Imagem</value>
   </data>
   <data name="ControlPanel_LoopImage" xml:space="preserve">
-    <value>Loop image</value>
+    <value>Imagem em ciclo</value>
   </data>
   <data name="ControlPanel_No" xml:space="preserve">
-    <value>Нет</value>
+    <value>Não</value>
   </data>
   <data name="ControlPanel_NoPNG" xml:space="preserve">
-    <value>PNG-изображения не были обнаружены в указанном каталоге, каталог можно найти на Панели настроек этого мода.</value>
+    <value>Não foram detetadas imagens do tipo PNG neste diretório especificado, o diretório especificado pode ser encontrado no Painel de Opções deste mod.</value>
   </data>
   <data name="ControlPanel_Opacity" xml:space="preserve">
-    <value>Opacity</value>
+    <value>Opacidade</value>
   </data>
   <data name="ControlPanel_Position" xml:space="preserve">
-    <value>Положение</value>
+    <value>Posição</value>
   </data>
   <data name="ControlPanel_ReloadTexture" xml:space="preserve">
-    <value>Перезагрузить текстуру</value>
+    <value>Recarregar texturas</value>
   </data>
   <data name="ControlPanel_Reset" xml:space="preserve">
-    <value>Сброс к параметрам по умолчанию.</value>
+    <value>Redefinir para os valores padrão.</value>
   </data>
   <data name="ControlPanel_Rotation" xml:space="preserve">
-    <value>Поворот</value>
+    <value>Rotação</value>
   </data>
   <data name="ControlPanel_ScrollWheel" xml:space="preserve">
-    <value>Крутите колесо мыши для изменения, Shift X10, Ctrl X0.1</value>
+    <value>Role a roda para mudar, Shift X10, Ctrl X0.1</value>
   </data>
   <data name="ControlPanel_SelectedImageWarning" xml:space="preserve">
-    <value>При выборе изображения необходимо загрузить информацию о пикселях изображения, и время загрузки зависит от количества пикселей.</value>
+    <value>Quando selecionada uma imagem, a informação dos pixéis da imagem precisam de ser carregados, e o tempo de carregamento depende do número de pixéis da imagem.</value>
   </data>
   <data name="ControlPanel_ShowImage" xml:space="preserve">
-    <value>Показать изображение</value>
+    <value>Mostrar imagem</value>
   </data>
   <data name="ControlPanel_SideLength" xml:space="preserve">
-    <value>Длина стороны</value>
+    <value>Comprimento do lado</value>
   </data>
   <data name="ControlPanel_Size" xml:space="preserve">
-    <value>Размер</value>
+    <value>Tamanho</value>
   </data>
   <data name="ControlPanel_Yes" xml:space="preserve">
-    <value>Да</value>
+    <value>Sim</value>
   </data>
   <data name="LoadSettings" xml:space="preserve">
-    <value>Загрузка настроек</value>
+    <value>Carregar Definições</value>
   </data>
   <data name="MOD_Description" xml:space="preserve">
-    <value>Наложение изображений поверх карты, позволяет воссоздать реальный город.</value>
+    <value>Sobrepor imagens em cima do mapa, permitindo que repliques uma cidade real.</value>
   </data>
   <data name="OptionPanel_OpenPNGDirectory" xml:space="preserve">
-    <value>Открыть папку с PNG</value>
+    <value>Abrir diretório do PNG</value>
   </data>
   <data name="OptionPanel_PNGFilePath" xml:space="preserve">
-    <value>Путь к файлу PNG</value>
+    <value>Caminho do ficheiro PNG</value>
   </data>
   <data name="OptionPanel_PNGOptions" xml:space="preserve">
-    <value>Параметры PNG</value>
+    <value>Opções do PNG</value>
   </data>
   <data name="OptionPanel_ShowControlPanel" xml:space="preserve">
-    <value>Показать панель управления</value>
+    <value>Mostrar o painel de controlo</value>
   </data>
   <data name="OptionPanel_ShowReloadResults" xml:space="preserve">
-    <value>Всегда показывать результат перезагрузки текстуры</value>
+    <value>Mostrar sempre os resultados de recarga de texturas</value>
   </data>
   <data name="ReloadError" xml:space="preserve">
-    <value>Make sure the PNG file is properly placed.</value>
+    <value>Verifica se o ficheiro PNG está devidamente localizado.</value>
   </data>
   <data name="ReloadMessageBox_NoMatching" xml:space="preserve">
-    <value>Подходящие PNG-файлы не найдены.</value>
+    <value>Não foram encontrados ficheiros PNG correspondentes.</value>
   </data>
   <data name="ReloadMessageBox_Reload0Texture" xml:space="preserve">
-    <value>Перезагрузить {0} текстуру:</value>
+    <value>Recarregar a textura {0}:</value>
   </data>
   <data name="ResetWarning" xml:space="preserve">
-    <value>Are you sure you want to reset to the default parameters?</value>
+    <value>Tens a certeza que queres redefinir para os parâmetros padrão?</value>
   </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
-    <value>Added Dutch translation.</value>
+    <value>Adicionada tradução para holandês.</value>
   </data>
   <data name="UpdateLog_V1_8_4TRA1" xml:space="preserve">
-    <value>Added Korean translation.</value>
+    <value>Adicionada tradução para coreano.</value>
   </data>
   <data name="UpdateLog_V1_8_4UPT" xml:space="preserve">
-    <value>Updated to the latest common framework.</value>
+    <value>Atualizado para a última framework comum.</value>
   </data>
   <data name="UpdateLog_V1_8_5FIX0" xml:space="preserve">
-    <value>Fixed an issue where placing PNG files after loading the game would not display images.</value>
+    <value>Corrigido um problema onde ao colocar ficheiros PNG após os carregar, o jogo não mostrava as imagens.</value>
   </data>
   <data name="UpdateLog_V1_8_5FIX1" xml:space="preserve">
-    <value>Fixed an issue with incorrect PNG folder directory in the option panel under OSX system.</value>
+    <value>Corrigido um problema com o diretório de pastas PNG incorreto no painel de opções no sistema OSX.</value>
   </data>
   <data name="UpdateLog_V1_8_5UPT0" xml:space="preserve">
-    <value>Updated to support game version 1.17.1</value>
+    <value>Suporte para a versão do jogo 1.17.1 atualizada</value>
   </data>
   <data name="UpdateLog_V1_8_5UPT1" xml:space="preserve">
-    <value>UUI button and separate tool button are now optional.</value>
+    <value>Botão da UUI e botão da ferramenta separada são agora opcionais.</value>
   </data>
   <data name="UpdateLog_V1_9_0ADD0" xml:space="preserve">
-    <value>Added independent support for multiple image parameters.</value>
+    <value>Adicionado suporte independente para parâmetros de imagem múltiplos.</value>
   </data>
   <data name="UpdateLog_V1_9_0ADD1" xml:space="preserve">
-    <value>Added support for looping image shortcuts.</value>
+    <value>Adicionado suporte para atalhos de imagens em looping.</value>
   </data>
 </root>

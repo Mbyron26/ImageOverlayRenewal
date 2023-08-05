@@ -201,21 +201,6 @@
   <data name="ResetWarning" xml:space="preserve">
     <value>本当にデフォルトのパラメータにリセットしますか？</value>
   </data>
-  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
-    <value>[ADD]コントロールパネル起動用のUUIボタンを追加</value>
-  </data>
-  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]Modの設定をリセットする拡張オプションを追加</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
-    <value>[FIX]コントロールパネルの背景テクスチャが正しく表示されない問題を修正</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
-    <value>[FIX]ファイルが無い場合に発生する例外エラーを修正</value>
-  </data>
-  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
-    <value>[UPT]オプションパネルのUIコンポーネントを更新</value>
-  </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
     <value>オランダ語の翻訳を追加</value>
   </data>

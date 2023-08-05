@@ -202,21 +202,6 @@ Mayús x10, Ctrl x0.1</value>
   <data name="ResetWarning" xml:space="preserve">
     <value>Are you sure you want to reset to the default parameters?</value>
   </data>
-  <data name="UpdateLog_V1_8_3ADD1" xml:space="preserve">
-    <value>[ADD]Botón de UUI para invocar el panel de control.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3ADD2" xml:space="preserve">
-    <value>[ADD]Opción avanzada para restablecer la configuración del mod.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX" xml:space="preserve">
-    <value>[FIX]Textura de fondo del panel de control no mostrada correctamente.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3FIX1" xml:space="preserve">
-    <value>[FIX]Excepción cuando hay archivo.</value>
-  </data>
-  <data name="UpdateLog_V1_8_3UPT" xml:space="preserve">
-    <value>[UPT]Estilo de UI del panel de opciones.</value>
-  </data>
   <data name="UpdateLog_V1_8_4TRA0" xml:space="preserve">
     <value>Añadida traducción al alemán.</value>
   </data>
