@@ -13,7 +13,7 @@ internal class UIAtlas {
         get {
             if (imageOverlayRenewalAtlas is null) {
                 imageOverlayRenewalAtlas = MbyronModsCommon.UI.UIUtils.CreateTextureAtlas(nameof(ImageOverlayRenewalAtlas), $"{AssemblyUtils.CurrentAssemblyName}.UI.Resources.", SpriteParams);
-                InternalLogger.Log("Initialized ImageOverlayRenewalAtlas");
+                Mod.Log.Info("Initialized ImageOverlayRenewalAtlas");
             }
             return imageOverlayRenewalAtlas;
         }

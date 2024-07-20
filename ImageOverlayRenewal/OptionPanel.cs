@@ -13,7 +13,7 @@ public class OptionPanel : OptionPanelBase<Mod, Config, OptionPanel> {
         var d = Path.Combine(DataLocation.currentDirectory, "Files");
         if (!Directory.Exists(d)) {
             Directory.CreateDirectory(d);
-            InternalLogger.Log($"Create directory: {d}");
+            Mod.Log.Info($"Create directory: {d}");
         }
         return d;
     }

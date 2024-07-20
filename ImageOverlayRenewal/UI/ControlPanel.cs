@@ -171,7 +171,6 @@ internal class ControlPanel : ControlPanelBase<Mod, ControlPanel> {
 
     private void CallbackHandler() {
         SingletonManager<Manager>.Instance.SetCurrentImageInfoParm(SingletonManager<Manager>.Instance.GetOverlayTileSize(sizeDropDown.SelectedIndex), sideLengthField.Value, positionXField.Value, positionYField.Value, rotationField.Value, opacityField.Value);
-        InternalLogger.Log("CallbackHandler");
         SingletonMod<Mod>.Instance.SaveConfig();
     }
 

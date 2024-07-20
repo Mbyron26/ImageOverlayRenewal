@@ -19,7 +19,7 @@ internal class Manager : SingletonManager<Manager> {
         TextureData = new();
         LoadAllPNGs();
         if (TextureData.Count == 0) {
-            InternalLogger.Log("No PNG files were found");
+            Mod.Log.Warn("No PNG files were found");
         } else {
             ApplyTexture(TextureData.First().Name, true);
         }
@@ -112,7 +112,7 @@ internal class Manager : SingletonManager<Manager> {
             }
             Singleton<RenderOver>.instance.Register();
             SingletonMod<Mod>.Instance.SaveConfig();
-            InternalLogger.Log($"Loaded PNGs: {names}");
+            Mod.Log.Info($"Loaded PNGs: {names}");
         } else {
             Config.Instance.ImageConfig?.Clear();
         }
@@ -210,7 +210,7 @@ internal class Manager : SingletonManager<Manager> {
             }
             return names;
         } catch (Exception e) {
-            InternalLogger.Exception($"Get PNG files name falied", e);
+            Mod.Log.Error(e, $"Get PNG files name falied");
             return new string[] { "Null" };
         }
     }
@@ -237,7 +237,7 @@ public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISim
     public void Register() {
         if (!IsInit) {
             SimulationManager.RegisterManager(instance);
-            InternalLogger.Log("Register RenderOver");
+            Mod.Log.Info("Register RenderOver");
             IsInit = true;
         }
     }

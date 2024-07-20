@@ -20,7 +20,6 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
     public override BuildVersion VersionType => BuildVersion.StableRelease;
 #endif
     public override void SetModCulture(CultureInfo cultureInfo) => Localize.Culture = cultureInfo;
-    public override void IntroActions() => ExternalLogger.OutputPluginsList();
     protected override void SettingsUI(UIHelperBase helper) => OptionPanelManager<Mod, OptionPanel>.SettingsUI(helper);
 
     public override List<ConflictModInfo> ConflictMods { get; set; } = new() {
@@ -29,6 +28,10 @@ public override BuildVersion VersionType => BuildVersion.StableDebug;
     };
 
     public override List<ModChangeLog> ChangeLog => new() {
+        new ModChangeLog(new Version(1, 9, 2), new(2024, 7, 20), new List<LogString> {
+            new(LogFlag.Updated, "Code cleanup."),
+            new(LogFlag.Updated, "Updated mod common."),
+        }),
         new ModChangeLog(new Version(1, 9, 1), new(2023, 8, 5), new List<LogString> {
             new(LogFlag.Updated, "Updated mod common."),
             new(LogFlag.Updated, "Updated localization."),
