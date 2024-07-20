@@ -1,4 +1,8 @@
 ﻿
+V1.9.2
+[*]Code cleanup.
+[*]Updated mod common.
+
 V1.9.1
 [*]Updated mod common.
 [*]Updated localization.
