@@ -1,18 +1,22 @@
-﻿namespace ImageOverlayRenewal;
+﻿using CSShared.Extension;
+using CSShared.Manager;
+using CSShared.UI.ControlPanel;
 using ICities;
 using ImageOverlayRenewal.UI;
+
+namespace ImageOverlayRenewal;
 
 public class LoadingExtension : ModLoadingExtension<Mod> {
     public override void LevelLoaded(LoadMode mode) {
         if (mode == LoadMode.NewMap || mode == LoadMode.LoadMap || mode == LoadMode.NewGame || mode == LoadMode.LoadGame) {
-            SingletonManager<Manager>.Instance.Init();
+            ManagerPool.GetOrCreateManager<Manager>().Update();
         }
-        SingletonManager<ToolButtonManager>.Instance.Init();
-        ControlPanelManager<Mod, ControlPanel>.EventOnVisibleChanged += (_) => SingletonManager<ToolButtonManager>.Instance.UUIButtonIsPressed = _;
+        ManagerPool.GetOrCreateManager<ToolButtonManager>().Enable();
+        ControlPanelManager<Mod, ControlPanel>.EventOnVisibleChanged += (_) => ManagerPool.GetOrCreateManager<ToolButtonManager>().UUIButtonIsPressed = _;
     }
 
     public override void LevelUnloading() {
-        SingletonManager<ToolButtonManager>.Instance.DeInit();
-        ControlPanelManager<Mod, ControlPanel>.EventOnVisibleChanged -= (_) => SingletonManager<ToolButtonManager>.Instance.UUIButtonIsPressed = _;
+        ManagerPool.GetOrCreateManager<ToolButtonManager>().Disable();
+        ControlPanelManager<Mod, ControlPanel>.EventOnVisibleChanged -= (_) => ManagerPool.GetOrCreateManager<ToolButtonManager>().UUIButtonIsPressed = _;
     }
 }

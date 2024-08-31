@@ -1,13 +1,15 @@
-﻿namespace ImageOverlayRenewal.UI;
-using MbyronModsCommon;
-using ColossalFramework.UI;
+﻿using ColossalFramework.UI;
 using UnityEngine;
 using ColossalFramework;
+using CSShared.ToolButton;
+using CSShared.Tools;
+using CSShared.Common;
+using CSShared.UI.ControlPanel;
 
-internal sealed class ToolButtonManager : SingletonToolButtonManager { }
+namespace ImageOverlayRenewal.UI;
 
-internal class SingletonToolButtonManager : SingletonToolManager<SingletonToolButtonManager, ToolButton, Mod, Config> {
-    protected override Texture2D UUIIcon { get; } = MbyronModsCommon.UI.UIUtils.LoadTextureFromAssembly($"{AssemblyUtils.CurrentAssemblyName}.UI.Resources.InGameButton.png");
+internal class ToolButtonManager : UUIToolManagerBase<ToolButton, Mod, Config> {
+    protected override Texture2D UUIIcon { get; } = CSShared.UI.UIUtils.LoadTextureFromAssembly($"{AssemblyTools.CurrentAssemblyName}.UI.Resources.InGameButton.png");
     protected override string Tooltip => SingletonMod<Mod>.Instance.ModName + $" ({SavedInputKey.ToLocalizedString("KEYNAME", Config.Instance.ShowControlPanelHotkey.Encode())})";
 
     protected override void InGameToolButtonToggle(bool isOn) => ControlPanelManager<Mod, ControlPanel>.CallPanel();

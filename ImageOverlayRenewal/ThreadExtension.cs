@@ -1,5 +1,9 @@
-﻿namespace ImageOverlayRenewal;
+﻿using CSShared.Extension;
+using CSShared.Manager;
+using CSShared.UI.ControlPanel;
 using ImageOverlayRenewal.UI;
+
+namespace ImageOverlayRenewal;
 
 public class ThreadExtension : ModThreadExtensionBase {
     private bool showControlPanel;
@@ -10,7 +14,7 @@ public class ThreadExtension : ModThreadExtensionBase {
         base.OnUpdate(realTimeDelta, simulationTimeDelta);
 
         AddCallOnceInvoke(Config.Instance.ShowControlPanelHotkey.IsPressed(), ref showControlPanel, ControlPanelManager<Mod, ControlPanel>.CallPanel);
-        AddCallOnceInvoke(Config.Instance.ShowImageHotkey.IsPressed(), ref showImage, SingletonManager<Manager>.Instance.ShowImageByHotkey);
-        AddCallOnceInvoke(Config.Instance.LoopImage.IsPressed(), ref loopImage, SingletonManager<Manager>.Instance.LoopImage);
+        AddCallOnceInvoke(Config.Instance.ShowImageHotkey.IsPressed(), ref showImage, ManagerPool.GetOrCreateManager<Manager>().ShowImageByHotkey);
+        AddCallOnceInvoke(Config.Instance.LoopImage.IsPressed(), ref loopImage, ManagerPool.GetOrCreateManager<Manager>().LoopImage);
     }
 }
