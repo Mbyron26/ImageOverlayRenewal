@@ -1,6 +1,7 @@
-﻿namespace ImageOverlayRenewal;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using UnityEngine;
+
+namespace ImageOverlayRenewal.Data;
 
 public class ImageInfo {
     [XmlAttribute("Name")]
@@ -27,10 +28,7 @@ public class ImageInfo {
     [XmlIgnore]
     public Texture2D Texture { get; set; }
 
-    public ImageInfo(string name, OverlayTileSize size, int sideLength, int positionX, int positionY, float rotation, byte opacity, Texture2D texture) : this(name, size, sideLength, positionX, positionY, rotation, opacity) {
-        Texture = texture;
-    }
-
+    public ImageInfo(string name) => Name = name;
     public ImageInfo(string name, OverlayTileSize size, int sideLength, int positionX, int positionY, float rotation, byte opacity) : this(name) {
         Size = size;
         SideLength = sideLength;
@@ -39,11 +37,8 @@ public class ImageInfo {
         Rotation = rotation;
         Opacity = opacity;
     }
-
+    public ImageInfo(string name, OverlayTileSize size, int sideLength, int positionX, int positionY, float rotation, byte opacity, Texture2D texture) : this(name, size, sideLength, positionX, positionY, rotation, opacity) => Texture = texture;
     public ImageInfo(string name, Texture2D texture) : this(name) => Texture = texture;
-
-    public ImageInfo(string name) => Name = name;
-
     public ImageInfo() { }
 
     public void SetDefault() {

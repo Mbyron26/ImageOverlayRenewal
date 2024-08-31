@@ -1,5 +1,7 @@
 ﻿namespace ImageOverlayRenewal.UI;
 using ColossalFramework.UI;
+using CSShared.Debug;
+using CSShared.Tools;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +14,8 @@ internal class UIAtlas {
     public static UITextureAtlas ImageOverlayRenewalAtlas {
         get {
             if (imageOverlayRenewalAtlas is null) {
-                imageOverlayRenewalAtlas = MbyronModsCommon.UI.UIUtils.CreateTextureAtlas(nameof(ImageOverlayRenewalAtlas), $"{AssemblyUtils.CurrentAssemblyName}.UI.Resources.", SpriteParams);
-                Mod.Log.Info("Initialized ImageOverlayRenewalAtlas");
+                imageOverlayRenewalAtlas = CSShared.UI.UIUtils.CreateTextureAtlas(nameof(ImageOverlayRenewalAtlas), $"{AssemblyTools.CurrentAssemblyName}.UI.Resources.", SpriteParams);
+                LogManager.GetLogger().Info("Initialized ImageOverlayRenewalAtlas");
             }
             return imageOverlayRenewalAtlas;
         }

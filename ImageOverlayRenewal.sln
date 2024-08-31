@@ -5,11 +5,11 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageOverlayRenewal", "ImageOverlayRenewal\ImageOverlayRenewal.csproj", "{664FF6F6-8D36-4FFB-A9B7-ACFB119605E1}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MbyronModsCommon", "..\..\..\MbyronModsCommon\MbyronModsCommon\MbyronModsCommon.shproj", "{6C5E0FC8-FBAA-4FA1-AF55-FD675486E4E7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{C204BD80-EBAB-48E9-BEF0-8DE999E8DB42}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ToolButtonShared", "..\..\..\MbyronModsCommon\ToolButtonShared\ToolButtonShared.shproj", "{9645319F-436A-46F3-B8F1-F9A4BBADA080}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CSShared", "..\..\..\CSShared\CSShared\CSShared.shproj", "{9C0013DB-AC35-420D-97BB-F868086E1521}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CSShared.ToolButton", "..\..\..\CSShared\CSShared.ToolButton\CSShared.ToolButton.shproj", "{B8BC3C15-A49C-4116-85AD-617389C4A9FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,16 +32,16 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6C5E0FC8-FBAA-4FA1-AF55-FD675486E4E7} = {C204BD80-EBAB-48E9-BEF0-8DE999E8DB42}
-		{9645319F-436A-46F3-B8F1-F9A4BBADA080} = {C204BD80-EBAB-48E9-BEF0-8DE999E8DB42}
+		{9C0013DB-AC35-420D-97BB-F868086E1521} = {C204BD80-EBAB-48E9-BEF0-8DE999E8DB42}
+		{B8BC3C15-A49C-4116-85AD-617389C4A9FD} = {C204BD80-EBAB-48E9-BEF0-8DE999E8DB42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A55389A-AF81-47B2-BB0D-AEBAE481E400}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\..\..\MbyronModsCommon\MbyronModsCommon\MbyronModsCommon.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
-		..\..\..\MbyronModsCommon\ToolButtonShared\ToolButtonShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
-		..\..\..\MbyronModsCommon\MbyronModsCommon\MbyronModsCommon.projitems*{6c5e0fc8-fbaa-4fa1-af55-fd675486e4e7}*SharedItemsImports = 13
-		..\..\..\MbyronModsCommon\ToolButtonShared\ToolButtonShared.projitems*{9645319f-436a-46f3-b8f1-f9a4bbada080}*SharedItemsImports = 13
+		..\..\..\CSShared\CSShared.ToolButton\CSShared.ToolButton.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		..\..\..\CSShared\CSShared\CSShared.projitems*{664ff6f6-8d36-4ffb-a9b7-acfb119605e1}*SharedItemsImports = 5
+		..\..\..\CSShared\CSShared\CSShared.projitems*{9c0013db-ac35-420d-97bb-f868086e1521}*SharedItemsImports = 13
+		..\..\..\CSShared\CSShared.ToolButton\CSShared.ToolButton.projitems*{b8bc3c15-a49c-4116-85ad-617389c4a9fd}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

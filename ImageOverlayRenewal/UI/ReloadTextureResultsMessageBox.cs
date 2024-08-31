@@ -1,19 +1,21 @@
-﻿namespace ImageOverlayRenewal.UI;
-using MbyronModsCommon;
-using ModLocalize = Localize;
+﻿using CSShared.Manager;
+using CSShared.UI.MessageBoxes;
+
+namespace ImageOverlayRenewal.UI;
 
 internal class ReloadTextureResultsMessageBox : MessageBoxBase {
     public void Init() {
-        var count = SingletonManager<Manager>.Instance.TextureData.Count;
+        var count = ManagerPool.GetOrCreateManager<Manager>().TextureData.Count;
         if (count > 0) {
-            TitleText = string.Format(ModLocalize.ReloadMessageBox_Reload0Texture, count);
-            foreach (var item in SingletonManager<Manager>.Instance.TextureData) {
+            TitleText = string.Format(Localize("ReloadMessageBox_Reload0Texture"), count);
+            foreach (var item in ManagerPool.GetOrCreateManager<Manager>().TextureData) {
                 AddLabelInMainPanel(item.Name);
             }
-        } else {
-            TitleText = ModLocalize.ReloadMessageBox_NoMatching;
-            AddLabelInMainPanel(ModLocalize.ReloadError);
         }
-        AddButtons(1, 1, CommonLocalize.MessageBox_OK, Close);
+        else {
+            TitleText = Localize("ReloadMessageBox_NoMatching");
+            AddLabelInMainPanel(Localize("ReloadError"));
+        }
+        AddButtons(1, 1, Localize("MessageBox_OK"), Close);
     }
 }

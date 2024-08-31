@@ -1,6 +1,10 @@
-﻿namespace ImageOverlayRenewal;
-using ColossalFramework;
+﻿using ColossalFramework;
 using ColossalFramework.Math;
+using CSShared.Common;
+using CSShared.Debug;
+using CSShared.Manager;
+using CSShared.UI.ControlPanel;
+using ImageOverlayRenewal.Data;
 using ImageOverlayRenewal.UI;
 using System;
 using System.Collections.Generic;
@@ -8,35 +12,35 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-internal class Manager : SingletonManager<Manager> {
-    public override bool IsInit { get; set; }
+namespace ImageOverlayRenewal;
+
+internal class Manager : IManager {
     public List<ImageInfo> TextureData { get; private set; }
-    public string PNGFormat => "*.png";
+    private string PNGFormat { get; } = "*.png";
     public string PNGDirectory => "Files/";
     public string CurrentPNG { get; set; } = string.Empty;
 
-    public override void Init() {
-        TextureData = new();
+    public void Update() {
         LoadAllPNGs();
-        if (TextureData.Count == 0) {
-            Mod.Log.Warn("No PNG files were found");
-        } else {
+        if (!TextureData.Any()) {
+            LogManager.GetLogger().Info("No PNG files found");
+        }
+        else {
             ApplyTexture(TextureData.First().Name, true);
         }
-        IsInit = true;
     }
 
-    public override void DeInit() {
-        TextureData = null;
-        IsInit = false;
+    public void OnCreated() {
+        TextureData = new();
     }
 
     public void LoopImage() {
-        if (!IsInit || TextureData.Count == 0 || TextureData.Count == 1)
+        if (TextureData.Count <= 1)
             return;
         if (TextureData.FindIndex(_ => _.Name == CurrentPNG) + 1 > (TextureData.Count - 1)) {
-            CurrentPNG = TextureData.FirstOrDefault().Name;     
-        } else {
+            CurrentPNG = TextureData.FirstOrDefault().Name;
+        }
+        else {
             CurrentPNG = TextureData[TextureData.FindIndex(_ => _.Name == CurrentPNG) + 1].Name;
         }
         ApplyTexture(CurrentPNG);
@@ -49,7 +53,7 @@ internal class Manager : SingletonManager<Manager> {
         return imageInfo;
     }
 
-    public void SetCurrentImageInfoParm(OverlayTileSize size, int sideLength, int positionX, int positionY, float rotation, byte opacity) {
+    public void SetCurrentImageInfoParam(OverlayTileSize size, int sideLength, int positionX, int positionY, float rotation, byte opacity) {
         var image = GetCurrentImageInfo();
         image.Size = size;
         image.SideLength = sideLength;
@@ -59,7 +63,7 @@ internal class Manager : SingletonManager<Manager> {
         image.Opacity = opacity;
     }
 
-    public void ReadCurrentImageInfoParm(ref OverlayTileSize size, ref int sideLength, ref float positionX, ref float positionY, ref float rotation, ref int opacity) {
+    public void ReadCurrentImageInfoParam(ref OverlayTileSize size, ref int sideLength, ref float positionX, ref float positionY, ref float rotation, ref int opacity) {
         var image = GetCurrentImageInfo();
         size = image.Size;
         sideLength = image.SideLength;
@@ -80,14 +84,15 @@ internal class Manager : SingletonManager<Manager> {
 
     public void ApplyTexture(string name, bool isFlip = true) {
         CurrentPNG = name;
-        ApplayOpacity(isFlip);
+        ApplyOpacity(isFlip);
+        LogManager.GetLogger().Info($"Apply texture: {name}");
     }
 
     public void LoadAllPNGs() {
         TextureData.Clear();
         DirectoryInfo directoryInfo = new(PNGDirectory);
         FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
-        if (files.Length > 0) {
+        if (files.Any()) {
             for (int i = 0; i < files.Length; i++) {
                 var fullName = files[i].FullName;
                 var name = Path.GetFileNameWithoutExtension(fullName);
@@ -104,17 +109,20 @@ internal class Manager : SingletonManager<Manager> {
                 TextureData.Add(imageInfo);
             }
             Config.Instance.ImageConfig.Clear();
-            TextureData.ForEach(a => Config.Instance.ImageConfig.Add(a));
-
+            foreach (var item in TextureData) {
+                Config.Instance.ImageConfig.Add(item);
+            }
             string names = string.Empty;
             foreach (var item in TextureData) {
                 names += item.Name + ", ";
             }
+            Config.Save();
             Singleton<RenderOver>.instance.Register();
-            SingletonMod<Mod>.Instance.SaveConfig();
-            Mod.Log.Info($"Loaded PNGs: {names}");
-        } else {
+            LogManager.GetLogger().Info($"Loaded PNGs: {names}");
+        }
+        else {
             Config.Instance.ImageConfig?.Clear();
+            Config.Save();
         }
     }
 
@@ -142,14 +150,15 @@ internal class Manager : SingletonManager<Manager> {
         _ => 0
     };
 
-    public void ApplayOpacity(bool isFlip) {
-        if (TextureData is null || TextureData.Count == 0)
+    public void ApplyOpacity(bool isFlip) {
+        if (TextureData is null || !TextureData.Any())
             return;
         var image = TextureData.Find(_ => _.Name == CurrentPNG);
         if (image is not null && image.Texture is not null) {
             if (!isFlip) {
                 image.Texture = SetOpacity(image.Texture, GetOpacity());
-            } else {
+            }
+            else {
                 image.Texture = FlipTexture(image.Texture);
                 image.Texture = SetOpacity(image.Texture, GetOpacity());
             }
@@ -184,37 +193,6 @@ internal class Manager : SingletonManager<Manager> {
 
     public byte GetOpacity() => (byte)Mathf.Clamp((int)Math.Ceiling(GetCurrentImageInfo().Opacity / 100m * 255), 0, 255);
 
-    [Obsolete]
-    public string[] GetAllPNGsPath(bool isok) {
-        DirectoryInfo directoryInfo = new(PNGDirectory);
-        FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
-        if (files.Length > 0) {
-            string[] buffer = new string[files.Length];
-            for (int i = 0; i < files.Length; i++) {
-                buffer[i] = files[i].FullName;
-            }
-            return buffer;
-        } else {
-            return null;
-        }
-    }
-
-    [Obsolete]
-    public string[] GetAllPNGNames() {
-        try {
-            DirectoryInfo directoryInfo = new(PNGDirectory);
-            FileInfo[] files = directoryInfo.GetFiles(PNGFormat);
-            string[] names = new string[files.Length];
-            for (int i = 0; i < files.Length; i++) {
-                names[i] = files[i].Name;
-            }
-            return names;
-        } catch (Exception e) {
-            Mod.Log.Error(e, $"Get PNG files name falied");
-            return new string[] { "Null" };
-        }
-    }
-
     public Dictionary<OverlayTileSize, float> TilesSizeData { get; } = new() {
         {OverlayTileSize.Small, 960f },
         {OverlayTileSize.Medium,2880f},
@@ -230,6 +208,18 @@ internal class Manager : SingletonManager<Manager> {
         _ => 480,
     };
 
+    public void OnReleased() => TextureData.Clear();
+
+    public void Reset() {
+        TextureData.Clear();
+        LoadAllPNGs();
+        if (!TextureData.Any()) {
+            LogManager.GetLogger().Info("No PNG files found");
+        }
+        else {
+            ApplyTexture(TextureData.First().Name, true);
+        }
+    }
 }
 
 public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISimulationManager, IRenderableManager {
@@ -237,7 +227,7 @@ public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISim
     public void Register() {
         if (!IsInit) {
             SimulationManager.RegisterManager(instance);
-            Mod.Log.Info("Register RenderOver");
+            LogManager.GetLogger().Info("Register RenderOver");
             IsInit = true;
         }
     }
@@ -246,7 +236,7 @@ public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISim
         base.EndOverlayImpl(cameraInfo);
         if (!Config.Instance.ShowImage)
             return;
-        var image = SingletonManager<Manager>.Instance.GetCurrentImageInfo();
+        var image = ManagerPool.GetOrCreateManager<Manager>().GetCurrentImageInfo();
         float x = image.PositionX, y = image.PositionY;
         float sclx = image.SideLength, scly = image.SideLength;
         Quaternion rot = Quaternion.Euler(0, image.Rotation, 0);
@@ -262,7 +252,7 @@ public class RenderOver : SimulationManagerBase<RenderOver, MonoBehaviour>, ISim
         position.c = rot * (position.c - center) + center;
         position.d = rot * (position.d - center) + center;
 
-        RenderManager.instance.OverlayEffect.DrawQuad(cameraInfo, SingletonManager<Manager>.Instance.GetCurrentTexture(), Color.white, position, -1f, 1800f, false, true);
+        RenderManager.instance.OverlayEffect.DrawQuad(cameraInfo, ManagerPool.GetOrCreateManager<Manager>().GetCurrentTexture(), Color.white, position, -1f, 1800f, false, true);
     }
 }
 
