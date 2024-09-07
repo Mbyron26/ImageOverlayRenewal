@@ -36,12 +36,12 @@
   "UpdateLog_V1_8_5UPT1": "Los botones de UUI y el botón de herramienta por separado, ahora son opcionales.",
   "UpdateLog_V1_9_0ADD0": "Se ha añadido soporte independiente de parámetros para múltiples imágenes.",
   "UpdateLog_V1_9_0ADD1": "Añadido soporte para atajos de bucle de imágenes.",
-  "Changelog_1_9_1UPT": "Updated mod common.",
-  "Changelog_1_9_1TRA": "Updated localization.",
-  "Changelog_1_9_2UPT0": "Updated mod common.",
-  "Changelog_1_9_2UPT1": "Code cleanup.",
-  "Changelog_1_9_3_0": "Code cleanup.",
-  "Changelog_1_9_3_1": "Updated to CSShared framework.",
-  "Changelog_1_9_3_2": "Remove Harmony dependency.",
-  "Changelog_1_9_3_3": "Updated localization."
+  "Changelog_1_9_1UPT": "Mod common actualizado.",
+  "Changelog_1_9_1TRA": "Traducción actualizada.",
+  "Changelog_1_9_2UPT0": "Mod common actualizado.",
+  "Changelog_1_9_2UPT1": "Limpieza de código.",
+  "Changelog_1_9_3_0": "Limpieza de código.",
+  "Changelog_1_9_3_1": "Se actualizó el framework CSShared.",
+  "Changelog_1_9_3_2": "Se eliminó la dependencia de Harmony.",
+  "Changelog_1_9_3_3": "Traducción actualizada."
 }
