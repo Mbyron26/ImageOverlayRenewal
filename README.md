@@ -1,5 +1,9 @@
 # Overlay images on top of the map, allowing you to replicate real city.
 
+[![Changelog](https://img.shields.io/badge/Changelog-Click%20to%20View-blue)](CHANGELOG.md)
+[![Stable](https://img.shields.io/badge/Stable%20Version-1.10-green)](https://steamcommunity.com/sharedfiles/filedetails/?id=2616880500)
+[![Beta](https://img.shields.io/badge/Beta%20Version-1.10-orange)](https://steamcommunity.com/sharedfiles/filedetails/?id=2671781645)
+
 ![d](https://i.imgur.com/9ms8DIe.png)
 
 ## Directions
@@ -22,8 +26,8 @@ The site is available for satellite download.
 [![图片描述]( https://imgur.com/mzpNwS8.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2881031511)
 
 ## Language support
-If you want to improve the translation, please go to: [Crowdin - Game Anarchy Project](https://crowdin.com/project/image-overlay-renewal) and [Crowdin - CSShared Project](https://crowdin.com/project/csshared)
+If you want to improve the translation, please go to: [Crowdin - Image Overlay Renewal Project](https://crowdin.com/project/image-overlay-renewal) and [Crowdin - CSLModsCommon Project](https://crowdin.com/project/csshared)
 
 
 ## Discussion and feedback
-[Discord](https://discord.gg/ZxbyzmvGxG)
+[![Discord](https://img.shields.io/badge/Discord-Chat-5865F2?style=flat&logo=discord&logoColor=white)](https://discord.gg/ZxbyzmvGxG)
