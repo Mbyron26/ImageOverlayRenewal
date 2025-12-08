@@ -1,0 +1,8 @@
+﻿Version 1.10
+[list]
+[*] Updated to support game version 1.20.1
+[*] Updated to CSLModsCommon framework 1.0
+[*] This update automatically resets all settings.
+[*] Optimized algorithm logic to improve texture processing speed.
+[*] Resolved unpredictable image inversion triggered when switching between images.
+[/list]
