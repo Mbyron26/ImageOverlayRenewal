@@ -14,20 +14,21 @@
 - Use Control + I (default key) to open the Control Panel and adjust your image parameters.
 
 ## Recommended map making related website
-- [terrain.party](http://terrain.party/), the site is no longer able to generate terrain elevation maps, but you can still download 81 grids of latitude and longitude, which can be used to download satellite maps.
-- [Heightmap](https://heightmap.skydark.pl/)
-This site, where you can download height maps. Probably the only available grayscale rendering site in existence.
-- [Google Map Customizer](http://www.chengfolio.com/google_map_customizer)
-The site is available for satellite download.
+
+- [Terrain Party](http://terrain.party/): This site can no longer generate terrain elevation maps, but you can still download 81 latitude/longitude grids for satellite map downloads.
+- [Heightmap](https://heightmap.skydark.pl/): Provides downloadable height maps. It is likely the only available site offering grayscale terrain renderings.
+- [Google Map Customizer](http://www.chengfolio.com/google_map_customizer): Allows downloading satellite imagery.
 
 ## Incompatible Mods
 - Image Overlay
 - Overlayer v2
+
 [![图片描述]( https://imgur.com/mzpNwS8.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2881031511)
 
-## Language support
-If you want to improve the translation, please go to: [Crowdin - Image Overlay Renewal Project](https://crowdin.com/project/image-overlay-renewal) and [Crowdin - CSLModsCommon Project](https://crowdin.com/project/csshared)
+## Localization
+To help improve translations, please contribute on Crowdin:
 
+[![Crowdin](https://img.shields.io/badge/Crowdin-Translate-2E3340?style=flat&logo=crowdin&logoColor=white)](https://crowdin.com/project/image-overlay-renewal)
 
 ## Discussion and feedback
 [![Discord](https://img.shields.io/badge/Discord-Chat-5865F2?style=flat&logo=discord&logoColor=white)](https://discord.gg/ZxbyzmvGxG)
