@@ -1,4 +1,9 @@
 {
+  "Transpose": "转置",
+  "FlipVertical": "垂直翻转",
+  "TextureTransformMode": "纹理转换模式",
+  "TextureTransformModeDescription": "该选项会影响 PNG 图像的显示方式。垂直翻转为高性能模式，转置为旧版本兼容模式，仅允许在进入游戏前修改。",
+  "Apply": "应用",
   "ControlPanel_ApplyOpacity": "应用不透明度",
   "ControlPanel_Custom": "自定义",
   "ControlPanel_Image": "图像",
@@ -42,5 +47,8 @@
   "Changelog_v1_9_4_Translation": "更新了翻译。",
   "Changelog_v1_10_0_Attention": "此更新将自动重置所有设置。",
   "Changelog_v1_10_0_Optimized": "优化算法逻辑以提高纹理处理速度。",
-  "Changelog_v1_10_0_Fixed": "修复游戏工具按钮未显示的问题。"
+  "Changelog_v1_10_0_Fixed": "修复游戏工具按钮未显示的问题。",
+  "Changelog_v1_10_1_Added": "添加 PNG 图像加载模式。",
+  "Changelog_v1_10_1_Optimized": "优化不透明度调整 UI。",
+  "Changelog_v1_10_1_Fixed": "修复在地图编辑器模式中无法调用控制面板的问题。"
 }

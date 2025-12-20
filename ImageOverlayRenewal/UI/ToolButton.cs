@@ -1,16 +1,12 @@
-﻿using CSLModsCommon.ToolButton;
+﻿using ColossalFramework.UI;
+using CSLModsCommon.ToolButton;
 using UnityEngine;
 
 namespace ImageOverlayRenewal.UI;
 
 internal class ToolButton : ToolButtonBase {
-    public override void Start() {
-        base.Start();
-        _fgAtlas = ModAtlasLoader.ModAtlas;
-        OffVisuals.FgSprites.SetValues(ModAtlasLoader.InGameButton);
-        OnVisuals.FgSprites.SetValues(ModAtlasLoader.InGameButton);
-        _renderFg = true;
-    }
+    protected override UITextureAtlas ButtonAtlas { get; }= ModAtlasLoader.ModAtlas;
+    protected override string ButtonSpriteName { get; } = ModAtlasLoader.InGameButton;
 
     protected override Vector2 GetDefaultPosition() => new(ScreenFixedSize.x - 60f, ScreenFixedSize.y * 3f / 4f);
 }

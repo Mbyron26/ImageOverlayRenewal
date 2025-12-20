@@ -6,6 +6,7 @@ using ColossalFramework;
 using CSLModsCommon;
 using CSLModsCommon.KeyBindings;
 using CSLModsCommon.Manager;
+using CSLModsCommon.Utilities;
 using ICities;
 using ImageOverlayRenewal.Data;
 using ImageOverlayRenewal.Settings;
@@ -30,7 +31,7 @@ internal class ImageOverlayManager : ManagerBase {
         _modSetting = _settingManager.GetSetting<ModSetting>();
         _keyBindingManager = Domain.GetOrCreateManager<KeyBindingManager>();
         _inGameToolButtonManager = Domain.GetOrCreateManager<InGameToolButtonManager>();
-        AllOverlayData = new List<OverlayData>();
+        AllOverlayData = [];
     }
 
     protected override void OnGameLoaded(LoadContext context) {
@@ -130,6 +131,11 @@ internal class ImageOverlayManager : ManagerBase {
     }
 
     private void LoadAllPngs() {
+        using var pc = PerformanceCounter.Start(v => Logger.Verbose($"Load all PNGs took {v.TotalMilliseconds} ms"));
+        foreach (var overlayData in AllOverlayData) {
+            UnityEngine.Object.Destroy(overlayData.Texture);
+        }
+
         AllOverlayData.Clear();
         DirectoryInfo directoryInfo = new(PngDirectory);
         var files = directoryInfo.GetFiles(PngFormat);
@@ -142,7 +148,13 @@ internal class ImageOverlayManager : ManagerBase {
                 try {
                     var bytes = File.ReadAllBytes(fullName);
                     texture.LoadImage(bytes);
-                    FlipTextureVertically(texture);
+                    if (_modSetting.TransformMode == TextureTransformMode.FlipVertical)
+                        FlipTextureVertically(texture);
+                    else {
+                        var oldTexture = texture;
+                        texture = TransposeTexture(oldTexture);
+                        UnityEngine.Object.Destroy(oldTexture);
+                    }
                 }
                 catch (Exception ex) {
                     Logger.Warn(ex, $"Failed to load image {fullName}");
@@ -170,7 +182,7 @@ internal class ImageOverlayManager : ManagerBase {
         }
     }
 
-    private void FlipTextureVertically(Texture2D texture) {
+    private static void FlipTextureVertically(Texture2D texture) {
         var width = texture.width;
         var height = texture.height;
         var pixels = texture.GetPixels32();
@@ -182,5 +194,32 @@ internal class ImageOverlayManager : ManagerBase {
 
         texture.SetPixels32(flipped);
         texture.Apply();
+    }
+
+    private static Texture2D TransposeTexture(Texture2D texture) {
+        var width = texture.width;
+        var height = texture.height;
+
+        var dst = new Texture2D(
+            height,
+            width,
+            texture.format,
+            texture.mipmapCount > 1
+        );
+
+        var srcPixels = texture.GetPixels32();
+        var dstPixels = new Color32[srcPixels.Length];
+
+        for (var y = 0; y < height; y++) {
+            var srcRow = y * width;
+            for (var x = 0; x < width; x++) {
+                dstPixels[x * height + y] = srcPixels[srcRow + x];
+            }
+        }
+
+        dst.SetPixels32(dstPixels);
+        dst.Apply();
+
+        return dst;
     }
 }

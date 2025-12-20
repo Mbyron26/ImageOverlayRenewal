@@ -1,4 +1,9 @@
 {
+  "Transpose": "Transponer",
+  "FlipVertical": "Voltear verticalmente",
+  "TextureTransformMode": "Modo de transformación de textura",
+  "TextureTransformModeDescription": "Esta opción afecta a cómo se muestran las imágenes PNG. Voltear verticalmente es el modo de alto rendimiento, mientras que Transponer es el modo de compatibilidad heredada. Solo se puede cambiar antes de entrar en el juego.",
+  "Apply": "Aplicar",
   "ControlPanel_ApplyOpacity": "Aplicar opacidad",
   "ControlPanel_Custom": "Personalizado",
   "ControlPanel_Image": "Imagen",
@@ -23,12 +28,12 @@
   "ResetWarning": "¿Está seguro de que desea restablecer a los parámetros predeterminados?",
   "Changelog_v1_8_4_Translation": "Added Dutch translation.",
   "Changelog_v1_8_4_Translation1": "Added Korean translation.",
-  "Changelog_v1_8_4_Updated": "Updated to the latest common framework.",
+  "Changelog_v1_8_4_Updated": "Actualizado al último framework común.",
   "Changelog_v1_8_5_Fixed": "Fixed an issue where placing PNG files after loading the game would not display images.",
   "Changelog_v1_8_5_Fixed1": "Fixed an issue with incorrect PNG folder directory in the option panel under OSX system.",
-  "Changelog_v1_8_5_Updated": "Updated to support game version 1.17.1",
+  "Changelog_v1_8_5_Updated": "Actualizado para soportar versión del juego 1.17.1",
   "Changelog_v1_8_5_Updated1": "UUI button and separate tool button are now optional.",
-  "Changelog_v1_9_0_Added": "Added independent support for multiple image parameters.",
+  "Changelog_v1_9_0_Added": "Se ha añadido soporte independiente de parámetros para múltiples imágenes.",
   "Changelog_v1_9_0_Added1": "Added support for looping image shortcuts.",
   "Changelog_v1_9_1_Updated": "Updated mod common.",
   "Changelog_v1_9_1_Translation": "Updated localization.",
@@ -42,5 +47,8 @@
   "Changelog_v1_9_4_Translation": "Updated localization.",
   "Changelog_v1_10_0_Attention": "This update automatically resets all settings.",
   "Changelog_v1_10_0_Optimized": "Optimized algorithm logic to improve texture processing speed.",
-  "Changelog_v1_10_0_Fixed": "Resolved unpredictable image inversion triggered when switching between images."
+  "Changelog_v1_10_0_Fixed": "Resolved unpredictable image inversion triggered when switching between images.",
+  "Changelog_v1_10_1_Added": "Added PNG image loading mode.",
+  "Changelog_v1_10_1_Optimized": "Optimized opacity adjustment UI.",
+  "Changelog_v1_10_1_Fixed": "Fixed the issue where the control panel cannot be invoked in the map editor mode."
 }

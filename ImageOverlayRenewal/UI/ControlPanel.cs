@@ -3,6 +3,7 @@ using ColossalFramework.UI;
 using CSLModsCommon.Localization;
 using CSLModsCommon.Manager;
 using CSLModsCommon.UI;
+using CSLModsCommon.UI.Buttons;
 using CSLModsCommon.UI.Containers;
 using CSLModsCommon.UI.ControlPanel;
 using CSLModsCommon.UI.Dialogs;
@@ -73,9 +74,18 @@ internal class ControlPanel : ControlPanelBase {
 
         mainControlSection.AddButton(Translations.ControlPanel_Reset, null, SharedTranslations.Reset, null, onButtonClicked: _ => ResetButtonClicked());
 
-        _opacityField = mainControlSection.AddByteField(Translations.ControlPanel_Opacity, null, _imageOverlayManager.GetCurrentImageInfo().Opacity, 1, 100, 1, _ => UpdateImageData()).Control;
-
-        mainControlSection.AddButton(string.Empty, null, Translations.ControlPanel_ApplyOpacity, null, onButtonClicked: _ => _imageOverlayManager.ApplyOpacity());
+        mainControlSection.AddEmptyLiteContainer(Translations.ControlPanel_Opacity, null, c => {
+            var container = c.Control;
+            container.AutoLayout = true;
+            container.ColumnGap = 6;
+            container.Direction = FlexDirection.Row;
+            container.AutoFitChildrenHorizontally = true;
+            container.AutoFitChildrenVertically = true;
+            _opacityField = container.AddUIComponent<ByteValueField>();
+            SettingsSection.SetValueFieldSettings<ByteValueField, byte>(_opacityField, _imageOverlayManager.GetCurrentImageInfo().Opacity, 1, 100, 10, _ => UpdateImageData());
+            var applyButton = container.AddUIComponent<NormalButton>();
+            SettingsSection.SetButtonSettings(applyButton, Translations.Apply, onButtonClicked: _ => _imageOverlayManager.ApplyOpacity());
+        });
 
         #endregion
 
@@ -103,16 +113,16 @@ internal class ControlPanel : ControlPanelBase {
         parametersSection.AddDropDown(Translations.ControlPanel_Size, null, _imageSizeItems, v => v.Value == tileSize, OnSizeDropDownSelectionChanged, null, onLogicCreated: logic => _sizeDropDownLogic = logic);
 
         _sideLengthField = parametersSection.AddIntField(Translations.ControlPanel_SideLength, null, _imageOverlayManager.GetCurrentImageInfo().SideLength, 10, MaxSideLength, 10, v => {
-                var index = v switch {
-                    960 => 1,
-                    2880 => 2,
-                    4800 => 3,
-                    8640 => 4,
-                    _ => 0
-                };
-                _sizeDropDownLogic.Select(index);
-                UpdateImageData();
-            })
+            var index = v switch {
+                960 => 1,
+                2880 => 2,
+                4800 => 3,
+                8640 => 4,
+                _ => 0
+            };
+            _sizeDropDownLogic.Select(index);
+            UpdateImageData();
+        })
             .Control;
 
         _positionXField = parametersSection.AddIntField(Translations.ControlPanel_Position + " X", null, _imageOverlayManager.GetCurrentImageInfo().PositionX, -10000, 10000, 10, _ => UpdateImageData()).Control;

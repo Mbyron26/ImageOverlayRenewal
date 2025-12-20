@@ -1,4 +1,9 @@
 {
+  "Transpose": "Transpose",
+  "FlipVertical": "Flip Vertical",
+  "TextureTransformMode": "Texture Transform Mode",
+  "TextureTransformModeDescription": "This option affects how PNG images are displayed. FlipVertical is the high-performance mode, while Transpose is the legacy compatibility mode. It can only be changed before entering the game.",
+  "Apply": "Apply",
   "ControlPanel_ApplyOpacity": "應用透明度",
   "ControlPanel_Custom": "自訂",
   "ControlPanel_Image": "圖片",
@@ -42,5 +47,8 @@
   "Changelog_v1_9_4_Translation": "更新本地化翻譯。",
   "Changelog_v1_10_0_Attention": "此更新會自動重置所有設定。",
   "Changelog_v1_10_0_Optimized": "優化演算法邏輯以提升材質處理速度。",
-  "Changelog_v1_10_0_Fixed": "修正切換圖片時會觸發不可預期的圖片翻轉問題。"
+  "Changelog_v1_10_0_Fixed": "修正切換圖片時會觸發不可預期的圖片翻轉問題。",
+  "Changelog_v1_10_1_Added": "Added PNG image loading mode.",
+  "Changelog_v1_10_1_Optimized": "Optimized opacity adjustment UI.",
+  "Changelog_v1_10_1_Fixed": "Fixed the issue where the control panel cannot be invoked in the map editor mode."
 }

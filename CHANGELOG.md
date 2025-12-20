@@ -1,5 +1,10 @@
 ﻿# Changelog
 
+## [1.10.1] - 2025-12-20
+- Optimized opacity adjustment UI.
+- Added PNG image loading mode.
+- Fixed the issue where the control panel cannot be invoked in the map editor mode.
+
 ## [1.10] - 2025-12-07
 - Updated to support game version 1.20.1
 - Updated to CSLModsCommon framework 1.0
