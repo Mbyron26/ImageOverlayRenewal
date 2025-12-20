@@ -7,6 +7,31 @@ namespace ImageOverlayRenewal.Localization;
 
 public static class Translations {
     /// <summary>
+    /// Transpose
+    /// </summary>
+    public static string Transpose => LocalizationManager.Localize("Transpose");
+
+    /// <summary>
+    /// Flip Vertical
+    /// </summary>
+    public static string FlipVertical => LocalizationManager.Localize("FlipVertical");
+
+    /// <summary>
+    /// Texture Transform Mode
+    /// </summary>
+    public static string TextureTransformMode => LocalizationManager.Localize("TextureTransformMode");
+
+    /// <summary>
+    /// This option affects how PNG images are displayed. FlipVertical is the high-performance mode, while Transpose is the legacy compatibility mode. It can only be changed before entering the game.
+    /// </summary>
+    public static string TextureTransformModeDescription => LocalizationManager.Localize("TextureTransformModeDescription");
+
+    /// <summary>
+    /// Apply
+    /// </summary>
+    public static string Apply => LocalizationManager.Localize("Apply");
+
+    /// <summary>
     /// Apply opacity
     /// </summary>
     public static string ControlPanel_ApplyOpacity => LocalizationManager.Localize("ControlPanel_ApplyOpacity");
@@ -212,11 +237,6 @@ public static class Translations {
     public static string Changelog_v1_9_4_Translation => LocalizationManager.Localize("Changelog_v1_9_4_Translation");
 
     /// <summary>
-    /// Updated to CSShared SDK v1.0.0
-    /// </summary>
-    public static string Changelog_v1_10_0_Updated => LocalizationManager.Localize("Changelog_v1_10_0_Updated");
-
-    /// <summary>
     /// This update automatically resets all settings.
     /// </summary>
     public static string Changelog_v1_10_0_Attention => LocalizationManager.Localize("Changelog_v1_10_0_Attention");
@@ -230,5 +250,20 @@ public static class Translations {
     /// Resolved unpredictable image inversion triggered when switching between images.
     /// </summary>
     public static string Changelog_v1_10_0_Fixed => LocalizationManager.Localize("Changelog_v1_10_0_Fixed");
+
+    /// <summary>
+    /// Added PNG image loading mode.
+    /// </summary>
+    public static string Changelog_v1_10_1_Added => LocalizationManager.Localize("Changelog_v1_10_1_Added");
+
+    /// <summary>
+    /// Optimized opacity adjustment UI.
+    /// </summary>
+    public static string Changelog_v1_10_1_Optimized => LocalizationManager.Localize("Changelog_v1_10_1_Optimized");
+
+    /// <summary>
+    /// Fixed the issue where the control panel cannot be invoked in the map editor mode.
+    /// </summary>
+    public static string Changelog_v1_10_1_Fixed => LocalizationManager.Localize("Changelog_v1_10_1_Fixed");
 
 }

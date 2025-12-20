@@ -3,16 +3,14 @@
 [list][h2]Overlay images on top of the map, allowing you to replicate real city.[/h2][/list]
 [/code]
 
-[img]https://i.imgur.com/0O9w9Ta.png[/img]
+[img]https://i.imgur.com/ZJ4lUia.png[/img]
 
 [quote]
-[u]New in version 1.10[/u]
+[u]New in version 1.10.1[/u]
 [list]
-[*] Updated to support game version 1.20.1
-[*] Updated to CSLModsCommon framework 1.0
-[*] This update automatically resets all settings.
-[*] Optimized algorithm logic to improve texture processing speed.
-[*] Resolved unpredictable image inversion triggered when switching between images.
+[*] Optimized opacity adjustment UI.
+[*] Added PNG image loading mode.
+[*] Fixed the issue where the control panel cannot be invoked in the map editor mode.
 [/list]
 [/quote]
 
@@ -28,17 +26,18 @@
 
 [u]Recommended map making related website:[/u]
 [list]
-[*][strike][url=http://terrain.party/]terrain.party[/url][/strike]
-[strike]The site is no longer able to generate terrain elevation maps, but you can still download 81 grids of latitude and longitude, which can be used to download satellite maps.[/strike]
+[*][url=https://terraining.ateliernonta.com/]Terraining - Heightmap Generator[/url]
+An online heightmap generator for Cities: Skylines, Unity, and Unreal Engine.
+[*][strike][url=http://terrain.party/]Terrain Party[/url][/strike]
+[strike]This site can no longer generate terrain elevation maps, but you can still download 81 latitude/longitude grids for satellite map downloads.[/strike]
 [*][url=https://heightmap.skydark.pl/]Heightmap[/url]
-This site, where you can download height maps. Probably the only available grayscale rendering site in existence.
+Provides downloadable height maps. It is likely the only available site offering grayscale terrain renderings.
 [*][url=http://www.chengfolio.com/google_map_customizer]Google Map Customizer[/url]
-The site is available for satellite download.
+Allows downloading satellite imagery.
 [/list]
 
 [HR][/HR] 
-[h1]Incompatible mods:[/h1]
-If you are using this mod for the first time, it is highly recommended to use Compatibility Report to check mod compatibility:
+[h1]Incompatible Mods[/h1]
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2881031511][img]https://imgur.com/mzpNwS8.png[/img][/url]
 [list]
 [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=814102166&searchtext=Image+Overlay]Image Overlay[/url]
@@ -46,11 +45,12 @@ If you are using this mod for the first time, it is highly recommended to use Co
 [/list]
 
 [HR][/HR] 
-[h1]Language support:[/h1]
-If you would like to help add your language to this mod, please go to [url=https://crowdin.com/project/image-overlay-renewal]Image Overlay Renewal localize[/url] and [url=https://crowdin.com/project/csshared]Common localize[/url]
+[h1]Localization[/h1]
+To help improve translations, please contribute on Crowdin:
+[url=https://crowdin.com/project/image-overlay-renewal][img]https://i.imgur.com/uG2NKvG.png[/img][/url]
 
 [HR][/HR]
-[h1]Discussion and feedback:[/h1]
+[h1]Discussion & Feedback[/h1]
 [url=https://discord.gg/ZxbyzmvGxG][img]https://i.imgur.com/bnDNN2x.png[/img][/url]
 
 [HR][/HR] 

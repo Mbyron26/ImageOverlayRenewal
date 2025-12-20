@@ -1,4 +1,9 @@
 {
+  "Transpose": "Transpose",
+  "FlipVertical": "Flip Vertical",
+  "TextureTransformMode": "Texture Transform Mode",
+  "TextureTransformModeDescription": "This option affects how PNG images are displayed. FlipVertical is the high-performance mode, while Transpose is the legacy compatibility mode. It can only be changed before entering the game.",
+  "Apply": "Apply",
   "ControlPanel_ApplyOpacity": "Použít neprůhlednost",
   "ControlPanel_Custom": "Vlastní",
   "ControlPanel_Image": "Obrázek",
@@ -42,5 +47,8 @@
   "Changelog_v1_9_4_Translation": "Aktualizována lokalizace.",
   "Changelog_v1_10_0_Attention": "Tato aktualizace automaticky resetuje všechna nastavení.",
   "Changelog_v1_10_0_Optimized": "Optimalizována logika algoritmu pro rychlejší zpracování textur.",
-  "Changelog_v1_10_0_Fixed": "Vyřešen nepředvídatelný problém s převrácením obrázku při přepínání mezi obrázky."
+  "Changelog_v1_10_0_Fixed": "Vyřešen nepředvídatelný problém s převrácením obrázku při přepínání mezi obrázky.",
+  "Changelog_v1_10_1_Added": "Added PNG image loading mode.",
+  "Changelog_v1_10_1_Optimized": "Optimized opacity adjustment UI.",
+  "Changelog_v1_10_1_Fixed": "Fixed the issue where the control panel cannot be invoked in the map editor mode."
 }
