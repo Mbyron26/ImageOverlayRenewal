@@ -50,5 +50,7 @@
   "Changelog_v1_10_0_Fixed": "Vyriešené nepredvídateľné prevrátenie obrázka pri prepínaní medzi obrázkami.",
   "Changelog_v1_10_1_Added": "Added PNG image loading mode.",
   "Changelog_v1_10_1_Optimized": "Optimized opacity adjustment UI.",
-  "Changelog_v1_10_1_Fixed": "Fixed the issue where the control panel cannot be invoked in the map editor mode."
+  "Changelog_v1_10_1_Fixed": "Fixed the issue where the control panel cannot be invoked in the map editor mode.",
+  "Changelog_v1_10_2_Optimized": "Optimized slow performance when switching between different images.",
+  "Changelog_v1_10_2_Optimized1": "Optimized several controls in the control panel."
 }

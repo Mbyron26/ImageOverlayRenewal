@@ -15,6 +15,11 @@ using UnityEngine;
 namespace ImageOverlayRenewal.Managers;
 
 internal class ImageOverlayManager : ManagerBase {
+    private const string PngFormat = "*.png";
+    private const string PngDirectory = "Files/";
+
+    private readonly OverlayData _defaultOverlayData = new();
+
     private SettingManager _settingManager;
     private ModSetting _modSetting;
     private InGameToolButtonManager _inGameToolButtonManager;
@@ -22,8 +27,7 @@ internal class ImageOverlayManager : ManagerBase {
     private OverlayData _currentOverlayData;
 
     public List<OverlayData> AllOverlayData { get; private set; }
-    private string PngFormat => "*.png";
-    public string PngDirectory => "Files/";
+    public bool HasTexture => _currentOverlayData?.Texture;
 
     protected override void OnCreate() {
         base.OnCreate();
@@ -59,7 +63,7 @@ internal class ImageOverlayManager : ManagerBase {
         _keyBindingManager.Unregister(nameof(_modSetting.LoopImageKeyBinding));
     }
 
-    public OverlayData GetCurrentImageInfo() => _currentOverlayData ?? new OverlayData(string.Empty, new Texture2D(1, 1));
+    public OverlayData GetCurrentImageInfo() => _currentOverlayData ?? _defaultOverlayData;
 
     public void SetCurrentImageInfoParam(TileSize size, int sideLength, int positionX, int positionY, float rotation, byte opacity) {
         var image = GetCurrentImageInfo();
@@ -72,23 +76,9 @@ internal class ImageOverlayManager : ManagerBase {
     }
 
     public void ApplyOpacity() {
-        if (AllOverlayData is null || !AllOverlayData.Any()) return;
-        var image = _currentOverlayData;
-        if (image?.Texture == null) return;
-
-        var opacity = (byte)Mathf.Clamp((int)Math.Round(GetCurrentImageInfo().Opacity / 100f * 255f), 0, 255);
-        var texture = _currentOverlayData.Texture;
-        var oldColors = texture.GetPixels32();
-        if (opacity == 0)
-            opacity = 1;
-        for (var i = 0; i < oldColors.Length; i++) {
-            if (oldColors[i].a == 0) continue;
-            Color32 newColor = new(oldColors[i].r, oldColors[i].g, oldColors[i].b, opacity);
-            oldColors[i] = newColor;
-        }
-
-        texture.SetPixels32(oldColors);
-        texture.Apply();
+        if (AllOverlayData is null || !AllOverlayData.Any() || _currentOverlayData?.Texture == null) return;
+      
+        ApplyOpacityInternal(_currentOverlayData.Texture, _currentOverlayData.Opacity);
     }
 
     public int GetIntegerTilesSize(TileSize overlayTileSize) => overlayTileSize switch {
@@ -108,7 +98,6 @@ internal class ImageOverlayManager : ManagerBase {
 
     public void ApplyTexture(OverlayData overlayData) {
         _currentOverlayData = overlayData;
-        ApplyOpacity();
         Logger.Info($"Apply texture: {_currentOverlayData.Name}");
     }
 
@@ -165,9 +154,11 @@ internal class ImageOverlayManager : ManagerBase {
                 var item = _modSetting.ImageOverlayData.FirstOrDefault(d => d.Name == name);
                 if (item != null) {
                     overlayData = new OverlayData(item.Name, item.Size, item.SideLength, item.PositionX, item.PositionY, item.Rotation, item.Opacity, texture);
+                    Logger.Info($"Load from PNG: {overlayData}");
                 }
 
                 overlayData ??= new OverlayData(name, texture);
+                ApplyOpacityInternal(texture, overlayData.Opacity);
                 AllOverlayData.Add(overlayData);
             }
 
@@ -221,5 +212,20 @@ internal class ImageOverlayManager : ManagerBase {
         dst.Apply();
 
         return dst;
+    }
+
+    private static void ApplyOpacityInternal(Texture2D texture, byte percentageOpacity) {
+        var opacity = (byte)Mathf.Clamp((int)Math.Round(percentageOpacity / 100f * 255f), 0, 255);
+        var oldColors = texture.GetPixels32();
+        if (opacity == 0)
+            opacity = 1;
+        for (var i = 0; i < oldColors.Length; i++) {
+            if (oldColors[i].a == 0) continue;
+            Color32 newColor = new(oldColors[i].r, oldColors[i].g, oldColors[i].b, opacity);
+            oldColors[i] = newColor;
+        }
+
+        texture.SetPixels32(oldColors);
+        texture.Apply();
     }
 }

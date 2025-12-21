@@ -11,7 +11,7 @@ namespace ImageOverlayRenewal.Managers;
 public class ModManager : ModManagerBase {
     public override string ModName => "Image Overlay Renewal";
     public override string RowDescription => "Overlay images on top of the map, allowing you to replicate real city.";
-    public override DateTime VersionDate { get; } = new(2025, 12, 15);
+    public override DateTime VersionDate { get; } = new(2025, 12, 21);
     public override string ModTranslationURL => "https://crowdin.com/project/image-overlay-renewal";
     public override string ModSteamURL => "https://steamcommunity.com/sharedfiles/filedetails/?id=2616880500";
 
@@ -38,6 +38,7 @@ public class ModManager : ModManagerBase {
     }
 
     protected override List<ChangelogCollection> GenerateChangelogs() => [
+        new(new Version(1, 10, 2), new DateTime(2025, 12, 21)),
         new(new Version(1, 10, 1), new DateTime(2025, 12, 20)),
         new ChangelogCollection(new Version(1, 10, 0), new DateTime(2025, 12, 7)).AddEntry(ChangelogFlag.Updated, new FormattedString(nameof(SharedTranslations.UpdatedToCSLModsCommon), "1.0"))
             .AddEntry(ChangelogFlag.Updated, new FormattedString(nameof(SharedTranslations.UpdatedToGameVersion), "1.20.1")),

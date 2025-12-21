@@ -1,6 +1,5 @@
-﻿Version 1.10.1
+﻿Version 1.10.2
 [list]
-[*] Optimized opacity adjustment UI.
-[*] Added PNG image loading mode.
-[*] Fixed the issue where the control panel cannot be invoked in the map editor mode.
+[*] Optimized slow performance when switching between different images.
+[*] Optimized several controls in the control panel. 
 [/list]

@@ -29,8 +29,8 @@ public class RenderOverManager : SimulationManagerBase<RenderOverManager, MonoBe
 
     protected override void EndOverlayImpl(RenderManager.CameraInfo cameraInfo) {
         base.EndOverlayImpl(cameraInfo);
-        if (!_modSetting.ShowImage)
-            return;
+        if (!_modSetting.ShowImage || !_imageOverlayManager.HasTexture) return;
+
         var image = _imageOverlayManager.GetCurrentImageInfo();
         float x = image.PositionX, y = image.PositionY;
         float sclx = image.SideLength, scly = image.SideLength;
@@ -47,6 +47,6 @@ public class RenderOverManager : SimulationManagerBase<RenderOverManager, MonoBe
         position.c = rot * (position.c - center) + center;
         position.d = rot * (position.d - center) + center;
 
-        RenderManager.instance.OverlayEffect.DrawQuad(cameraInfo, _imageOverlayManager.GetCurrentImageInfo().Texture, Color.white, position, -1f, 1800f, false, true);
+        RenderManager.instance.OverlayEffect.DrawQuad(cameraInfo, image.Texture, Color.white, position, -1f, 1800f, false, true);
     }
 }

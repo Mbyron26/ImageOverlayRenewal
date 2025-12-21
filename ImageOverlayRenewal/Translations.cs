@@ -266,4 +266,14 @@ public static class Translations {
     /// </summary>
     public static string Changelog_v1_10_1_Fixed => LocalizationManager.Localize("Changelog_v1_10_1_Fixed");
 
+    /// <summary>
+    /// Optimized slow performance when switching between different images.
+    /// </summary>
+    public static string Changelog_v1_10_2_Optimized => LocalizationManager.Localize("Changelog_v1_10_2_Optimized");
+
+    /// <summary>
+    /// Optimized several controls in the control panel.
+    /// </summary>
+    public static string Changelog_v1_10_2_Optimized1 => LocalizationManager.Localize("Changelog_v1_10_2_Optimized1");
+
 }
