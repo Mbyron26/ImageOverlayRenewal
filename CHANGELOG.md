@@ -1,5 +1,9 @@
 ﻿# Changelog
 
+## [1.10.2] - 2025-12-21
+- Optimized slow performance when switching between different images.
+- Optimized several controls in the control panel. 
+
 ## [1.10.1] - 2025-12-20
 - Optimized opacity adjustment UI.
 - Added PNG image loading mode.

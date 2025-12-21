@@ -95,34 +95,34 @@ internal class ControlPanel : ControlPanelBase {
 
         _imageDropDownItems = DropDownHelper.FromCollection(_imageOverlayManager.AllOverlayData, v => v.Name);
 
-        parametersSection.AddDropDown(Translations.ControlPanel_Image, null, DropDownHelper.FromCollection(_imageOverlayManager.AllOverlayData, v => v.Name), v => v.Value == _imageOverlayManager.GetCurrentImageInfo(), OnImageSelectionChanged, null);
+        parametersSection.AddDropDown(Translations.ControlPanel_Image, null, _imageDropDownItems, v => v.Value == _imageOverlayManager.GetCurrentImageInfo(), OnImageSelectionChanged, 200);
 
-        _imageSizeItems = new DropDownItem<TileSize>[] {
-            new(TileSize.Custom, Translations.ControlPanel_Custom),
-            new(TileSize.Small, "1×1"),
-            new(TileSize.Medium, "3×3"),
-            new(TileSize.Large, "5×5"),
-            new(TileSize.Overspread, "9×9")
-        };
+        _imageSizeItems = [
+            new DropDownItem<TileSize>(TileSize.Custom, Translations.ControlPanel_Custom),
+            new DropDownItem<TileSize>(TileSize.Small, "1×1"),
+            new DropDownItem<TileSize>(TileSize.Medium, "3×3"),
+            new DropDownItem<TileSize>(TileSize.Large, "5×5"),
+            new DropDownItem<TileSize>(TileSize.Overspread, "9×9")
+        ];
         var current = _imageDropDownItems.FirstOrDefault(v => v.Value == _imageOverlayManager.GetCurrentImageInfo());
         var tileSize = TileSize.Custom;
         if (current?.Value != null) {
             tileSize = current.Value.Size;
         }
 
-        parametersSection.AddDropDown(Translations.ControlPanel_Size, null, _imageSizeItems, v => v.Value == tileSize, OnSizeDropDownSelectionChanged, null, onLogicCreated: logic => _sizeDropDownLogic = logic);
+        parametersSection.AddDropDown(Translations.ControlPanel_Size, null, _imageSizeItems, v => v.Value == tileSize, OnSizeDropDownSelectionChanged, 100, onLogicCreated: logic => _sizeDropDownLogic = logic);
 
         _sideLengthField = parametersSection.AddIntField(Translations.ControlPanel_SideLength, null, _imageOverlayManager.GetCurrentImageInfo().SideLength, 10, MaxSideLength, 10, v => {
-            var index = v switch {
-                960 => 1,
-                2880 => 2,
-                4800 => 3,
-                8640 => 4,
-                _ => 0
-            };
-            _sizeDropDownLogic.Select(index);
-            UpdateImageData();
-        })
+                var index = v switch {
+                    960 => 1,
+                    2880 => 2,
+                    4800 => 3,
+                    8640 => 4,
+                    _ => 0
+                };
+                _sizeDropDownLogic.Select(index);
+                UpdateImageData();
+            })
             .Control;
 
         _positionXField = parametersSection.AddIntField(Translations.ControlPanel_Position + " X", null, _imageOverlayManager.GetCurrentImageInfo().PositionX, -10000, 10000, 10, _ => UpdateImageData()).Control;

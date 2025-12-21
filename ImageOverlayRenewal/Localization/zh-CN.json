@@ -50,5 +50,7 @@
   "Changelog_v1_10_0_Fixed": "修复游戏工具按钮未显示的问题。",
   "Changelog_v1_10_1_Added": "添加 PNG 图像加载模式。",
   "Changelog_v1_10_1_Optimized": "优化不透明度调整 UI。",
-  "Changelog_v1_10_1_Fixed": "修复在地图编辑器模式中无法调用控制面板的问题。"
+  "Changelog_v1_10_1_Fixed": "修复在地图编辑器模式中无法调用控制面板的问题。",
+  "Changelog_v1_10_2_Optimized": "优化在不同图像之间切换时较慢的问题。",
+  "Changelog_v1_10_2_Optimized1": "优化控制面板中部分控件。"
 }
