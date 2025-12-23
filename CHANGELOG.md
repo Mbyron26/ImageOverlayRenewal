@@ -1,5 +1,11 @@
 ﻿# Changelog
 
+All notable changes to this project will be documented in this file.
+
+## [1.10.3] - 2025-12-23
+- Optimized opacity adjustment for various PNG texture formats.
+- Fixed the incorrect mod description issue.
+
 ## [1.10.2] - 2025-12-21
 - Optimized slow performance when switching between different images.
 - Optimized several controls in the control panel. 

@@ -4,10 +4,9 @@
 [/code]
 
 [quote]
-[u]New in version 1.10.1[/u]
+[u]New in version 1.10.3[/u]
 [list]
-[*] Optimized opacity adjustment UI.
-[*] Added PNG image loading mode.
-[*] Fixed the issue where the control panel cannot be invoked in the map editor mode.
+[*] Optimized opacity adjustment for various PNG texture formats.
+[*] Fixed the incorrect mod description issue.
 [/list]
 [/quote]

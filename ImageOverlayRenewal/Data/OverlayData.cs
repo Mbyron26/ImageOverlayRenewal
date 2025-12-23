@@ -27,8 +27,8 @@ public class OverlayData {
     public OverlayData(string name, TileSize size, int sideLength, int positionX, int positionY, float rotation, byte opacity, Texture2D texture) : this(name, size, sideLength, positionX, positionY, rotation, opacity) => Texture = texture;
     public OverlayData(string name, Texture2D texture) : this(name) => Texture = texture;
     public OverlayData() { }
-    
-    public override string ToString() => $"Name: {Name}, Size: {Size}, SideLength: {SideLength}, PositionX: {PositionX}, PositionY: {PositionY}, Rotation: {Rotation}, Opacity: {Opacity}";
+
+    public override string ToString() => $"Name: {Name}, Size: {Size}, SideLength: {SideLength}, PositionX: {PositionX}, PositionY: {PositionY}, Rotation: {Rotation}, Opacity: {Opacity} {GetTextureFormat()}";
 
     public void SetDefault() {
         Size = TileSize.Overspread;
@@ -38,4 +38,6 @@ public class OverlayData {
         Rotation = 0;
         Opacity = 30;
     }
+
+    private string GetTextureFormat() => Texture != null ? $"Texture Format: {Texture.format.ToString()}" : string.Empty;
 }

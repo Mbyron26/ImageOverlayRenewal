@@ -17,7 +17,7 @@
   "ControlPanel_SideLength": "Długość boku",
   "ControlPanel_Size": "Rozmiar",
   "LoadSettings": "Wczytaj ustawienia",
-  "MOD_Description": "Nakłada obrazy na mapę, umożliwiając odwzorowanie rzeczywistego miasta.",
+  "ModDescription": "Overlay images on top of the map, allowing you to replicate real city.",
   "OptionPanel_OpenPNGDirectory": "Otwórz katalog PNG",
   "OptionPanel_PNGFilePath": "Ścieżka pliku PNG",
   "OptionPanel_PNGOptions": "Opcje PNG",
@@ -52,5 +52,7 @@
   "Changelog_v1_10_1_Optimized": "Optimized opacity adjustment UI.",
   "Changelog_v1_10_1_Fixed": "Fixed the issue where the control panel cannot be invoked in the map editor mode.",
   "Changelog_v1_10_2_Optimized": "Optimized slow performance when switching between different images.",
-  "Changelog_v1_10_2_Optimized1": "Optimized several controls in the control panel."
+  "Changelog_v1_10_2_Optimized1": "Optimized several controls in the control panel.",
+  "Changelog_v1_10_3_Optimized": "Optimized opacity adjustment for various PNG texture formats.",
+  "Changelog_v1_10_3_Fixed": "Fixed the incorrect mod description issue."
 }
