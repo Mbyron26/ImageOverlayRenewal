@@ -17,7 +17,7 @@
   "ControlPanel_SideLength": "Longueur du côté",
   "ControlPanel_Size": "Taille",
   "LoadSettings": "Charger les paramètres",
-  "MOD_Description": "Superpose des images sur la carte, vous permettant de reproduire de vraies villes.",
+  "ModDescription": "Overlay images on top of the map, allowing you to replicate real city.",
   "OptionPanel_OpenPNGDirectory": "Ouvrir le répertoire PNG",
   "OptionPanel_PNGFilePath": "Chemin d'accès du fichier PNG",
   "OptionPanel_PNGOptions": "Options du PNG",
@@ -52,5 +52,7 @@
   "Changelog_v1_10_1_Optimized": "Optimized opacity adjustment UI.",
   "Changelog_v1_10_1_Fixed": "Fixed the issue where the control panel cannot be invoked in the map editor mode.",
   "Changelog_v1_10_2_Optimized": "Optimized slow performance when switching between different images.",
-  "Changelog_v1_10_2_Optimized1": "Optimized several controls in the control panel."
+  "Changelog_v1_10_2_Optimized1": "Optimized several controls in the control panel.",
+  "Changelog_v1_10_3_Optimized": "Optimized opacity adjustment for various PNG texture formats.",
+  "Changelog_v1_10_3_Fixed": "Fixed the incorrect mod description issue."
 }

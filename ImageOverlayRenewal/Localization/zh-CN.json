@@ -17,7 +17,7 @@
   "ControlPanel_SideLength": "图像边长",
   "ControlPanel_Size": "大小",
   "LoadSettings": "载入设置",
-  "MOD_Description": "在地面覆盖图像，帮助您复刻真实的城市。",
+  "ModDescription": "在地面覆盖图像，帮助您复刻真实的城市。",
   "OptionPanel_OpenPNGDirectory": "打开PNG图像文件夹",
   "OptionPanel_PNGFilePath": "PNG文件所在路径",
   "OptionPanel_PNGOptions": "PNG 图像选项",
@@ -52,5 +52,7 @@
   "Changelog_v1_10_1_Optimized": "优化不透明度调整 UI。",
   "Changelog_v1_10_1_Fixed": "修复在地图编辑器模式中无法调用控制面板的问题。",
   "Changelog_v1_10_2_Optimized": "优化在不同图像之间切换时较慢的问题。",
-  "Changelog_v1_10_2_Optimized1": "优化控制面板中部分控件。"
+  "Changelog_v1_10_2_Optimized1": "优化控制面板中部分控件。",
+  "Changelog_v1_10_3_Optimized": "优化不同PNG 纹理格式的不透明度调整。",
+  "Changelog_v1_10_3_Fixed": "修复错误的模组描述问题。"
 }

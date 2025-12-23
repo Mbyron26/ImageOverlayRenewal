@@ -77,7 +77,7 @@ internal class ImageOverlayManager : ManagerBase {
 
     public void ApplyOpacity() {
         if (AllOverlayData is null || !AllOverlayData.Any() || _currentOverlayData?.Texture == null) return;
-      
+
         ApplyOpacityInternal(_currentOverlayData.Texture, _currentOverlayData.Opacity);
     }
 
@@ -98,7 +98,7 @@ internal class ImageOverlayManager : ManagerBase {
 
     public void ApplyTexture(OverlayData overlayData) {
         _currentOverlayData = overlayData;
-        Logger.Info($"Apply texture: {_currentOverlayData.Name}");
+        Logger.Verbose($"Apply texture: {_currentOverlayData.Name}");
     }
 
     private void LoopImage() {
@@ -132,11 +132,13 @@ internal class ImageOverlayManager : ManagerBase {
             foreach (var fileInfo in files) {
                 var fullName = fileInfo.FullName;
                 var name = Path.GetFileNameWithoutExtension(fullName);
-                Texture2D texture = new(1, 1);
+                Texture2D texture = new(1, 1, TextureFormat.RGBA32, false);
 
                 try {
                     var bytes = File.ReadAllBytes(fullName);
                     texture.LoadImage(bytes);
+                    ConvertToRgba32(name, ref texture);
+
                     if (_modSetting.TransformMode == TextureTransformMode.FlipVertical)
                         FlipTextureVertically(texture);
                     else {
@@ -154,18 +156,17 @@ internal class ImageOverlayManager : ManagerBase {
                 var item = _modSetting.ImageOverlayData.FirstOrDefault(d => d.Name == name);
                 if (item != null) {
                     overlayData = new OverlayData(item.Name, item.Size, item.SideLength, item.PositionX, item.PositionY, item.Rotation, item.Opacity, texture);
-                    Logger.Info($"Load from PNG: {overlayData}");
                 }
 
                 overlayData ??= new OverlayData(name, texture);
                 ApplyOpacityInternal(texture, overlayData.Opacity);
                 AllOverlayData.Add(overlayData);
+                Logger.Info($"Loaded PNG: '{overlayData}'");
             }
 
             _modSetting.ImageOverlayData = new List<OverlayData>(AllOverlayData);
             _settingManager.SaveDefaultSetting();
             Singleton<RenderOverManager>.instance.Register();
-            Logger.Info($"Loaded PNGs: {string.Join(", ", AllOverlayData.Select(v => v.Name).ToArray())}");
         }
         else {
             _modSetting.ImageOverlayData?.Clear();
@@ -227,5 +228,18 @@ internal class ImageOverlayManager : ManagerBase {
 
         texture.SetPixels32(oldColors);
         texture.Apply();
+    }
+
+    private static void ConvertToRgba32(string fileName, ref Texture2D texture) {
+        if (texture == null || texture.format is TextureFormat.RGBA32 or TextureFormat.ARGB32 or TextureFormat.BGRA32) return;
+        
+        var rowTextureFormat = texture.format;
+        var newTexture = new Texture2D(texture.width, texture.height, TextureFormat.ARGB32, false);
+        newTexture.SetPixels32(texture.GetPixels32());
+        newTexture.Apply();
+
+        UnityEngine.Object.Destroy(texture);
+        texture = newTexture;
+        Logger.Info($"Converted '{fileName}' file from {rowTextureFormat} to {texture.format} ");
     }
 }

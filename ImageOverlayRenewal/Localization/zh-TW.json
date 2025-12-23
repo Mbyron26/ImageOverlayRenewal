@@ -17,7 +17,7 @@
   "ControlPanel_SideLength": "邊長",
   "ControlPanel_Size": "大小",
   "LoadSettings": "載入設定",
-  "MOD_Description": "將圖片覆蓋在地圖上，讓你可以重現真實城市。",
+  "ModDescription": "Overlay images on top of the map, allowing you to replicate real city.",
   "OptionPanel_OpenPNGDirectory": "打開 PNG 目錄",
   "OptionPanel_PNGFilePath": "PNG 檔案路徑",
   "OptionPanel_PNGOptions": "PNG 選項",
@@ -52,5 +52,7 @@
   "Changelog_v1_10_1_Optimized": "Optimized opacity adjustment UI.",
   "Changelog_v1_10_1_Fixed": "Fixed the issue where the control panel cannot be invoked in the map editor mode.",
   "Changelog_v1_10_2_Optimized": "Optimized slow performance when switching between different images.",
-  "Changelog_v1_10_2_Optimized1": "Optimized several controls in the control panel."
+  "Changelog_v1_10_2_Optimized1": "Optimized several controls in the control panel.",
+  "Changelog_v1_10_3_Optimized": "Optimized opacity adjustment for various PNG texture formats.",
+  "Changelog_v1_10_3_Fixed": "Fixed the incorrect mod description issue."
 }

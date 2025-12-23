@@ -6,10 +6,10 @@
 [img]https://i.imgur.com/ZJ4lUia.png[/img]
 
 [quote]
-[u]New in version 1.10.2[/u]
+[u]New in version 1.10.3[/u]
 [list]
-[*] Optimized slow performance when switching between different images.
-[*] Optimized several controls in the control panel. 
+[*] Optimized opacity adjustment for various PNG texture formats.
+[*] Fixed the incorrect mod description issue.
 [/list]
 [/quote]
 
