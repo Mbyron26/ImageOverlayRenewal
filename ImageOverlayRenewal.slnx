@@ -4,6 +4,5 @@
     <BuildType Name="Beta" />
     <BuildType Name="Stable" />
   </Configurations>
-  <Folder Name="/ModsCommon/" />
   <Project Path="ImageOverlayRenewal/ImageOverlayRenewal.csproj" />
 </Solution>

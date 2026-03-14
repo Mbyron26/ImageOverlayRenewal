@@ -7,14 +7,15 @@
 ![d](https://i.imgur.com/ZJ4lUia.png)
 
 ## Directions
-- Keep your image resolution below 15000x15000px (recommended).
-- Save your image format as PNG.
-- Place your modified image in the "[Steam directory]\steamapps\common\Cities_Skylines\Files\" .
-- Enter the game Manager to enable the mod.
-- Use Control + I (default key) to open the Control Panel and adjust your image parameters.
+- Keep your image resolution under 15000 × 15000 px (recommended).
+- Save your image in PNG format.
+- Place your modified image in: Steam directory\steamapps\common\Cities_Skylines\Files
+- Enable the mod in the Content Manager.
+- Press Ctrl + I (default) or click the tool button to open the Control Panel and adjust image parameters.
 
 ## Recommended map making related website
 
+- [Terraining - Heightmap Generator](https://terraining.ateliernonta.com/): An online heightmap generator for Cities: Skylines, Unity, and Unreal Engine.
 - [Terrain Party](http://terrain.party/): This site can no longer generate terrain elevation maps, but you can still download 81 latitude/longitude grids for satellite map downloads.
 - [Heightmap](https://heightmap.skydark.pl/): Provides downloadable height maps. It is likely the only available site offering grayscale terrain renderings.
 - [Google Map Customizer](http://www.chengfolio.com/google_map_customizer): Allows downloading satellite imagery.

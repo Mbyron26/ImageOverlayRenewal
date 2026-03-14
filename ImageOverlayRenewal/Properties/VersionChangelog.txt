@@ -1,5 +1,5 @@
-﻿Version 1.10.3
+﻿Version 1.10.4
 [list]
-[*] Optimized opacity adjustment for various PNG texture formats.
-[*] Fixed the incorrect mod description issue.
+[*] Updated to support game version 1.21.1
+[*] Updated to CSLModsCommon framework 1.0.2
 [/list]
