@@ -1,4 +1,6 @@
-﻿[HR][/HR]
+﻿[img]https://i.imgur.com/8BfNPgj.png[/img]
+
+[HR][/HR]
 [code][h1]Overview[/h1]
 [list][h2]Overlay images on top of the map, allowing you to replicate real city.[/h2][/list]
 [/code]
@@ -6,21 +8,22 @@
 [img]https://i.imgur.com/ZJ4lUia.png[/img]
 
 [quote]
-[u]New in version 1.10.3[/u]
+[u]New in version 1.10.4[/u]
 [list]
-[*] Optimized opacity adjustment for various PNG texture formats.
-[*] Fixed the incorrect mod description issue.
+[*] Updated to support game version 1.21.1
+[*] Updated to CSLModsCommon framework 1.0.2
 [/list]
 [/quote]
 
 [HR][/HR] 
-[h1]Directions:[/h1]
+[h1]Directions[/h1]
 [list]
-[*]Keep your image resolution below 15000x15000px (recommended).
-[*]Save your image format as PNG.
-[*]Place your modified image in the "[Steam directory]\steamapps\common\Cities_Skylines\Files\" .
-[*]Enter the game Manager to enable the mod.
-[*]Use Control + I (default key) to open the Control Panel and adjust your image parameters.
+[*] Keep your image resolution under 15000 × 15000 px (recommended).
+[*] Save your image in PNG format.
+[*] Place your modified image in:
+    [Steam directory]\steamapps\common\Cities_Skylines\Files
+[*] Enable the mod in the Content Manager.
+[*] Press Ctrl + I (default) or click the tool button to open the Control Panel and adjust image parameters.
 [/list]
 
 [u]Recommended map making related website:[/u]
