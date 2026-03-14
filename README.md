@@ -1,10 +1,10 @@
 # Overlay images on top of the map, allowing you to replicate real city.
 
 [![Changelog](https://img.shields.io/badge/Changelog-Click%20to%20View-blue)](CHANGELOG.md)
-[![Stable](https://img.shields.io/badge/Stable%20Version-1.10.3-green)](https://steamcommunity.com/sharedfiles/filedetails/?id=2616880500)
+[![Stable](https://img.shields.io/badge/Stable%20Version-1.10.4-green)](https://steamcommunity.com/sharedfiles/filedetails/?id=2616880500)
 [![Beta](https://img.shields.io/badge/Beta%20Version-1.10.3-orange)](https://steamcommunity.com/sharedfiles/filedetails/?id=2671781645)
 
-![d](https://i.imgur.com/ZJ4lUia.png)
+![d](https://i.imgur.com/8BfNPgj.png)
 
 ## Directions
 - Keep your image resolution under 15000 × 15000 px (recommended).
