@@ -4,11 +4,14 @@
         <TargetFramework>net35</TargetFramework>
         <LangVersion>12</LangVersion>
         <Authors>Mbyron26</Authors>
-        <Copyright>Copyright © 2022 Mbyron26</Copyright>
-        <Version Condition="'$(Configuration)' == 'Stable'">1.10.4</Version>
-        <Version Condition="'$(Configuration)' == 'Beta' OR '$(Configuration)' == 'Alpha'">
-            1.10.4-beta$([System.DateTime]::Now.ToString("yyyyMMddHHmm"))
-        </Version>
+        <Copyright>Copyright © 2022-2026 Mbyron26</Copyright>
+        <Version>1.11.0</Version>
+        <BuildRevision Condition="'$(Configuration)' == 'Stable'">0</BuildRevision>
+        <BuildRevision Condition="'$(Configuration)' == 'Beta'">0</BuildRevision>
+        <BuildRevision Condition="'$(Configuration)' == 'Alpha'">2000</BuildRevision>
+        <AssemblyVersion>$(Version).$(BuildRevision)</AssemblyVersion>
+        <FileVersion>$(Version).$(BuildRevision)</FileVersion>
+        <InformationalVersion>$(Version).$(BuildRevision)</InformationalVersion>
         <!-- Steam workshop title, will auto set title from this property. -->
         <Product>Image Overlay Renewal</Product>
         <!-- Steam workshop stable release Id, set to 0 for initial release. -->
@@ -21,14 +24,14 @@
 
     <Import Project="$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Modding\Mod.props"/>
     <Import Project="$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Modding\Mod.targets"/>
-    <Import Project="..\..\CSLModsCommon\CSLModsCommonShared\CSLModsCommonShared.projitems" Label="Shared"/>
-    <Import Project="..\..\CSLModsCommon\CSLModsCommonShared.ToolButton\CSLModsCommonShared.ToolButton.projitems" Label="Shared"/>
-    
+
     <ItemGroup>
         <None Include="$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Modding\Mod.props" Link="Properties\Mod.props"/>
         <None Include="$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Modding\Mod.targets" Link="Properties\Mod.targets"/>
         <Folder Include="Properties\"/>
-        <PackageReference Include="Json.Net.Unity3D" Version="9.0.1"/>
+        <Reference Include="Newtonsoft.Json" HintPath="$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Modding\Libraries\Newtonsoft.Json.dll"/>
+        <Reference Include="CSLModdingFramework.dll" HintPath="$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Modding\Libraries\CSLModdingFramework.dll"/>
+        <Reference Include="CSLModdingFramework.ToolPanel.dll" HintPath="$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Modding\Libraries\CSLModdingFramework.ToolPanel.dll"/>
         <PackageReference Include="UnifiedUILib" Version="2.2.12"/>
         <Content Include="Localization\**\*" CopyToOutputDirectory="Always"/>
         <EmbeddedResource Include="UI\Resources\InGameButton.png"/>
@@ -48,7 +51,7 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(UserProfile)\.nuget\packages\microsoft.netframework.referenceassemblies.net35\1.0.3\build\.NETFramework\v3.5\System.Runtime.Serialization.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true"/>
+        <Copy SourceFiles="$(LOCALAPPDATA)\Colossal Order\Cities_Skylines\Modding\Libraries\System.Runtime.Serialization.dll" DestinationFolder="$(OutputPath)" SkipUnchangedFiles="true"/>
     </Target>
 
 </Project>

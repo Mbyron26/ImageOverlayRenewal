@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json;
 using UnityEngine;
 
-namespace ImageOverlayRenewal.Data;
+namespace ImageOverlayRenewal.Core;
 
 public class OverlayData {
     public string Name { get; set; } = "Image";
+    public bool PreserveAspectRatio { get; set; } 
     public TileSize Size { get; set; } = TileSize.Overspread;
     public int SideLength { get; set; } = 8640;
     public int PositionX { get; set; }
@@ -37,6 +38,7 @@ public class OverlayData {
         PositionY = 0;
         Rotation = 0;
         Opacity = 30;
+        PreserveAspectRatio = false;
     }
 
     private string GetTextureFormat() => Texture != null ? $"Texture Format: {Texture.format.ToString()}" : string.Empty;

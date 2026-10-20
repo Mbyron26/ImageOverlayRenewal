@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ImageOverlayRenewal.Data;
+namespace ImageOverlayRenewal.Core;
 
 public enum TileSize {
     Custom,
