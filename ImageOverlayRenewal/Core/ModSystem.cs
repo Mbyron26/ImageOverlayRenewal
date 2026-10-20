@@ -14,7 +14,7 @@ public class ModSystem : ModSystemBase {
     internal static ModDomain InternalDomain { get; private set; }
     internal static ILog InternalLogger { get; private set; }
 
-    public override DateTime BuildDate { get; } = new(2026, 10, 10);
+    public override DateTime BuildDate { get; } = new(2026, 10, 20);
     public override ReleaseChannel Channel =>
 #if STABLE
         ReleaseChannel.Stable;
@@ -29,7 +29,7 @@ public class ModSystem : ModSystemBase {
     public override string ModTranslationURL => "https://crowdin.com/project/image-overlay-renewal";
 
     protected override void AddChangelogs(ChangelogCollection changelogCollection) {
-        changelogCollection.Add(new Version(1, 11, 0), new DateTime(2026, 9, 9));
+        changelogCollection.Add(new Version(1, 11, 0), new DateTime(2026, 10, 20));
         changelogCollection.Add(new Version(1, 10, 4), new DateTime(2026, 3, 14))
             .AddEntry(ChangelogType.Updated, new FormattedString(LocalizationStrings.UpdatedToCSLModsCommon, "1.0.2"))
             .AddEntry(ChangelogType.Updated, new FormattedString(LocalizationStrings.UpdatedToGameVersion, "1.21.1"));

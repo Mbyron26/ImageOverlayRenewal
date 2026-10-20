@@ -40,8 +40,8 @@ internal class OptionsPanel : ToolButtonOptionsPanelBase {
     }
 
     protected override void OnVersionTextLabelDoubleClick(UIComponent component, UIMouseEventParameter eventParam) {
-        if (!Input.GetKeyDown(KeyCode.LeftControl)) return;
-
+        if (!Input.GetKey(KeyCode.LeftControl)) return;
+        
         IsDebugModeEnabled = !IsDebugModeEnabled;
         OptionsPanelSystem?.OnLocaleChanged();
     }
