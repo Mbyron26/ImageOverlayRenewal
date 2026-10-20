@@ -1,91 +1,101 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using ColossalFramework.UI;
-using CSLModsCommon.Localization;
-using CSLModsCommon.Manager;
-using CSLModsCommon.UI;
-using CSLModsCommon.UI.Buttons;
-using CSLModsCommon.UI.Containers;
-using CSLModsCommon.UI.ControlPanel;
-using CSLModsCommon.UI.Dialogs;
-using CSLModsCommon.UI.DropDown;
-using CSLModsCommon.UI.Utilities;
-using ImageOverlayRenewal.Data;
+using CSLModdingFramework.Configuration;
+using CSLModdingFramework.Core;
+using CSLModdingFramework.UI;
+using CSLModdingFramework.UI.Controls;
+using CSLModdingFramework.UI.Dialogs;
+using ImageOverlayRenewal.Core;
 using ImageOverlayRenewal.Localization;
-using ImageOverlayRenewal.Managers;
-using ImageOverlayRenewal.Settings;
 using UnityEngine;
 
 namespace ImageOverlayRenewal.UI;
 
 internal class ControlPanel : ControlPanelBase {
-    private const float ElementPadding = 16;
-    private LiteContainer _contentPanel;
-
-    private IntValueField _positionXField;
-    private IntValueField _positionYField;
-    private FloatValueField _rotationField;
-    private ByteValueField _opacityField;
-    private IntValueField _sideLengthField;
-    private SettingManager _settingManager;
-    private ModSetting _modSetting;
-    private ImageOverlayManager _imageOverlayManager;
-    private DialogManager _dialogManager;
-    private InGameToolButtonManager _inGameToolButtonManager;
-    private DropDownItem<OverlayData>[] _imageDropDownItems;
-    private DropDownItem<TileSize>[] _imageSizeItems;
-    private DropDownLogic<TileSize> _sizeDropDownLogic;
-
-    public override float PanelWidth => 370;
-    public override float PanelHeight => 566;
+    private static readonly ValueTuple<TileSize, string>[] ImageSizeItems = [
+        new(TileSize.Small, "1×1"),
+        new(TileSize.Medium, "3×3"),
+        new(TileSize.Large, "5×5"),
+        new(TileSize.Overspread, "9×9")
+    ];
 
     private static int MaxSideLength => 8640 * 3;
 
-    protected override void CacheManagers() {
-        base.CacheManagers();
-        _settingManager = _domain.GetOrCreateManager<SettingManager>();
-        _modSetting = _settingManager.GetSetting<ModSetting>();
-        _imageOverlayManager = _domain.GetOrCreateManager<ImageOverlayManager>();
-        _dialogManager = _domain.GetOrCreateManager<DialogManager>();
-        _domain.GetOrCreateManager<ControlPanelManager>();
-        _modManager = _domain.GetManager<ModManager>();
-        _inGameToolButtonManager = _domain.GetOrCreateManager<InGameToolButtonManager>();
+    private ModSystemBase _modSystem;
+    private SettingsSystem _settingsSystem;
+    private ModSetting _modSettings;
+    private ImageOverlaySystem _imageOverlaySystem;
+    private ControlPanelSystem _settingsPanelSystem;
+    private LiteContainer _contentPanel;
+    private ByteField _opacityField;
+    private IntField _positionXField;
+    private IntField _positionYField;
+    private FloatField _rotationField;
+    private IntField _sideLengthField;
+    private Dropdown<TileSize> _sizeDropDown;
+    private Toggle _preserveAspectRatioToggle;
+    private static Vector3 DefaultPosition = Vector3.zero;
+
+    public override Vector2 DefaultSize => new(450, 200);
+
+    private void SetPosition() {
+        if (DefaultPosition == Vector3.zero) {
+            var vector = GetUIView().GetScreenResolution();
+            var x = vector.x - width - 200;
+            DefaultPosition = relativePosition = new Vector3(x, 80);
+        }
+        else {
+            relativePosition = DefaultPosition;
+        }
     }
 
-    protected override void AddTabBar() { }
+    public override void OnDisable() {
+        base.OnDisable();
+
+        DefaultPosition = relativePosition;
+    }
 
     protected override void OnAwake() {
         base.OnAwake();
 
+        _modSystem = ModSystem.InternalDomain.ModSystem;
+        _settingsSystem = ModSystem.InternalDomain.GetOrCreateSystem<SettingsSystem>();
+        _modSettings = _settingsSystem.GetSettings<ModSetting>();
+        _imageOverlaySystem = ModSystem.InternalDomain.GetOrCreateSystem<ImageOverlaySystem>();
+        _settingsPanelSystem = ModSystem.InternalDomain.GetOrCreateSystem<ControlPanelSystem>();
+
+        var logo = AddUIComponent<SpriteView>();
+        logo.size = new Vector2(30, 30);
+        logo.Atlas = ModAtlas.Instance;
+        logo.SpriteName = ModAtlas.InGameButton;
+        logo.relativePosition = new Vector3(Padding, (TitleBarHeight - logo.width) / 2);
+
+        var title = AddUIComponent<TextLabel>();
+        title.SuspendAutoLayout();
+        title.SizeMode = TextSizeMode.FitContent;
+        title.Text = _modSystem.ModName;
+        title.TextHorizontalAlignment = UIHorizontalAlignment.Left;
+        title.ResumeAutoLayout();
+        title.relativePosition = new Vector3(logo.relativePosition.x + logo.width + 10, (TitleBarHeight - 18) / 2);
+
+        var button = AddCloseButton();
+        AddDragArea(width - Padding - button.width);
+
         _contentPanel = AddUIComponent<LiteContainer>();
-        _contentPanel.AutoLayout = true;
-        _contentPanel.AutoFitChildrenHorizontally = true;
+        _contentPanel.SetWidthIfChanged(width - 2 * Padding);
         _contentPanel.AutoFitChildrenVertically = true;
         _contentPanel.RowGap = 10;
-        _contentPanel.relativePosition = new Vector2(ElementPadding, CaptionHeight);
-        _contentPanel.eventSizeChanged += (_, _) => height = _dragBar.height + _contentPanel.height + ElementPadding;
+        _contentPanel.AutoLayout = true;
+        _contentPanel.relativePosition = new Vector2(Padding, TitleBarHeight);
 
         #region MainControl
 
         var mainControlSection = AddSection(_contentPanel);
 
-        mainControlSection.AddToggleSwitch(_modSetting.ShowImage, Translations.ControlPanel_ShowImage, null, (_, b) => _modSetting.ShowImage = b);
+        mainControlSection.AddToggle(Translations.ControlPanel_ShowImage, null, _modSettings.ShowImage, b => _modSettings.ShowImage = b);
 
-        mainControlSection.AddButton(string.Empty, null, Translations.ControlPanel_ReloadTexture, null, onButtonClicked: _ => RefreshPanel());
-
-        mainControlSection.AddButton(Translations.ControlPanel_Reset, null, SharedTranslations.Reset, null, onButtonClicked: _ => ResetButtonClicked());
-
-        mainControlSection.AddEmptyLiteContainer(Translations.ControlPanel_Opacity, null, c => {
-            var container = c.Control;
-            container.AutoLayout = true;
-            container.ColumnGap = 6;
-            container.Direction = FlexDirection.Row;
-            container.AutoFitChildrenHorizontally = true;
-            container.AutoFitChildrenVertically = true;
-            _opacityField = container.AddUIComponent<ByteValueField>();
-            SettingsSection.SetValueFieldSettings<ByteValueField, byte>(_opacityField, _imageOverlayManager.GetCurrentImageInfo().Opacity, 1, 100, 10, _ => UpdateImageData());
-            var applyButton = container.AddUIComponent<NormalButton>();
-            SettingsSection.SetButtonSettings(applyButton, Translations.Apply, onButtonClicked: _ => _imageOverlayManager.ApplyOpacity());
-        });
+        mainControlSection.AddButton(Translations.ControlPanel_ReloadTexture, null, Translations.Reload, ReloadTexture);
 
         #endregion
 
@@ -93,116 +103,111 @@ internal class ControlPanel : ControlPanelBase {
 
         var parametersSection = AddSection(_contentPanel);
 
-        _imageDropDownItems = DropDownHelper.FromCollection(_imageOverlayManager.AllOverlayData, v => v.Name);
+        var imageDropdown = parametersSection.AddDropdown<OverlayData>(Translations.ControlPanel_Image);
+        imageDropdown.TriggerButton.SetWidthIfChanged(200);
+        imageDropdown.DefaultTextSelector = data => data.Name;
+        imageDropdown.AddOptions(_imageOverlaySystem.AllOverlayData);
+        imageDropdown.SetSelectedWithoutNotify(o => o.Value == _imageOverlaySystem.GetCurrentImageInfo());
+        imageDropdown.ValueSelectionChanged += OnImageSelectionChanged;
 
-        parametersSection.AddDropDown(Translations.ControlPanel_Image, null, _imageDropDownItems, v => v.Value == _imageOverlayManager.GetCurrentImageInfo(), OnImageSelectionChanged, 200);
-
-        _imageSizeItems = [
-            new DropDownItem<TileSize>(TileSize.Custom, Translations.ControlPanel_Custom),
-            new DropDownItem<TileSize>(TileSize.Small, "1×1"),
-            new DropDownItem<TileSize>(TileSize.Medium, "3×3"),
-            new DropDownItem<TileSize>(TileSize.Large, "5×5"),
-            new DropDownItem<TileSize>(TileSize.Overspread, "9×9")
-        ];
-        var current = _imageDropDownItems.FirstOrDefault(v => v.Value == _imageOverlayManager.GetCurrentImageInfo());
-        var tileSize = TileSize.Custom;
-        if (current?.Value != null) {
-            tileSize = current.Value.Size;
+        _sizeDropDown = parametersSection.AddDropdown<TileSize>(Translations.ControlPanel_Size);
+        _sizeDropDown.TriggerButton.SetWidthIfChanged(200);
+        _sizeDropDown.AddOption(TileSize.Custom, Translations.ControlPanel_Custom);
+        for (var i = 0; i < ImageSizeItems.Length; i++) {
+            _sizeDropDown.AddOption(ImageSizeItems[i].Item1, ImageSizeItems[i].Item2);
         }
 
-        parametersSection.AddDropDown(Translations.ControlPanel_Size, null, _imageSizeItems, v => v.Value == tileSize, OnSizeDropDownSelectionChanged, 100, onLogicCreated: logic => _sizeDropDownLogic = logic);
+        _sizeDropDown.SetSelectedWithoutNotify(o => o.Value == _imageOverlaySystem.GetCurrentImageInfo().Size);
+        _sizeDropDown.ValueSelectionChanged += OnSizeDropDownSelectionChanged;
 
-        _sideLengthField = parametersSection.AddIntField(Translations.ControlPanel_SideLength, null, _imageOverlayManager.GetCurrentImageInfo().SideLength, 10, MaxSideLength, 10, v => {
-                var index = v switch {
-                    960 => 1,
-                    2880 => 2,
-                    4800 => 3,
-                    8640 => 4,
-                    _ => 0
-                };
-                _sizeDropDownLogic.Select(index);
-                UpdateImageData();
-            })
-            .Control;
+        _preserveAspectRatioToggle = parametersSection.AddToggle(Translations.PreserveAspectRatio, null, _imageOverlaySystem.GetCurrentImageInfo().PreserveAspectRatio, _ => UpdateImageData());
 
-        _positionXField = parametersSection.AddIntField(Translations.ControlPanel_Position + " X", null, _imageOverlayManager.GetCurrentImageInfo().PositionX, -10000, 10000, 10, _ => UpdateImageData()).Control;
+        _sideLengthField = parametersSection.AddIntField(Translations.ControlPanel_SideLength, null, _imageOverlaySystem.GetCurrentImageInfo().SideLength, v => {
+            _sizeDropDown.SetSelectedWithoutNotify(o => o.Value == IntToTileSize(v));
+            UpdateImageData();
+        }, fieldWidth: 100);
+        SetupField(_sideLengthField, 10, MaxSideLength, 100, 100, 1);
+       
+        _positionXField = parametersSection.AddIntField(Translations.ControlPanel_Position + " X", null, _imageOverlaySystem.GetCurrentImageInfo().PositionX, _ => UpdateImageData(), fieldWidth: 100);
+        SetupField(_positionXField, -10000, 10000, 10, 100, 1);
 
-        _positionYField = parametersSection.AddIntField(Translations.ControlPanel_Position + " Y", null, _imageOverlayManager.GetCurrentImageInfo().PositionY, -10000, 10000, 10, _ => UpdateImageData()).Control;
+        _positionYField = parametersSection.AddIntField(Translations.ControlPanel_Position + " Y", null, _imageOverlaySystem.GetCurrentImageInfo().PositionY, _ => UpdateImageData(), fieldWidth: 100);
+        SetupField(_positionYField, -10000, 10000, 10, 100, 1);
 
-        _rotationField = parametersSection.AddFloatField(Translations.ControlPanel_Rotation, null, _imageOverlayManager.GetCurrentImageInfo().Rotation, 0, 360, 1, _ => UpdateImageData()).Control;
+        _rotationField = parametersSection.AddFloatField(Translations.ControlPanel_Rotation, null, _imageOverlaySystem.GetCurrentImageInfo().Rotation, _ => UpdateImageData(), fieldWidth: 100);
+        SetupField(_rotationField, 0, 360, 1, 10, 0.1f);
+
+        _opacityField = parametersSection.AddByteField(Translations.ControlPanel_Opacity, null, _imageOverlaySystem.GetCurrentImageInfo().Opacity, _ => UpdateImageData(), fieldWidth: 100);
+        _opacityField.ValueFormat = "0'%'";
+        _opacityField.EnableFormatting = true;
+        SetupField<byte>(_opacityField, 0, 100, 10, 20, 1);
+
+        parametersSection.AddButton(Translations.ResetHeader, Translations.ResetDescription, Translations.Reset, ResetButtonClicked);
 
         #endregion
+
+        SetHeightIfChanged(_contentPanel.height + Padding + TitleBarHeight);
+        SetPosition();
     }
 
-    public override void OnDisable() {
-        base.OnDisable();
-        _settingManager.SaveDefaultSetting();
+    protected override void OnCloseButtonClicked(UIComponent component, UIMouseEventParameter eventParam) => _settingsPanelSystem.ClosePanel();
+
+    private void SetupField<T>(INumericField<T> field, T min, T max, T step, T shiftStep, T controlStep) where T : struct, IComparable<T> {
+        field.MinValue = min;
+        field.MaxValue = max;
+        field.StepSize = step;
+        field.ShiftStepSize = shiftStep;
+        field.ControlStepSize = controlStep;
+        field.UseMinValue = true;
+        field.UseMaxValue = true;
+        field.MouseWheelEnabled = true;
     }
 
-    private void OnSizeDropDownSelectionChanged(DropDownItem<TileSize> arg2) {
-        if (arg2.Value == TileSize.Custom) return;
-        _sideLengthField.CallEventValueChanged = false;
-        _sideLengthField.Value = _imageOverlayManager.GetIntegerTilesSize(arg2.Value);
-        _sideLengthField.CallEventValueChanged = true;
+    private void OnSizeDropDownSelectionChanged(TileSize tileSize) {
+        if (tileSize == TileSize.Custom) return;
+
+        _sideLengthField.SetValueWithoutNotify(TileSizeToInt(tileSize));
         UpdateImageData();
     }
 
-    protected override void OnCloseButtonClicked(UIComponent component, UIMouseEventParameter eventParam) {
-        _inGameToolButtonManager.OnPanelClosed();
-    }
-
-    private void ResetButtonClicked() => _dialogManager.Show<ConfirmDialog>()
-        .AddContent(_modManager.ModName,
-            Translations.ResetWarning, () => {
-                _imageOverlayManager.GetCurrentImageInfo().SetDefault();
-                _imageOverlayManager.ApplyOpacity();
-                _settingManager.SaveDefaultSetting();
-                _inGameToolButtonManager.OnForcePanelOpen();
-            });
-
-    private void RefreshPanel() {
-        _imageOverlayManager.ReloadTexture();
-        _inGameToolButtonManager.OnForcePanelOpen();
-        if (_modSetting.ShowReloadResults) {
-            _dialogManager.Show<ReloadTextureResultsDialog>();
-        }
-    }
-
-    private void OnImageSelectionChanged(DropDownItem<OverlayData> item) {
-        if (item.Value is null) return;
-        var image = item.Value;
-
-        _imageOverlayManager.ApplyTexture(image);
-
-        _sideLengthField.CallEventValueChanged = false;
-        _positionXField.CallEventValueChanged = false;
-        _positionYField.CallEventValueChanged = false;
-        _rotationField.CallEventValueChanged = false;
-        _opacityField.CallEventValueChanged = false;
-
-        _sideLengthField.Value = image.SideLength;
-        _positionXField.Value = image.PositionX;
-        _positionYField.Value = image.PositionY;
-        _rotationField.Value = image.Rotation;
-        _opacityField.Value = image.Opacity;
-
-        _sideLengthField.CallEventValueChanged = true;
-        _positionXField.CallEventValueChanged = true;
-        _positionYField.CallEventValueChanged = true;
-        _rotationField.CallEventValueChanged = true;
-        _opacityField.CallEventValueChanged = true;
-
-        _sizeDropDownLogic.Select(GetOverlayTileSize(image.Size));
-    }
-
-    private int GetOverlayTileSize(TileSize tileSize) => tileSize switch {
-        TileSize.Custom => 0,
-        TileSize.Small => 1,
-        TileSize.Medium => 2,
-        TileSize.Large => 3,
-        TileSize.Overspread => 4,
-        _ => 0
+    public int TileSizeToInt(TileSize tileSize) => tileSize switch {
+        TileSize.Small => 960,
+        TileSize.Medium => 2880,
+        TileSize.Large => 4800,
+        TileSize.Overspread => 8640,
+        _ => 480,
     };
 
-    private void UpdateImageData() => _imageOverlayManager.SetCurrentImageInfoParam(_sizeDropDownLogic.SelectedItem.Value, _sideLengthField.Value, _positionXField.Value, _positionYField.Value, _rotationField.Value, _opacityField.Value);
+    public TileSize IntToTileSize(int value) => value switch {
+        960 => TileSize.Small,
+        2880 => TileSize.Medium,
+        4800 => TileSize.Large,
+        8640 => TileSize.Overspread,
+        _ => TileSize.Custom,
+    };
+
+    private void ResetButtonClicked() => ConfirmDialog.ShowConfirmDialog(ModSystem.InternalDomain, Translations.ResetWarning, c => {
+        _imageOverlaySystem.GetCurrentImageInfo().SetDefault();
+        _settingsSystem.SaveMainSettings();
+        _settingsPanelSystem.RecreatePanelIfVisible();
+        c.Close();
+    }, c => c.Close(), d => d.Buttons.First().Background.Colors.SetValues(UIColorPalette.RedColors));
+
+    private void ReloadTexture() => Dialog.Show<SelectImageDialog>();
+
+    private void OnImageSelectionChanged(OverlayData overlayData) {
+        if (overlayData is null) return;
+
+        _imageOverlaySystem.ApplyTexture(overlayData);
+
+        _sideLengthField.SetValueWithoutNotify(overlayData.SideLength);
+        _positionXField.SetValueWithoutNotify(overlayData.PositionX);
+        _positionYField.SetValueWithoutNotify(overlayData.PositionY);
+        _rotationField.SetValueWithoutNotify(overlayData.Rotation);
+        _opacityField.SetValueWithoutNotify(overlayData.Opacity);
+        _preserveAspectRatioToggle.SetToggleStateWithoutNotify(overlayData.PreserveAspectRatio);
+        _sizeDropDown.SetSelectedWithoutNotify(o => o.Value == overlayData.Size);
+    }
+
+    private void UpdateImageData() => _imageOverlaySystem.SetCurrentImageInfoParam(_sizeDropDown.SelectionOption.Value, _preserveAspectRatioToggle.IsOn, _sideLengthField.Value, _positionXField.Value, _positionYField.Value, _rotationField.Value, _opacityField.Value);
 }

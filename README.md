@@ -1,8 +1,9 @@
 # Overlay images on top of the map, allowing you to replicate real city.
 
 [![Changelog](https://img.shields.io/badge/Changelog-Click%20to%20View-blue)](CHANGELOG.md)
-[![Stable](https://img.shields.io/badge/Stable%20Version-1.10.4-green)](https://steamcommunity.com/sharedfiles/filedetails/?id=2616880500)
-[![Beta](https://img.shields.io/badge/Beta%20Version-1.10.3-orange)](https://steamcommunity.com/sharedfiles/filedetails/?id=2671781645)
+[![Stable](https://img.shields.io/badge/Stable%20Version-1.11-green)](https://steamcommunity.com/sharedfiles/filedetails/?id=2616880500)
+[![Beta](https://img.shields.io/badge/Beta%20Version-1.11-orange)](https://steamcommunity.com/sharedfiles/filedetails/?id=2671781645)
+![Game Version](https://img.shields.io/badge/Support%20Game%20Version-1.21.1-green)
 
 ![d](https://i.imgur.com/8BfNPgj.png)
 
@@ -24,7 +25,7 @@
 - Image Overlay
 - Overlayer v2
 
-[![图片描述]( https://imgur.com/mzpNwS8.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2881031511)
+[![](https://imgur.com/mzpNwS8.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2881031511)
 
 ## Localization
 To help improve translations, please contribute on Crowdin:

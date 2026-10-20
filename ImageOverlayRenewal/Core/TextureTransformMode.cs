@@ -1,4 +1,4 @@
-﻿namespace ImageOverlayRenewal.Data;
+﻿namespace ImageOverlayRenewal.Core;
 
 public enum TextureTransformMode {
     FlipVertical,

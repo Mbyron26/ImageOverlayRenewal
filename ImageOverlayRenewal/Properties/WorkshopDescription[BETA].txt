@@ -4,9 +4,13 @@
 [/code]
 
 [quote]
-[u]New in version 1.10.3[/u]
+[u]New in version 1.11[/u]
 [list]
-[*] Optimized opacity adjustment for various PNG texture formats.
-[*] Fixed the incorrect mod description issue.
+[*] Improved opacity switching performance for faster and smoother transitions.
+[*] Opacity settings no longer require applying the opacity value to take effect.
+[*]  Removed the default behavior of loading all available images when loading the game, images are now loaded only when manually selected.
+[*]  Image loading is now manual and supports selecting individual image files.
+[*] Added the Preserve Aspect Ratio option. For non‑square images, the control now supports both stretching and preserving the original aspect ratio.
+[*] Now works in the Asset Editor.
 [/list]
 [/quote]

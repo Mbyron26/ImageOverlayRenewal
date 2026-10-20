@@ -1,6 +1,6 @@
-﻿using CSLModsCommon;
-using ImageOverlayRenewal.Managers;
+﻿using CSLModdingFramework.Core;
+using ImageOverlayRenewal.Core;
 
 namespace ImageOverlayRenewal;
 
-public class Mod : ModEntry<ModManager> { }
+public class Mod : ModEntry<ModSystem> { }

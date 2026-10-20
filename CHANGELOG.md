@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.11] - 2026-10-20
+- Improved opacity switching performance for faster and smoother transitions.
+- Opacity settings no longer require applying the opacity value to take effect.
+-  Removed the default behavior of loading all available images when loading the game, images are now loaded only when manually selected.
+-  Image loading is now manual and supports selecting individual image files.
+- Added the Preserve Aspect Ratio option. For non‑square images, the control now supports both stretching and preserving the original aspect ratio.
+- Now works in the Asset Editor.
+
 ## [1.10.4] - 2026-03-14
 
 - Updated to support game version 1.21.1

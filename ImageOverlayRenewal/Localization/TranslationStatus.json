@@ -1,164 +1,128 @@
 [
   {
-    "LanguageId": "ar",
-    "LanguageName": "Arabic",
-    "Locale": "ar-SA",
-    "TotalStrings": 56,
-    "TranslatedStrings": 43,
-    "TranslationProgress": 64,
-    "ApprovalProgress": 64
+    "EnglishName": "Arabic",
+    "RawLanguageCode": "ar",
+    "NormalizedLanguageCode": "ar-SA",
+    "TotalStrings": 61,
+    "TranslatedStrings": 36
   },
   {
-    "LanguageId": "cs",
-    "LanguageName": "Czech",
-    "Locale": "cs-CZ",
-    "TotalStrings": 56,
-    "TranslatedStrings": 43,
-    "TranslationProgress": 64,
-    "ApprovalProgress": 64
+    "EnglishName": "Czech",
+    "RawLanguageCode": "cs",
+    "NormalizedLanguageCode": "cs-CZ",
+    "TotalStrings": 61,
+    "TranslatedStrings": 36
   },
   {
-    "LanguageId": "de",
-    "LanguageName": "German",
-    "Locale": "de-DE",
-    "TotalStrings": 56,
-    "TranslatedStrings": 16,
-    "TranslationProgress": 13,
-    "ApprovalProgress": 13
+    "EnglishName": "German",
+    "RawLanguageCode": "de",
+    "NormalizedLanguageCode": "de-DE",
+    "TotalStrings": 61,
+    "TranslatedStrings": 10
   },
   {
-    "LanguageId": "es-ES",
-    "LanguageName": "Spanish",
-    "Locale": "es-ES",
-    "TotalStrings": 56,
-    "TranslatedStrings": 29,
-    "TranslationProgress": 41,
-    "ApprovalProgress": 41
+    "EnglishName": "Spanish",
+    "RawLanguageCode": "es-ES",
+    "NormalizedLanguageCode": "es-ES",
+    "TotalStrings": 61,
+    "TranslatedStrings": 21
   },
   {
-    "LanguageId": "fr",
-    "LanguageName": "French",
-    "Locale": "fr-FR",
-    "TotalStrings": 56,
-    "TranslatedStrings": 14,
-    "TranslationProgress": 13,
-    "ApprovalProgress": 13
+    "EnglishName": "French",
+    "RawLanguageCode": "fr",
+    "NormalizedLanguageCode": "fr-FR",
+    "TotalStrings": 61,
+    "TranslatedStrings": 8
   },
   {
-    "LanguageId": "it",
-    "LanguageName": "Italian",
-    "Locale": "it-IT",
-    "TotalStrings": 56,
-    "TranslatedStrings": 19,
-    "TranslationProgress": 20,
-    "ApprovalProgress": 20
+    "EnglishName": "Italian",
+    "RawLanguageCode": "it",
+    "NormalizedLanguageCode": "it-IT",
+    "TotalStrings": 61,
+    "TranslatedStrings": 12
   },
   {
-    "LanguageId": "ja",
-    "LanguageName": "Japanese",
-    "Locale": "ja-JP",
-    "TotalStrings": 56,
-    "TranslatedStrings": 21,
-    "TranslationProgress": 21,
-    "ApprovalProgress": 21
+    "EnglishName": "Japanese",
+    "RawLanguageCode": "ja",
+    "NormalizedLanguageCode": "ja-JP",
+    "TotalStrings": 61,
+    "TranslatedStrings": 14
   },
   {
-    "LanguageId": "ko",
-    "LanguageName": "Korean",
-    "Locale": "ko-KR",
-    "TotalStrings": 56,
-    "TranslatedStrings": 17,
-    "TranslationProgress": 14,
-    "ApprovalProgress": 14
+    "EnglishName": "Korean",
+    "RawLanguageCode": "ko",
+    "NormalizedLanguageCode": "ko-KR",
+    "TotalStrings": 61,
+    "TranslatedStrings": 11
   },
   {
-    "LanguageId": "nl",
-    "LanguageName": "Dutch",
-    "Locale": "nl-NL",
-    "TotalStrings": 56,
-    "TranslatedStrings": 21,
-    "TranslationProgress": 21,
-    "ApprovalProgress": 21
+    "EnglishName": "Dutch",
+    "RawLanguageCode": "nl",
+    "NormalizedLanguageCode": "nl-NL",
+    "TotalStrings": 61,
+    "TranslatedStrings": 14
   },
   {
-    "LanguageId": "pl",
-    "LanguageName": "Polish",
-    "Locale": "pl-PL",
-    "TotalStrings": 56,
-    "TranslatedStrings": 43,
-    "TranslationProgress": 64,
-    "ApprovalProgress": 64
+    "EnglishName": "Polish",
+    "RawLanguageCode": "pl",
+    "NormalizedLanguageCode": "pl-PL",
+    "TotalStrings": 61,
+    "TranslatedStrings": 36
   },
   {
-    "LanguageId": "pt-BR",
-    "LanguageName": "Portuguese, Brazilian",
-    "Locale": "pt-BR",
-    "TotalStrings": 56,
-    "TranslatedStrings": 21,
-    "TranslationProgress": 21,
-    "ApprovalProgress": 21
+    "EnglishName": "Portuguese, Brazilian",
+    "RawLanguageCode": "pt-BR",
+    "NormalizedLanguageCode": "pt-BR",
+    "TotalStrings": 61,
+    "TranslatedStrings": 14
   },
   {
-    "LanguageId": "pt-PT",
-    "LanguageName": "Portuguese",
-    "Locale": "pt-PT",
-    "TotalStrings": 56,
-    "TranslatedStrings": 43,
-    "TranslationProgress": 64,
-    "ApprovalProgress": 64
+    "EnglishName": "Portuguese",
+    "RawLanguageCode": "pt-PT",
+    "NormalizedLanguageCode": "pt-PT",
+    "TotalStrings": 61,
+    "TranslatedStrings": 36
   },
   {
-    "LanguageId": "ru",
-    "LanguageName": "Russian",
-    "Locale": "ru-RU",
-    "TotalStrings": 56,
-    "TranslatedStrings": 17,
-    "TranslationProgress": 14,
-    "ApprovalProgress": 14
+    "EnglishName": "Russian",
+    "RawLanguageCode": "ru",
+    "NormalizedLanguageCode": "ru-RU",
+    "TotalStrings": 61,
+    "TranslatedStrings": 11
   },
   {
-    "LanguageId": "sk",
-    "LanguageName": "Slovak",
-    "Locale": "sk-SK",
-    "TotalStrings": 56,
-    "TranslatedStrings": 43,
-    "TranslationProgress": 64,
-    "ApprovalProgress": 64
+    "EnglishName": "Slovak",
+    "RawLanguageCode": "sk",
+    "NormalizedLanguageCode": "sk-SK",
+    "TotalStrings": 61,
+    "TranslatedStrings": 36
   },
   {
-    "LanguageId": "th",
-    "LanguageName": "Thai",
-    "Locale": "th-TH",
-    "TotalStrings": 56,
-    "TranslatedStrings": 43,
-    "TranslationProgress": 64,
-    "ApprovalProgress": 64
+    "EnglishName": "Thai",
+    "RawLanguageCode": "th",
+    "NormalizedLanguageCode": "th-TH",
+    "TotalStrings": 61,
+    "TranslatedStrings": 36
   },
   {
-    "LanguageId": "tr",
-    "LanguageName": "Turkish",
-    "Locale": "tr-TR",
-    "TotalStrings": 56,
-    "TranslatedStrings": 43,
-    "TranslationProgress": 64,
-    "ApprovalProgress": 64
+    "EnglishName": "Turkish",
+    "RawLanguageCode": "tr",
+    "NormalizedLanguageCode": "tr-TR",
+    "TotalStrings": 61,
+    "TranslatedStrings": 36
   },
   {
-    "LanguageId": "zh-CN",
-    "LanguageName": "Chinese Simplified",
-    "Locale": "zh-CN",
-    "TotalStrings": 56,
-    "TranslatedStrings": 56,
-    "TranslationProgress": 100,
-    "ApprovalProgress": 100
+    "EnglishName": "Chinese Simplified",
+    "RawLanguageCode": "zh-CN",
+    "NormalizedLanguageCode": "zh-CN",
+    "TotalStrings": 61,
+    "TranslatedStrings": 61
   },
   {
-    "LanguageId": "zh-TW",
-    "LanguageName": "Chinese Traditional",
-    "Locale": "zh-TW",
-    "TotalStrings": 56,
-    "TranslatedStrings": 43,
-    "TranslationProgress": 64,
-    "ApprovalProgress": 64
+    "EnglishName": "Chinese Traditional",
+    "RawLanguageCode": "zh-TW",
+    "NormalizedLanguageCode": "zh-TW",
+    "TotalStrings": 61,
+    "TranslatedStrings": 36
   }
 ]
